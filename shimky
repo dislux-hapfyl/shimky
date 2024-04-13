@@ -1,0 +1,263 @@
+. ./pnk.lang
+
+
+fa=RecvTxt
+fb=SendTxt
+ta=rcvWidget
+tb=sndWidget
+M=master
+
+oa="i$fa.$ta"
+ob="i$fb.$tb"
+aa='fg="#ECCCA2"'
+bb='bg="#222"'
+cc='font=("VictorMono",20)'
+dd='font=("Iosevka",18)'
+ee='cursor="heart"'
+ff='cursor="shuttle"'
+gg='highlightbackground="#111"'
+hh='highlightbackground="#444"'
+ia='highlightcolor="#2BCDBB"'
+ib='highlightcolor="red"'
+ja='insertbackground="red"'
+jb='insertbackground="orange"'
+kk='relief="flat"'
+uu='undo=True'
+ll='padx=12'
+mm='pady=12'
+ds='state="disabled"'
+en='state="normal"'
+
+
+
+opta=$aa,$bb,$cc,$ee,$gg,$ib,$ja,$kk,$ll,$mm,$ds,$uu
+optb=$aa,$bb,$dd,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu
+
+ZDshebang 
+ZDfrm tkinter Tk,Frame,Text
+ZDfrm re finditer
+ZDfrm threading Thread
+ZDimp subprocess
+ZDimp datetime
+
+
+ZFtoorwin Shimky
+
+
+XIcv i$fa $fa
+XIcv i$fb $fb
+
+XFpk i$fa 1 none
+XFpk i$fb 1 none
+
+XFfc z tagConf
+
+
+XFbinda Shift_R doSyntax
+
+XFbind $oa Escape myExit
+XFbind $ob Control-n myinsert
+XFbind $ob Return sendCode
+XFbind $ob Control-Shift_R mapit
+
+
+
+YDdefe savefile
+XItgeta $oa data 
+XIfv -z filename $ob.get '"insert linestart+2c","insert lineend"'
+XFwrtf data filename
+XFfc z doSyntax
+
+
+YDdefe openfile
+XIfv -z filename $ob.get '"insert linestart+2c","insert lineend"'
+XFfc z myinsert
+XFopft $oa filename
+XFfc z doSyntax
+XFfc z myExit
+XFfc z $oa.see 1.0
+
+
+YDdefe myExit
+XFcfg $oa. $ib,$ds
+XFfc z $ob.focus
+
+
+YDdefe myinsert
+XFcfg $oa. $ia,$en
+XFfc z $oa.focus
+
+
+YDdefe mapit
+XFfc z myinsert
+XItgetln $ob cmd
+XFshspp $oa 'f". ./pnk.lang ; {cmd}"'
+XFfc z $oa.see 1.0
+XFfc z myExit
+
+
+YDdefe sendCode
+XItgetln $ob txt
+XIfv - tt txt.split
+XIv - strn '" ".join( str(i) for i in tt[1:])'
+XFcfg $oa. $en
+
+XKif 'tt[0] == "i"'
+WFfc z $oa.see '"end"'
+WFtins $oa insert 'f"{strn}\n"'
+
+XKelif 'tt[0] == "o"'
+WFfc z openfile
+
+XKelif 'tt[0] == "w"'
+WFfc z savefile
+
+XKelif 'tt[0] == "gd"'
+WFfc z i$fa.cleartxt
+
+XKelif 'tt[0] == "r"'
+WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
+WFtins $oa insert 'f"{strn}"'
+
+XKelif 'tt[0] == "dd"'
+WItgetln $oa self.ll
+WFfc z $oa.delete '"insert linestart","insert lineend"'
+
+XKelif 'tt[0] == "dl"'
+WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
+
+XKelif 'tt[0] == "p"'
+WFtins $oa insert 'f"{self.ll}"'
+
+
+XFcfg $oa. $ds
+XFfc z doSyntax
+
+
+YDdefe doSyntax
+XFfc zz syntax $oa
+XFfc zz syntax $ob
+
+
+YDdefe tagConf
+XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("#202124", "#bfff00"), "dol": ("black", "black"), "eql": ("#202124", "#00ffff"),"dash": ("#202124", "#00ffff"),"dot": ("#202124", "#bfff00"), "pls": ("#202124", "#00ffff"), "star": ("#202124", "#00ffff"),}'
+
+XLffor key,value d.items
+WFtagcfg $oa key value[0] value[1]
+WFtagcfg $ob key value[0] value[1]
+
+
+YDdefp tagg x,y,a,b
+XIv z x x
+XIv z y y
+XIv z a a
+XIv z b b
+XFfc z x.tag_add 'y,f"1.0+{a}c",f"1.0+{b}c"'
+
+
+YDdefp syntax xx
+XIv z xx xx
+XItgeta xx data
+
+
+XIv - SQ_idx "[(m.start(),m.end()) for m in finditer(r'\'(.*?)\'', data)]"
+XLfor start,end SQ_idx
+WFfc z tagg 'xx,"arg",start,end'
+
+XIv - dQ_idx "[(m.start(),m.end()) for m in finditer(r'\"(.*?)\"', data)]"
+XLfor start,end dQ_idx
+WFfc z tagg 'xx,"args",start,end'
+
+XIv - dol_idx "[(m.start(),m.end()) for m in finditer(r'\\$', data)]"
+XLfor start,end dol_idx
+WFfc z tagg 'xx,"dol",start,end'
+
+XIv - dot_idx "[(m.start(),m.end()) for m in finditer(r'\.', data)]"
+XLfor start,end dot_idx
+WFfc z tagg 'xx,"dot",start,end'
+
+XIv - dash_idx "[(m.start(),m.end()) for m in finditer(r'-', data)]"
+XLfor start,end dash_idx
+WFfc z tagg 'xx,"dash",start,end'
+
+XIv - eql_idx "[(m.start(),m.end()) for m in finditer(r'=', data)]"
+XLfor start,end eql_idx
+WFfc z tagg 'xx,"eql",start,end'
+
+XIv - pls_idx "[(m.start(),m.end()) for m in finditer(r'\+', data)]"
+XLfor start,end pls_idx
+WFfc z tagg 'xx,"pls",start,end'
+
+XIv - star_idx "[(m.start(),m.end()) for m in finditer(r'\*', data)]"
+XLfor start,end star_idx
+WFfc z tagg 'xx,"star",start,end'
+
+XIv - z_idx "[(m.start(),m.end()) for m in finditer(r'z', data)]"
+XLfor start,end z_idx
+WFfc z tagg 'xx,"z",start,end'
+
+XIv - D_idx "[(m.start(),m.end()) for m in finditer(r'D', data)]"
+XLfor start,end D_idx
+WFfc z tagg 'xx,"D",start,end'
+
+XIv - F_idx "[(m.start(),m.end()) for m in finditer(r'F', data)]"
+XLfor start,end F_idx
+WFfc z tagg 'xx,"F",start,end'
+
+XIv - I_idx "[(m.start(),m.end()) for m in finditer(r'I', data)]"
+XLfor start,end I_idx
+WFfc z tagg 'xx,"I",start,end'
+
+XIv - K_idx "[(m.start(),m.end()) for m in finditer(r'K', data)]"
+XLfor start,end K_idx
+WFfc z tagg 'xx,"K",start,end'
+
+XIv - L_idx "[(m.start(),m.end()) for m in finditer(r'L', data)]"
+XLfor start,end L_idx
+WFfc z tagg 'xx,"L",start,end'
+
+XIv - Z_idx "[(m.start(),m.end()) for m in finditer(r'Z', data)]"
+XLfor start,end Z_idx
+WFfc z tagg 'xx,"Z",start,end'
+
+XIv - U_idx "[(m.start(),m.end()) for m in finditer(r'U', data)]"
+XLfor start,end U_idx
+WFfc z tagg 'xx,"U",start,end'
+
+XIv - V_idx "[(m.start(),m.end()) for m in finditer(r'V', data)]"
+XLfor start,end V_idx
+WFfc z tagg 'xx,"V",start,end'
+
+XIv - W_idx "[(m.start(),m.end()) for m in finditer(r'W', data)]"
+XLfor start,end W_idx
+WFfc z tagg 'xx,"W",start,end'
+
+XIv - X_idx "[(m.start(),m.end()) for m in finditer(r'X', data)]"
+XLfor start,end X_idx
+WFfc z tagg 'xx,"X",start,end'
+
+XIv - Y_idx "[(m.start(),m.end()) for m in finditer(r'Y', data)]"
+XLfor start,end Y_idx
+WFfc z tagg 'xx,"Y",start,end'
+
+
+
+ZDcld $fa
+XIcv $ta Text $opta
+XFpk $ta 1 both
+XFbind $ta Control-l cleartxt
+XFbind $ta Shift_R $M.myinsert
+YDdefe cleartxt
+XFtdel $ta 1.0 end
+
+
+ZDcld $fb
+XIcv $tb Text $optb
+XFpk $tb 1 both
+XFfc z $tb.focus
+XFbind $tb Escape cleartxt
+YDdefe cleartxt
+XFtdel $tb 1.0 end
+
+
+ZFmain Shimky shimky
