@@ -112,7 +112,7 @@ WFfc z openfile
 XKelif 'tt[0] == "w"'
 WFfc z savefile
 
-XKelif 'tt[0] == "gd"'
+XKelif 'tt[0] == "d"'
 WFfc z i$fa.cleartxt
 
 XKelif 'tt[0] == "r"'
@@ -261,3 +261,5 @@ XFtdel $tb 1.0 end
 
 
 ZFmain Shimky shimky
+
+
