@@ -2,7 +2,7 @@
 
 SHell vIM tKinter pYthon = shimky
 
-vim clone wirtten in pnk.lang
+"vim" clone wirtten in pnk.lang
 
 Launch: `ksh shimky | python3 &`
 
