@@ -1284,22 +1284,6 @@ VFtins() {
 	VFfc z $n.insert "\"$s\",$v"
 }
 
-XFmap() {
-	typeset wr=appTxt
-	typeset command="$1"
-	typeset pycom="$2"
-	XIv - strn '" ".join( str(i) for i in tt[1:])'
-	XKif "tt[0] == \"$pycom\""
-	WFtins $wr end "f\"$command {strn}\n\""
-	
-}
-
-Wc() {
-	$_ `wc newide >x ; ksh newide | wc >> x ;cat x | awk '{print $3}' | tr '\n' ' ' | sed 's/ $//g; s/ / - /g'` ; wc -c newide ; ksh newide | wc -c ; rm x
-	wc newide >x ; ksh newide | wc >> x ;cat x | awk '{print $3}' | tr '\n' ' ' | sed 's/ $//g; s| | / |g'
-	rm x
-}
-
 wwc() {
     file1="$1"
     file2="$2"
