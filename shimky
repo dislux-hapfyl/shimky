@@ -1,10 +1,6 @@
-. ./pnk.lang
-
-#### CHANGE BEFORE LAUNCHING #########
+. pnk.lang
 
 MP3_DIR=
-
-######################################
 
 fa=RecvTxt
 fb=SendTxt
@@ -65,7 +61,7 @@ XIcv i$fb $fb
 XIcv i$fa $fa
 
 XFpk i$fb 0 none 
-XFfc z txtPad
+XFpk i$fa 0 none 
 
 XFfc z tagConf
 
@@ -95,13 +91,6 @@ XFfc - thd.start
 YDdefe runSyntax
 XFfc zz thdStart doSyntax
 
-
-YDdefe txtPad
-XFfc zz thdStart thdPad
-
-
-YDdefe thdPad
-XFpk i$fa 1 y
 
 
 YDdefp chgfg w
@@ -179,7 +168,7 @@ XFfc z $oa.focus
 YDdefe mapit
 XFfc z myinsert
 XItgetln $ob cmd
-XFshspp $oa 'f". ./pnk.lang ; {cmd}"'
+XFshspp $oa 'f". pnk.lang ; {cmd}"'
 XFfc z $oa.see 1.0
 XFfc z myExit
 
@@ -207,8 +196,12 @@ WFfc z savefile
 XKelif 'tt[0] == "d"'
 WFfc z i$fa.cleartxt
 
+WFdel() {
+	WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
+}
+
 XKelif 'tt[0] == "r"'
-WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
+WFdel
 WFtins $oa insert 'f"{strn}"'
 
 XKelif 'tt[0] == "dd"'
@@ -216,7 +209,7 @@ WItgetln $oa self.ll
 WFfc z $oa.delete '"insert linestart","insert lineend"'
 
 XKelif 'tt[0] == "dl"'
-WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
+WFdel
 
 XKelif 'tt[0] == "p"'
 WFtins $oa insert 'f"{self.ll}"'
@@ -541,4 +534,3 @@ XFtdel $tb 1.0 end
 
 
 ZFmain Shimky shimky
-
