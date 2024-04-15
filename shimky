@@ -15,7 +15,7 @@ oa="i$fa.$ta"
 ob="i$fb.$tb"
 oc="i$fc.$ta"
 
-aa='fg="#ECCCA2"'
+aa='fg="white"'
 bb='bg="#222"'
 ca='font=("VictorMono",20)'
 cb='font=("Iosevka",18)'
@@ -546,3 +546,4 @@ XFtdel $tb 1.0 end
 
 
 ZFmain Shimky shimky
+
