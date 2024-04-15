@@ -1299,7 +1299,7 @@ XFmap() {
 YDsyntax() {
 YDdefe doSyntax
 XFfc zz syntax $oa
-XFfc zz syntax $ob
+
 
 
 YDdefe tagConf
@@ -1444,4 +1444,6 @@ XIv - l9_idx "[(m.start(),m.end()) for m in finditer(r'9', data)]"
 XLfor start,end l9_idx
 WFfc z tagg 'xx,"9",start,end'
 
+
 }
+
