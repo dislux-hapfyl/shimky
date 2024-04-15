@@ -1,4 +1,4 @@
-#!/usr/bin/env ksh
+#!/usr/bin/env bash
 # by Roberto Rodriguez Jr <brainacid9@gmail.com>
 #pnk.lang.spec;
 
@@ -1102,7 +1102,7 @@ XFshsp() {
 	typeset n="$1"
 	typeset lntxt="$2"
 	XKtry
-	WIfv - result subprocess.run "$lntxt,shell=True,executable=\"/usr/bin/ksh\",stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True"
+	WIfv - result subprocess.run "$lntxt,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True"
 	WKif 'result.returncode == 0'
 	VFtins $n end 'f"\n\n{result.stdout}\n"'
 	WKelse
