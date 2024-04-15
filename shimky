@@ -1,6 +1,6 @@
 . pnk.lang
 
-MP3_DIR=/home/mrmr/more-data/mp3/
+MP3_DIR=
 
 fa=RecvTxt
 fb=SendTxt
@@ -232,6 +232,11 @@ WFfc z i$fa.cleartxt
 XKelif 'tt[0] == "r"'
 WFdel
 WFtins $oa insert 'f"{strn}"'
+WFfc z $oa.mark_set '"insert","end"'
+
+XKelif 'tt[0] == "rn"'
+WFdel
+WFtins $oa insert 'f"{strn}\n"'
 
 XKelif 'tt[0] == "dd"'
 WItgetln $oa self.ll
@@ -562,4 +567,5 @@ XFtdel $tb 1.0 end
 
 
 ZFmain Shimky shimky
+
 
