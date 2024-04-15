@@ -22,12 +22,12 @@ U="$Y$V " #19
 
 ####### Head, Body & Tail #######
 ZDimp() {
-	typeset ii="$1"
+	local ii="$1"
         $E "import $ii"
 }
 ZDas() {
-	typeset ii="$1"
-	typeset aa="$2"
+	local ii="$1"
+	local aa="$2"
         $E "import $ii as $aa"
 }
 ZDshebang() {
@@ -35,13 +35,13 @@ ZDshebang() {
 	$E "#pnk.lang.gen;"
 }
 ZDfrm() {
-	typeset lib="$1"
-	typeset cclass="$2"
+	local lib="$1"
+	local cclass="$2"
 	$E "from $lib import $cclass"
 }
 #root window
 ZFtoorwin() {
-	typeset pp="$1"
+	local pp="$1"
 	ZDdc $pp Tk
 	YDfd z __init__ 
 	XFfc - "super().__init__"
@@ -49,22 +49,22 @@ ZFtoorwin() {
 }
 #class instance
 XIcv() {
-	typeset name="$1"
-	typeset cclass="$2"
-	typeset s="$3"
+	local name="$1"
+	local cclass="$2"
+	local s="$3"
 	XIfv z $name $cclass self,$s
 }
 WIcv() {
-	typeset name="$1"
-	typeset cclass="$2"
-	typeset s="$3"
+	local name="$1"
+	local cclass="$2"
+	local s="$3"
 	WIfv z $name $cclass self,$s
 }
 #class define
 ZDcld() {
-	typeset nn="$1"
-	typeset xx="$2"
-	typeset pp="$3"
+	local nn="$1"
+	local xx="$2"
+	local pp="$3"
 	ZDdc $nn Frame
 	YDfd z __init__ ,parent,$xx
 	XFfc - "super().__init__" parent,$pp
@@ -72,8 +72,8 @@ ZDcld() {
 	XFcfg '' bg=$bg
 }
 ZFmain() {
-	typeset pp="$1"
-	typeset windowTitle="$2"
+	local pp="$1"
+	local windowTitle="$2"
 	$E "if __name__ == '__main__':"
   	YIfv - go $pp
   	YFfc - go.title "\"$windowTitle\""
@@ -82,16 +82,16 @@ ZFmain() {
 
 ######## Define my Class #####
 ZDdc() {
-	typeset nn="$1" #name
-	typeset cc="$2" #class
+	local nn="$1" #name
+	local cc="$2" #class
 	$E "class $nn($cc):"
 }
 
 ###### Define my Func #########
 ZDfd() {
-	typeset z="$1"
-        typeset nn="$2"
-	typeset cc="$3" 
+	local z="$1"
+        local nn="$2"
+	local cc="$3" 
 	if [[ $z == z ]]; 
 	then
 		$E "def $nn(${S}$cc):"
@@ -100,9 +100,9 @@ ZDfd() {
 	fi
 }
 YDfd() {
-	typeset z="$1"
-        typeset nn="$2"
-	typeset cc="$3" 
+	local z="$1"
+        local nn="$2"
+	local cc="$3" 
 	if [[ $z == z ]]; 
 	then
 		$E "$Y def $nn(${S}$cc):"
@@ -111,9 +111,9 @@ YDfd() {
 	fi
 }
 XDfd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]]; 
 	then
 		$E "$X def $nn(${S}$cc):"
@@ -122,9 +122,9 @@ XDfd() {
 	fi
 }
 WDfd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]]; 
 	then
 		$E "$W def $nn(${S}$cc):"
@@ -133,64 +133,64 @@ WDfd() {
 	fi
 }
 ZDdefe() {
-	typeset fn="$1"
+	local fn="$1"
 	ZDfd z $fn ,e=None
 }
 YDret() {
-	typeset r="$1"
+	local r="$1"
 	$E "$Y return $r"
 }
 YDdefs() {
-	typeset fn="$1"
-	typeset p="$2"
+	local fn="$1"
+	local p="$2"
 	YDfd z $fn ,$p
 }
 YDdefp() {
-	typeset fn="$1"
-	typeset p="$2"
+	local fn="$1"
+	local p="$2"
 	YDfd z $fn ,$p,e=None
 }
 YDdefe() {
-	typeset fn="$1"
+	local fn="$1"
 	YDfd z $fn ,e=None
 }
 XDret() {
-	typeset r="$1"
+	local r="$1"
 	$E "$X return $r"
 }
 XDdefe() {
-	typeset fn="$1"
+	local fn="$1"
 	XDfd z $fn ,e=None
 }
 XDdefs() {
-	typeset fn="$1"
-	typeset p="$2"
+	local fn="$1"
+	local p="$2"
 	XDfd z $fn ,$p
 }
 WDret() {
-	typeset r="$1"
+	local r="$1"
 	$E "$W return $r"
 }
 WDdefe() {
-	typeset fn="$1"
+	local fn="$1"
 	WDfd z $fn ,e=None
 }
 WDdefs() {
-	typeset fn="$1"
-	typeset p="$2"
+	local fn="$1"
+	local p="$2"
 	WDfd z $fn ,$p
 }
 VDret() {
-	typeset r="$1"
+	local r="$1"
 	$E "$V return $r"
 }
 
 ########## Function Ialls #######
 ZFfc() {
-	typeset z="$1"
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset ff="$4"
+	local z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "${S}.$nn($cc)"
@@ -205,10 +205,10 @@ ZFfc() {
 	fi
 }
 YFfc() {
-	typeset z="$1"
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset ff="$4"
+	local z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "$Y ${S}.$nn($cc)"
@@ -223,9 +223,9 @@ YFfc() {
 	fi
 }
 XFfc() {
-	typeset z="$1"
-        typeset nn="$2"
-	typeset cc="$3"
+	local z="$1"
+        local nn="$2"
+	local cc="$3"
 	if [[ $z == z ]]; 
 	then
 		$E "$X ${S}.$nn($cc)"
@@ -240,9 +240,9 @@ XFfc() {
 	fi
 }
 WFfc() {
-	typeset z="$1"
-        typeset nn="$2"
-	typeset cc="$3" 
+	local z="$1"
+        local nn="$2"
+	local cc="$3" 
 	if [[ $z == z ]]; 
 	then
 		$E "$W ${S}.$nn($cc)"
@@ -257,9 +257,9 @@ WFfc() {
 	fi
 }
 VFfc() {
-	typeset z="$1"
-        typeset nn="$2"
-	typeset cc="$3" 
+	local z="$1"
+        local nn="$2"
+	local cc="$3" 
 	if [[ $z == z ]]; 
 	then
 		$E "$V ${S}.$nn($cc)"
@@ -274,9 +274,9 @@ VFfc() {
 	fi
 }
 UFfc() {
-	typeset z="$1"
-        typeset nn="$2"
-	typeset cc="$3" 
+	local z="$1"
+        local nn="$2"
+	local cc="$3" 
 	if [[ $z == z ]]; 
 	then
 		$E "$U ${S}.$nn($cc)"
@@ -293,10 +293,10 @@ UFfc() {
 
 ######## Instance of a functional value #########
 ZIfv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
-	typeset ff="$4"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	local ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "${S}.$nn = $cc($ff)"
@@ -317,10 +317,10 @@ ZIfv() {
 	fi
 }
 YIfv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
-	typeset ff="$4"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	local ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "$Y ${S}.$nn = $cc($ff)"
@@ -341,10 +341,10 @@ YIfv() {
 	fi
 }
 XIfv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
-	typeset ff="$4"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	local ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "$X ${S}.$nn = $cc($ff)"
@@ -365,10 +365,10 @@ XIfv() {
 	fi
 }
 WIfv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
-	typeset ff="$4"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	local ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "$W ${S}.$nn = $cc($ff)"
@@ -389,10 +389,10 @@ WIfv() {
 	fi
 }
 VIfv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
-	typeset ff="$4"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	local ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "$V ${S}.$nn = $cc($ff)"
@@ -413,10 +413,10 @@ VIfv() {
 	fi
 }
 UIfv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
-	typeset ff="$4"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	local ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "$U ${S}.$nn = $cc($ff)"
@@ -441,9 +441,9 @@ UIfv() {
 # I know its all weird but fun.
 ######## Instance of Value #######
 ZIv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "${S}.$nn = $cc"
@@ -455,9 +455,9 @@ ZIv() {
 	fi
 }
 YIv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$Y ${S}.$nn = $cc"
@@ -469,9 +469,9 @@ YIv() {
 	fi
 }
 XIv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$X ${S}.$nn = $cc"
@@ -483,9 +483,9 @@ XIv() {
 	fi
 }
 WIv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$W ${S}.$nn = $cc"
@@ -497,9 +497,9 @@ WIv() {
 	fi
 }
 VIv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$V ${S}.$nn = $cc"
@@ -511,9 +511,9 @@ VIv() {
 	fi
 }
 UIv() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$U ${S}.$nn = $cc"
@@ -525,9 +525,9 @@ UIv() {
 	fi
 }
 ZIac() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "${S}.$nn += $cc"
@@ -539,9 +539,9 @@ ZIac() {
 	fi
 }
 YIac() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$Y ${S}.$nn += $cc"
@@ -553,9 +553,9 @@ YIac() {
 	fi
 }
 XIac() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$X ${S}.$nn += $cc"
@@ -567,9 +567,9 @@ XIac() {
 	fi
 }
 WIac() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$W ${S}.$nn += $cc"
@@ -581,9 +581,9 @@ WIac() {
 	fi
 }
 VIac() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$V ${S}.$nn += $cc"
@@ -595,9 +595,9 @@ VIac() {
 	fi
 }
 UIac() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$U ${S}.$nn += $cc"
@@ -609,9 +609,9 @@ UIac() {
 	fi
 }
 ZIrd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "${S}.$nn -= $cc"
@@ -623,9 +623,9 @@ ZIrd() {
 	fi
 }
 YIrd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$Y ${S}.$nn -= $cc"
@@ -637,9 +637,9 @@ YIrd() {
 	fi
 }
 XIrd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$X ${S}.$nn -= $cc"
@@ -651,9 +651,9 @@ XIrd() {
 	fi
 }
 WIrd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$W ${S}.$nn -= $cc"
@@ -665,9 +665,9 @@ WIrd() {
 	fi
 }
 VIrd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$V ${S}.$nn -= $cc"
@@ -679,9 +679,9 @@ VIrd() {
 	fi
 }
 UIrd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$U ${S}.$nn -= $cc"
@@ -693,9 +693,9 @@ UIrd() {
 	fi
 }
 VIdvd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
 	if [[ $z == z ]];
 	then
 		$E "$V ${S}.$nn /= $cc"
@@ -712,7 +712,7 @@ YKtry() {
 	$E "$Y try:"
 }
 YKexcp() {
-	typeset e="$1"
+	local e="$1"
 	$E "$Y except $e:"
 }
 YKfin() {
@@ -722,7 +722,7 @@ XKtry() {
 	$E "$X try:"
 }
 XKexcp() {
-	typeset e="$1"
+	local e="$1"
 	$E "$X except $e:"
 }
 XKfin() {
@@ -732,7 +732,7 @@ WKtry() {
 	$E "$W try:"
 }
 WKexcp() {
-	typeset e="$1"
+	local e="$1"
 	$E "$W except $e:"
 }
 WKfin() {
@@ -742,118 +742,118 @@ VKtry() {
 	$E "$V try:"
 }
 VKexcp() {
-	typeset e="$1"
+	local e="$1"
 	$E "$V except $e"
 }
 VKfin() {
 	$E "$V finally:"
 }
 ZKif() {
-	typeset test="$1"
+	local test="$1"
 	$E "if ${test}:"
 }
 YKif() {
-	typeset test="$1"
+	local test="$1"
 	$E "$Y if ${test}:"
 }
 XKif() {
-	typeset test="$1"
+	local test="$1"
 	$E "$X if ${test}:"
 }
 WKif() {
-	typeset test="$1"
+	local test="$1"
 	$E "$W if ${test}:"
 }
 VKif() {
-	typeset test="$1"
+	local test="$1"
 	$E "$V if ${test}:"
 }
 UKif() {
-	typeset test="$1"
+	local test="$1"
 	$E "$U if ${test}:"
 }
 ZKiff() {
-	typeset fff="$1"
-	typeset fv="$2"
+	local fff="$1"
+	local fv="$2"
 	$E "if ${fff}(${fv}):"
 }
 YKiff() {
-	typeset fff="$1"
-	typeset fv="$2"
+	local fff="$1"
+	local fv="$2"
 	$E "$Y if ${fff}(${fv}):"
 }
 XKiff() {
-	typeset fff="$1"
-	typeset fv="$2"
+	local fff="$1"
+	local fv="$2"
 	$E "$X if ${fff}(${fv}):"
 }
 WKiff() {
-	typeset fff="$1"
-	typeset fv="$2"
+	local fff="$1"
+	local fv="$2"
 	$E "$W if ${fff}(${fv}):"
 }
 VKiff() {
-	typeset fff="$1"
-	typeset fv="$2"
+	local fff="$1"
+	local fv="$2"
 	$E "$V if ${fff}(${fv}):"
 }
 UKiff() {
-	typeset fff="$1"
-	typeset fv="$2"
+	local fff="$1"
+	local fv="$2"
 	$E "$U if ${fff}(${fv}):"
 }
 ZKelif() {
-	typeset test="$1"
+	local test="$1"
 	$E "elif ${test}:"
 }
 YKelif() {
-	typeset test="$1"
+	local test="$1"
 	$E "$Y elif ${test}:"
 }
 XKelif() {
-	typeset test="$1"
+	local test="$1"
 	$E "$X elif ${test}:"
 }
 WKelif() {
-	typeset test="$1"
+	local test="$1"
 	$E "$W elif ${test}:"
 }
 VKelif() {
-	typeset test="$1"
+	local test="$1"
 	$E "$V elif ${test}:"
 }
 UKelif() {
-	typeset test="$1"
+	local test="$1"
 	$E "$U elif ${test}:"
 }
 ZKeliff() {
-	typeset fc="$1"
-	typeset fv="$2"
+	local fc="$1"
+	local fv="$2"
 	$E "elif ${fc}(${fv}):"
 }
 YKeliff() {
-	typeset fc="$1"
-	typeset fv="$2"
+	local fc="$1"
+	local fv="$2"
 	$E "$Y elif ${fc}(${fv}):"
 }
 XKeliff() {
-	typeset fc="$1"
-	typeset fv="$2"
+	local fc="$1"
+	local fv="$2"
 	$E "$X elif ${fc}(${fv}):"
 }
 WKeliff() {
-	typeset fc="$1"
-	typeset fv="$2"
+	local fc="$1"
+	local fv="$2"
 	$E "$W elif ${fc}(${fv}):"
 }
 VKeliff() {
-	typeset fc="$1"
-	typeset fv="$2"
+	local fc="$1"
+	local fv="$2"
 	$E "$V elif ${fc}(${fv}):"
 }
 UKeliff() {
-	typeset fc="$1"
-	typeset fv="$2"
+	local fc="$1"
+	local fv="$2"
 	$E "$U elif ${fc}(${fv}):"
 }
 ZKelse() {
@@ -906,87 +906,87 @@ UKps() {
 }
 ######## Loops ######
 ZLfor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "for $i in $l:"
 }
 YLfor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "$Y for $i in $l:"
 }
 XLfor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "$X for $i in $l:"
 }
 WLfor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "$W for $i in $l:"
 }
 VLfor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "$V for $i in $l:"
 }
 ULfor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "$U for $i in $l:"
 }
 ZLffor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "for $i in $l():"
 }
 YLffor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "$Y for $i in $l():"
 }
 XLffor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "$X for $i in $l():"
 }
 WLffor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "$W for $i in $l():"
 }
 VLffor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "$V for $i in $l():"
 }
 ULffor() {
-	typeset i="$1"
-	typeset l="$2"
+	local i="$1"
+	local l="$2"
 	$E "$U for $i in $l():"
 }
 ZLwhile() {
-	typeset i="$1"
+	local i="$1"
 	$E "while $i:"
 }
 YLwhile() {
-	typeset i="$1"
+	local i="$1"
 	$E "$Y while $i:"
 }
 XLwhile() {
-	typeset i="$1"
+	local i="$1"
 	$E "$X while $i:"
 }
 WLwhile() {
-	typeset i="$1"
+	local i="$1"
 	$E "$W while $i:"
 }
 VLwhile() {
-	typeset i="$1"
+	local i="$1"
 	$E "$V while $i:"
 }
 ULwhile() {
-	typeset i="$1"
+	local i="$1"
 	$E "$U while $i:"
 }
 
@@ -1020,87 +1020,87 @@ an='anchor="n"'
 
 
 XFlbox() {
-	typeset namee="$1"
-	typeset w="$2"
-	typeset h="$3"
+	local namee="$1"
+	local w="$2"
+	local h="$3"
 	XIfv z $namee Listbox "self,$wlbbg,$wfg,$wecr,$wlbhbg,$whc,$wre,$wlbfnt,width=$w,height=$h"
 }
 XFbtn() {
-	typeset namee="$1"
-	typeset t="$2"
-	typeset com="$3"
+	local namee="$1"
+	local t="$2"
+	local com="$3"
 	XIfv z $namee Button "self,$wBbg,$wfg,$wbcr,$whbg,$whc,$wre,$wfnt,command=self.$com,text=\"$t\""
 }
 XFtext() {
-	typeset namee="$1"
+	local namee="$1"
 	XIfv z $namee Text "self,wrap=\"word\",insertwidth=4,undo=True,padx=20,pady=10,spacing1=2,spacing3=2,$wbg,$wfg,$wcr,$whbg,$whc,$wic,$wre,"
 }
 XFpnwin() {
-	typeset namee="$1"
-	typeset orient="$2"
+	local namee="$1"
+	local orient="$2"
 	XIfv z $namee PanedWindow "self,orient="$orient",sashwidth=2,relief=\"flat\",showhandle=True,sashpad=1,$pnbg"
 	XFpk $namee 1 both
 }
 XFnotebk() {
-	typeset namee="$1"
-	typeset exp="$2"
-	typeset fill="$3"
+	local namee="$1"
+	local exp="$2"
+	local fill="$3"
 	XIfv z $namee Notebook self
 	XFpk $namee $exp $fill
 }
 XFentry() {
-	typeset namee="$1"
+	local namee="$1"
 	XIfv z $namee Entry "self,$pnbg,$wfg,$wecr,$wehbg,$whc,$wic,$wre,$wfnt"
 }
 XFlabel() {
-	typeset thn="$1"
-	typeset var="${thn}svar"
+	local thn="$1"
+	local var="${thn}svar"
 	XIfv z $var StringVar self
 	XIfv z $thn Label self,textvariable=self.$var
 }
 
 ##### widgets func operations and values #####
 XIeget() {
-	typeset w="$1"
-	typeset v="$2"
+	local w="$1"
+	local v="$2"
 	XIfv -z $v $w.get
 }
 XItgetln() {
-	typeset w="$1"
-	typeset v="$2"
+	local w="$1"
+	local v="$2"
 	XIfv -z $v $w.get "\"insert linestart\", \"insert lineend\""
 }
 XItget() {
-	typeset wn="$1"
-	typeset ivn="$2"
-	typeset s="$3"
-	typeset e="$4"
+	local wn="$1"
+	local ivn="$2"
+	local s="$3"
+	local e="$4"
 	XIfv -z $ivn $wn.get "\"$s\", \"$e\""
 }
 XItgeta() {
-	typeset w="$1"
-	typeset v="$2"
+	local w="$1"
+	local v="$2"
 	XIfv -z $v $w.get "\"1.0\", \"end-1c\""
 }
 WIeget() {
-	typeset w="$1"
-	typeset v="$2"
+	local w="$1"
+	local v="$2"
 	WIfv -z $v $w.get
 }
 WItgetln() {
-	typeset w="$1"
-	typeset v="$2"
+	local w="$1"
+	local v="$2"
 	WIfv -z $v $w.get "\"insert linestart\", \"insert lineend\""
 }
 WItget() {
-	typeset w="$1"
-	typeset v="$2"
+	local w="$1"
+	local v="$2"
 	WIfv -z $v $w.get "\"$w\", \"$v\""
 }
 
 XFshsp() {
-	typeset n="$1"
-	typeset lntxt="$2"
+	local n="$1"
+	local lntxt="$2"
 	XKtry
 	WIfv - result subprocess.run "$lntxt,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True"
 	WKif 'result.returncode == 0'
@@ -1112,10 +1112,10 @@ XFshsp() {
 	
 }
 XFshspp() {
-	typeset n="$1"
-	typeset lntxt="$2"
+	local n="$1"
+	local lntxt="$2"
 	XKtry
-	WIfv - result subprocess.run "$lntxt,shell=True,executable=\"/usr/bin/ksh\",stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True"
+	WIfv - result subprocess.run "$lntxt,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True"
 	WKif 'result.returncode == 0'
 	VFtins $n 1.0 'f"\n\n{result.stdout}\n"'
 	WKelse
@@ -1125,8 +1125,8 @@ XFshspp() {
 	
 }
 XFpyev() {
-	typeset n="$1"
-	typeset lntxt="$2"
+	local n="$1"
+	local lntxt="$2"
 	XKtry
 	WIfv - output eval "$lntxt,globals()"
 	WFtins $n 1.0 'f"{output}\n"'
@@ -1135,8 +1135,8 @@ XFpyev() {
 	
 }
 XFpyexc() {
-	typeset n="$1"
-	typeset lntxt="$2"
+	local n="$1"
+	local lntxt="$2"
 	XKtry
 	WIfv - output exec "$lntxt,globals()"
 	WFtins $n 1.0 'f"{output}\n"'
@@ -1145,171 +1145,152 @@ XFpyexc() {
 	
 }
 XFgdcfc() {
-	typeset ee="$1"
-	typeset ff="$2"
+	local ee="$1"
+	local ff="$2"
         XFfc z columnconfigure "$ee,weight=$ff"
 }
 XFgdcfr() {
-	typeset ee="$1"
-	typeset ff="$2"
+	local ee="$1"
+	local ff="$2"
 	XFfc z rowconfigure "$ee,weight=$ff"
 }
 XFgd() {
-	typeset namep="$1"
-	typeset ee="$2"
-	typeset ff="$3"
-	typeset aa="$4"
-	typeset bb="$5"
-	typeset ss="$6"
+	local namep="$1"
+	local ee="$2"
+	local ff="$3"
+	local aa="$4"
+	local bb="$5"
+	local ss="$6"
         XFfc z $namep.grid "row=$ee,column=$ff,$px,$py,columnspan=$aa,rowspan=$bb,sticky=\"$ss\""
 }
 XFpk() {
-	typeset namep="$1"
-	typeset ee="$2"
-	typeset ff="$3"
-	typeset aa="$4"
+	local namep="$1"
+	local ee="$2"
+	local ff="$3"
+	local aa="$4"
         XFfc z $namep.pack "expand=$ee,fill=\"$ff\",$px,$py,$aa"
 }
 XFpl() {
-	typeset namep="$1"
-	typeset x="$2"
-	typeset y="$3"
+	local namep="$1"
+	local x="$2"
+	local y="$3"
         XFfc z $namep.place "x=$x,y=$y"
 }
 XFbind() {
-	typeset n="$1"
-	typeset key="$2"
-	typeset yfc="$3"
+	local n="$1"
+	local key="$2"
+	local yfc="$3"
 	XFfc z ${n}.bind "\"<$key>\", ${S}.$yfc"
 }
 XFbinda() {
-	typeset key="$1"
-	typeset yfc="$2"
+	local key="$1"
+	local yfc="$2"
 	XFfc z bind_all "\"<$key>\", ${S}.$yfc"
 }
 XFopft() {
-	typeset wn="$1" 
-	typeset file="$2"
+	local wn="$1" 
+	local file="$2"
 	XIfv - f open "$file, \"r\""
 	XIfv - thefile f.read
 	XFtins $wn 1.0 thefile
 }
 XFwrtf() {
-	typeset data="$1"
-	typeset f="$2"
+	local data="$1"
+	local f="$2"
 	$E "$X with open($f, \"w\") as file:"
 	$E "$W file.write($data)"
 }
 XFset() {
-	typeset c="$1"
-	typeset n="$2"
+	local c="$1"
+	local n="$2"
 	XFfc z $c.set "$n"
 }
 XFcfg() {
-	typeset c="$1"
-	typeset n="$2"
+	local c="$1"
+	local n="$2"
 	XFfc z ${c}configure $n
 }
 XFedel() {
-	typeset n="$1"
+	local n="$1"
 	XFfc z $n.delete '0,"end"'
 }
 XFeins() {
-	typeset n="$1"
-	typeset v="$2"
+	local n="$1"
+	local v="$2"
 	XFfc z $n.insert "0,$v"
 }
 XFtdel() {
-	typeset n="$1"
-	typeset ss="$2"
-	typeset en="$3"
+	local n="$1"
+	local ss="$2"
+	local en="$3"
 	XFfc z $n.delete "\"${ss}\",\"${en}\""
 }
 XFtlndel() {
-	typeset n="$1"
+	local n="$1"
 	XFfc z $n.delete "\"insert linestart\", \"insert lineend\""
 }
 XFtins() {
-	typeset n="$1"
-	typeset s="$2"
-	typeset v="$3"	
+	local n="$1"
+	local s="$2"
+	local v="$3"	
 	$E "$X self.$n.insert(\"$s\", $v)"
 }
 WFtagcfg() {
-	typeset wn="$1"
-	typeset n="$2"
-	typeset b="$3"
-	typeset f="$4"
+	local wn="$1"
+	local n="$2"
+	local b="$3"
+	local f="$4"
 	WFfc z ${wn}.tag_configure "$n,background=$b,foreground=$f"
 }
 WFset() {
-	typeset c="$1"
-	typeset n="$2"
+	local c="$1"
+	local n="$2"
 	WFfc z $c.set "$n"
 }
 WFcfg() {
-	typeset c="$1"
-	typeset n="$2"
+	local c="$1"
+	local n="$2"
 	WFfc z ${c}configure $n
 }
 WFedel() {
-	typeset n="$1"
+	local n="$1"
 	WFfc z $n.delete '0,"end"'
 }
 WFeins() {
-	typeset n="$1"
-	typeset v="$2"
+	local n="$1"
+	local v="$2"
 	WFfc z $n.insert "0,f\"{$v}\""
 }
 WFtdel() {
-	typeset n="$1"
-	typeset ss="$2"
-	typeset en="$3"
+	local n="$1"
+	local ss="$2"
+	local en="$3"
 	WFfc z $n.delete "\"${ss}\",\"${en}\""
 }
 WFtlndel() {
-	typeset n="$1"
+	local n="$1"
 	WFfc z $n.delete "\"insert linestart\", \"insert lineend\""
 }
 WFtins() {
-	typeset n="$1"
-	typeset s="$2"
-	typeset v="$3"	
+	local n="$1"
+	local s="$2"
+	local v="$3"	
 	WFfc z $n.insert "\"$s\",$v"
 }
 VFtins() {
-	typeset n="$1"
-	typeset s="$2"
-	typeset v="$3"	
+	local n="$1"
+	local s="$2"
+	local v="$3"	
 	VFfc z $n.insert "\"$s\",$v"
 }
 
-wwc() {
-    file1="$1"
-    file2="$2"
-    count1=$(wc -c < "$file1")
-    count2=$(wc -c < "$file2")
-    
-    echo -e "\nCharacter count comparison:"
-    echo "$1 "
-    for ((i=0; i<$count1; i+=100)); do
-        printf "X"
-    done
-    echo " ($count1)"
-    
-    echo "$2 "
-    for ((i=0; i<$count2; i+=100)); do
-        printf "U"
-    done
-    echo " ($count2)"
-}
 wtr() {
 	curl wttr.in/22401?format=%l,%m,%w,%c,%h,%t | tr ',' '\t'
 }
 
 XFmap() {
-	typeset command="$1"
-	typeset pycom="$2"
+	local command="$1"
+	local pycom="$2"
 	XKelif "tt[0] == \"$pycom\""
 	WFtins $oa end "f\"$command {strn}\n\""
 	
