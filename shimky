@@ -1,4 +1,3 @@
-# by Roberto Rodriguez Jr <brainacid9@gmail.com>
 . pnk.lang
 
 MP3_DIR=
@@ -46,7 +45,7 @@ optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$iw
 optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$iw
 
 ZDshebang 
-ZDfrm tkinter Tk,Frame,Text,Listbox
+ZDfrm tkinter Tk,Frame,Text,Listbox,PanedWindow
 ZDfrm re finditer
 ZDfrm threading Thread
 ZDfrm os listdir,system,rename,path
@@ -56,8 +55,18 @@ ZDimp datetime
 
 
 ZFtoorwin Shimky
+XFpnwin pw '"horizontal"'
+XFpk pw 1 both
+
+XFbinda Control-w startNew
+XFfc z startNew
+
+YDdefe startNew
+XIcv this App
+XFfc zz pw.add this
 
 
+ZDcld App
 XIcv i$fb $fb
 XIcv i$fa $fa
 
@@ -83,6 +92,7 @@ XFbind $ob Control-M fntob
 YDsyntax
 
 
+
 YDdefp thdStart x
 XIv z x x
 XIfv - thd Thread 'target=x,daemon=True'
@@ -91,7 +101,6 @@ XFfc - thd.start
 
 YDdefe runSyntax
 XFfc zz thdStart doSyntax
-
 
 
 YDdefp chgfg w
@@ -409,7 +418,6 @@ XFpk i$fc 0 none
 
 YDdefe rmMusic
 XFfc z i$fc.destroy
-
 
 
 ZDcld $fc
