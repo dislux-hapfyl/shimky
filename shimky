@@ -6,6 +6,8 @@ fb=SendTxt
 fc=StatTxt
 ta=rcvWidget
 tb=sndWidget
+ws=mp3Cmd
+wl=musicBox
 M=master
 
 oa="i$fa.$ta"
@@ -42,37 +44,59 @@ optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$iw
 optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$iw
 
 ZDshebang 
-ZDfrm tkinter Tk,Frame,Text
+ZDfrm tkinter Tk,Frame,Text,Listbox
 ZDfrm re finditer
 ZDfrm threading Thread
+ZDfrm os listdir,system,rename,path
+ZDfrm pytube YouTube
 ZDimp subprocess
 ZDimp datetime
 
 
 ZFtoorwin Shimky
 
-XIcv i$fa $fa
-XIcv i$fb $fb
-XFpk i$fb 0 none
-XFpk i$fa 0 none
 
+XIcv i$fb $fb
+XIcv i$fa $fa
+
+XFpk i$fb 0 none 
+XFfc z txtPad
 
 XFfc z tagConf
 
 
-XFbinda Shift_R doSyntax
+
 XFbind $oa Escape myExit
 XFbind $ob Control-n myinsert
-XFbind $ob Return sendCode
+XFbind $ob Shift_R sendCode
 XFbind $ob Control-Shift_R mapit
 XFbind $ob Control-g fgoa
 XFbind $ob Control-j bgoa 
 XFbind $ob Control-G fgob
 XFbind $ob Control-J bgob
 XFbind $ob Control-m fntoa
+XFbind $ob Control-M fntob
 
 
 YDsyntax
+
+
+YDdefp thdStart x
+XIv z x x
+XIfv - thd Thread 'target=x,daemon=True'
+XFfc - thd.start
+
+
+YDdefe runSyntax
+XFfc zz thdStart doSyntax
+
+
+YDdefe txtPad
+XFfc zz thdStart thdPad
+
+
+YDdefe thdPad
+XFpk i$fa 1 y
 
 
 YDdefp chgfg w
@@ -103,15 +127,16 @@ YDdefe bgob
 XFfc zz chgbg $ob
 
 
-YDdefp chgfnt w
-XIv z w w
+YDdefe fntoa
 XItgetln $ob fntsz
 XIv - fn 'int(fntsz)'
-XFcfg w. 'font=("VictorMono",fn)'
+XFcfg $oa. 'font=("VictorMono",fn)'
 
 
-YDdefe fntoa
-XFfc zz chgfnt $oa
+YDdefe fntob
+XItgetln $ob fntsz
+XIv - fn 'int(fntsz)'
+XFcfg $ob. 'font=("Iosevka",fn)'
 
 
 XIgetcmd() {
@@ -164,6 +189,10 @@ XKif 'tt[0] == "i"'
 WFfc z $oa.see '"end"'
 WFtins $oa insert 'f"{strn}\n"'
 
+XKelif 'tt[0] == "c"'
+WFfc z $oa.see '"end"'
+WFtins $oa insert 'f"# {strn}\n"'
+
 XKelif 'tt[0] == "o"'
 WFfc z openfile
 
@@ -187,39 +216,309 @@ WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
 XKelif 'tt[0] == "p"'
 WFtins $oa insert 'f"{self.ll}"'
 
-XKelif 'tt[0] == "c"'
-WFfc z mkStat
+XKelif 'tt[0] == "m"'
+WFfc z musicBox
 
-XKelif 'tt[0] == "cd"'
-WFfc z rmStat
+XKelif 'tt[0] == "md"'
+WFfc z rmMusic
 
-XKelif 'tt[0] == "ii"'
-WFtins $oc insert 'f"{strn} "'
+
+XFmap '. ./pnk.lang' a00
+XFmap ZDshebang a01 
+XFmap ZDfrm a02 
+XFmap ZDimp a10 
+XFmap ZDas a11 
+XFmap ZFtoorwin a12 
+XFmap ZDdc b00 
+XFmap ZDcld b01 #pnk
+XFmap ZDcld b02 #py
+XFmap XIcv b10 
+XFmap ZFmain b11 
+XFmap ZDfd c00 
+XFmap YDfd c01 
+XFmap XDfd c02 
+XFmap WDfd c10 
+XFmap ZDdefe d00 
+XFmap YDret d01 
+XFmap YDdefp d10 
+XFmap XDret d11 
+XFmap YDdefe d12 
+XFmap YDdefs d20 
+XFmap XDdefe d21 
+XFmap WDret d22 
+XFmap XDdefs d30 
+XFmap WDdefe d31 
+XFmap VDret d32 
+XFmap WDdefs d40 
+XFmap ZFfc e00 
+XFmap YFfc e01 
+XFmap XFfc e02 
+XFmap WFfc e10 
+XFmap VFfc e11 
+XFmap UFfc e12 
+XFmap ZIfv f00 
+XFmap YIfv f01 
+XFmap XIfv f02 
+XFmap WIfv f10 
+XFmap VIfv f11 
+XFmap UIfv f12 
+XFmap ZIv g00 
+XFmap YIv g01 
+XFmap XIv g02 
+XFmap WIv g10 
+XFmap VIv g11 
+XFmap UIv g12 
+XFmap ZIac h00 
+XFmap YIac h01 
+XFmap XIac h02 
+XFmap WIac h10 
+XFmap VIac h11 
+XFmap UIac h12 
+XFmap ZIrd h20 
+XFmap YIrd h21 
+XFmap XIrd h22 
+XFmap WIrd h30 
+XFmap VIrd h31 
+XFmap UIrd h32 
+XFmap YKtry i00 
+XFmap YKexcp i01 
+XFmap YKfin i02 
+XFmap XKtry i10 
+XFmap XKexcp i11 
+XFmap XKfin i12 
+XFmap WKtry i20 
+XFmap WKexcp i21 
+XFmap WKfin i22 
+XFmap VKtry i30 
+XFmap VKexcp i31 
+XFmap VKfin i32 
+XFmap ZKif k00 
+XFmap YKif k01 
+XFmap XKif k02 
+XFmap WKif k10 
+XFmap VKif k11 
+XFmap UKif k12 
+XFmap ZKiff k20 
+XFmap YKiff k21 
+XFmap XKiff k22 
+XFmap WKiff k30 
+XFmap VKiff k31 
+XFmap UKiff k32 
+XFmap ZKelif k40 
+XFmap YKelif k41 
+XFmap XKelif k42 
+XFmap WKelif k50 
+XFmap VKelif k51 
+XFmap UKelif k52 
+XFmap ZKeliff k60 
+XFmap YKeliff k61 
+XFmap XKeliff k62 
+XFmap WKeliff k70 
+XFmap VKeliff k71 
+XFmap UKeliff k72 
+XFmap ZKelse k80 
+XFmap YKelse k81 
+XFmap XKelse k82 
+XFmap WKelse k90 
+XFmap VKelse k91 
+XFmap UKelse k92 
+XFmap YKbr l00 
+XFmap XKbr l01 
+XFmap WKbr l02 
+XFmap VKbr l10 
+XFmap UKbr l11 
+XFmap YKctn l12 
+XFmap XKctn l20 
+XFmap WKctn l21 
+XFmap VKctn l22 
+XFmap UKctn l30 
+XFmap YKps l31 
+XFmap XKps l32 
+XFmap WKps l40 
+XFmap VKps l41 
+XFmap UKps l42 
+XFmap ZLfor m00 
+XFmap YLfor m01 
+XFmap XLfor m02 
+XFmap WLfor m10 
+XFmap VLfor m11 
+XFmap ULfor m12 
+XFmap ZLffor m20 
+XFmap YLffor m21 
+XFmap XLffor m22 
+XFmap WLffor m30 
+XFmap VLffor m31 
+XFmap ULffor m32 
+XFmap ZLwhile m40 
+XFmap YLwhile m41 
+XFmap XLwhile m42 
+XFmap WLwhile m50 
+XFmap VLwhile m51 
+XFmap ULwhile m52 
+XFmap XFbtn w00 
+XFmap XFtext w01 
+XFmap XFpnwin w02 
+XFmap XFnotebk w10 
+XFmap XFentry w11 
+XFmap XFlabel w12 
+XFmap XFlbox w20 
+XFmap XIeget t00 
+XFmap XItgetln t01 
+XFmap XItget t02 
+XFmap XItgeta t10 
+XFmap WItgetln t11 
+XFmap WItget t12 
+XFmap WIeget t20 
+XFmap XFpk p00 
+XFmap XFpl p01
+XFmap XFgd p02
+XFmap XFgdcfc p10
+XFmap XFgdcfr p11
+XFmap XFbind p12
+XFmap XFbinda p20 
+XFmap XFshsp p21
+XFmap XFshspp p22
+XFmap XFpyev p30
+XFmap XFopft v00 
+XFmap XFwrtf v01 
+XFmap XFset v02 
+XFmap XFcfg v10 
+XFmap XFedel v11 
+XFmap XFeins v12 
+XFmap XFtdel v20 
+XFmap XFtlndel v21 
+XFmap XFtins v22 
+XFmap WFtagcfg u00 
+XFmap WFtins u01 
+XFmap WFset u02 
+XFmap WFcfg u10 
+XFmap WFedel u11 
+XFmap WFeins u12 
+XFmap WFtdel u20 
+XFmap WFtlndel u21 
+XFmap VFtins u22 
+
 
 XFcfg $oa. $ds
-XFfc z doSyntax
+XFfc z runSyntax
 
 
-YDdefe mkStat
+YDdefe musicBox
 XIcv i$fc $fc
 XFpk i$fc 0 none
 
 
-YDdefe rmStat
+YDdefe rmMusic
 XFfc z i$fc.destroy
 
 
 
 ZDcld $fc
-XIcv $ta Text $optc
-XFpk $ta 1 both
+
+XFlbox $wl 64 3
+XFcfg $wl. 'font=("Iosevka",16)'
+XFpk $wl 0 none
+
+XIcv $ws Text $optc
+XFpk $ws 0 none
+
+
+XFbind $wl Control-r reloadMusic
+XFbind $wl Double-Button-1 startMusic
+XFbind $wl Return startMusic
+
+XFbind $ws Control-n dlMusic
+XFbind $ws Escape clearit
+
+XFfc z loadMusic
+
+YDdefe clearit
+XFtdel $ws 1.0 end
+
+YDdefe loadMusic
+XIfv - filelist listdir '"/home/mrmr/more-data/mp3"'
+XIfv - musiclist sorted filelist
+XLfor song musiclist
+WFtins $wl end 'f"{song}"'
+
+
+YDdefe reloadMusic
+XFedel $wl
+XFfc z loadMusic
+
+
+YDdefp cleanfn fn
+XIv - vc '"-"'
+XIv - out '""'
+XLfor c fn
+WKif 'str.isalnum(c) or (c in vc)'
+VIac - out c
+WKelse
+VIac - out '""'
+XDret out
+
+
+YDdefe ersMsg
+XFtdel $ws 1.0 1.end+1c
+
+
+YDdefe ersAct
+XFfc z after 2000,self.ersMsg
+
+
+YDdefp seeTop who
+XIv z who who
+XFfc z who.see 1.0
+
+
+YDdefp notif n,m
+XIv z n n
+XIv z m m
+XFtins $ws 1.0 "f\"$datenow {n} {m}\n\""
+XFfc zz seeTop $ws
+XFfc z ersAct
+
+
+YDdefe getMp3
+XItgetln $ws url
+XFfc z notif 'url,"Downloading"'
+XIv - filepath '"/home/mrmr/more-data/mp3/"'
+XIfv - daurl YouTube url
+XIfv - damusic daurl.streams.filter 'only_audio=True'
+XIfv - music damusic.first
+XIfv - raw music.download 'output_path=filepath'
+XIfv - head,t path.splitext raw
+XIfv - base path.basename head
+XIfv -z filename cleanfn base
+XIv - outfile 'f"{filepath}{filename}.mp3"'
+XFfc - rename raw,outfile
+XFfc z reloadMusic
+XFfc z notif 'filename,"Ready 2 Play!"'
+
+
+YDdefe playMp3
+XIfv -zz sel $wl.get "$wl.curselection()"
+XFfc - system 'f"mpv /home/mrmr/more-data/mp3/{sel}"'
+
+
+YDdefp thdStart x
+XIv z x x
+XIfv - thd Thread 'target=x,daemon=True'
+XFfc - thd.start
+
+
+YDdefe dlMusic
+XFfc zz thdStart getMp3
+
+
+YDdefe startMusic
+XFfc zz thdStart playMp3
 
 
 
 ZDcld $fa
 XIcv $ta Text $opta
-XFpk $ta 1 both
-XFbind $ta Control-l cleartxt
+XFpk $ta 1 y
 XFbind $ta Shift_R $M.myinsert
 YDdefe cleartxt
 XFtdel $ta 1.0 end
@@ -228,7 +527,7 @@ XFtdel $ta 1.0 end
 
 ZDcld $fb
 XIcv $tb Text $optb
-XFpk $tb 1 both
+XFpk $tb 0 none
 XFfc z $tb.focus
 XFbind $tb Escape cleartxt
 YDdefe cleartxt
@@ -237,5 +536,4 @@ XFtdel $tb 1.0 end
 
 
 ZFmain Shimky shimky
-
 
