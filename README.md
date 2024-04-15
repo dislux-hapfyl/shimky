@@ -7,6 +7,8 @@ SHell vIM tKinter pYthon = shimky
 
 Launch: `sed 's|MP3_DIR=|&$HOME/your-mp3-dir/|' shimky | bash | python3 &`
 
+[!pnk](pynksh.jpeg)
+
 ## EOF
 
 thanks for stopping in ;)
