@@ -1,5 +1,10 @@
 . ./pnk.lang
 
+#### CHANGE BEFORE LAUNCHING #########
+
+MP3_DIR=/home/mrmr/more-data/mp3/
+
+######################################
 
 fa=RecvTxt
 fb=SendTxt
@@ -436,7 +441,7 @@ YDdefe clearit
 XFtdel $ws 1.0 end
 
 YDdefe loadMusic
-XIfv - filelist listdir '"/home/mrmr/more-data/mp3"'
+XIfv - filelist listdir "\"$MP3_DIR\""
 XIfv - musiclist sorted filelist
 XLfor song musiclist
 WFtins $wl end 'f"{song}"'
@@ -482,7 +487,7 @@ XFfc z ersAct
 YDdefe getMp3
 XItgetln $ws url
 XFfc z notif 'url,"Downloading"'
-XIv - filepath '"/home/mrmr/more-data/mp3/"'
+XIv - filepath "\"$MP3_DIR\""
 XIfv - daurl YouTube url
 XIfv - damusic daurl.streams.filter 'only_audio=True'
 XIfv - music damusic.first
@@ -498,7 +503,7 @@ XFfc z notif 'filename,"Ready 2 Play!"'
 
 YDdefe playMp3
 XIfv -zz sel $wl.get "$wl.curselection()"
-XFfc - system 'f"mpv /home/mrmr/more-data/mp3/{sel}"'
+XFfc - system "f\"mpv $MP3_DIR{sel}\""
 
 
 YDdefp thdStart x
