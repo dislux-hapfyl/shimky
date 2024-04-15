@@ -1,6 +1,6 @@
 . pnk.lang
 
-MP3_DIR=
+MP3_DIR=/home/mrmr/more-data/mp3/
 
 fa=RecvTxt
 fb=SendTxt
@@ -182,6 +182,9 @@ XFshspp $oa 'f". pnk.lang ; {cmd}"'
 XFfc z $oa.see 1.0
 XFfc z myExit
 
+WFdel() {
+	WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
+}
 
 YDdefe sendCode
 XItgetln $ob txt
@@ -205,10 +208,6 @@ WFfc z savefile
 
 XKelif 'tt[0] == "d"'
 WFfc z i$fa.cleartxt
-
-WFdel() {
-	WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
-}
 
 XKelif 'tt[0] == "r"'
 WFdel
