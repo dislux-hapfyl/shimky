@@ -3,35 +3,44 @@
 
 fa=RecvTxt
 fb=SendTxt
+fc=StatTxt
 ta=rcvWidget
 tb=sndWidget
 M=master
 
 oa="i$fa.$ta"
 ob="i$fb.$tb"
+oc="i$fc.$ta"
+
 aa='fg="#ECCCA2"'
 bb='bg="#222"'
-cc='font=("VictorMono",20)'
-dd='font=("Iosevka",18)'
+ca='font=("VictorMono",20)'
+cb='font=("Iosevka",18)'
+cc='font=("VictorMono",14)'
 ee='cursor="heart"'
 ff='cursor="shuttle"'
+fcs='cursor="spider"'
 gg='highlightbackground="#111"'
 hh='highlightbackground="#444"'
 ia='highlightcolor="#2BCDBB"'
+ic='highlightcolor="blue"'
 ib='highlightcolor="red"'
 ja='insertbackground="red"'
 jb='insertbackground="orange"'
+jc='insertbackground="green"'
 kk='relief="flat"'
 uu='undo=True'
 ll='padx=12'
 mm='pady=12'
 ds='state="disabled"'
 en='state="normal"'
+wa='height=3'
+wb='height=2'
+iw='insertwidth=5'
 
-
-
-opta=$aa,$bb,$cc,$ee,$gg,$ib,$ja,$kk,$ll,$mm,$ds,$uu
-optb=$aa,$bb,$dd,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu
+opta=$aa,$bb,$ca,$ee,$gg,$ib,$ja,$kk,$ll,$mm,$ds,$uu,$iw
+optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$iw
+optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$wb,$iw
 
 ZDshebang 
 ZDfrm tkinter Tk,Frame,Text
@@ -43,35 +52,37 @@ ZDimp datetime
 
 ZFtoorwin Shimky
 
-
 XIcv i$fa $fa
 XIcv i$fb $fb
+XFpk i$fb 0 none
+XFpk i$fa 0 none
 
-XFpk i$fa 1 none
-XFpk i$fb 1 none
 
 XFfc z tagConf
 
 
 XFbinda Shift_R doSyntax
-
 XFbind $oa Escape myExit
 XFbind $ob Control-n myinsert
 XFbind $ob Return sendCode
 XFbind $ob Control-Shift_R mapit
+#XFbind $ob KeyRelease showSpp
 
-
+XIgetcmd() {
+	XIfv -z filename $ob.get '"insert linestart+2c","insert lineend"'
+}
 
 YDdefe savefile
+XIgetcmd
 XItgeta $oa data 
-XIfv -z filename $ob.get '"insert linestart+2c","insert lineend"'
 XFwrtf data filename
 XFfc z doSyntax
 
 
 YDdefe openfile
-XIfv -z filename $ob.get '"insert linestart+2c","insert lineend"'
+XIgetcmd
 XFfc z myinsert
+XFfc z i$fa.cleartxt
 XFopft $oa filename
 XFfc z doSyntax
 XFfc z myExit
@@ -129,9 +140,25 @@ WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
 XKelif 'tt[0] == "p"'
 WFtins $oa insert 'f"{self.ll}"'
 
+XKelif 'tt[0] == "c"'
+WFfc z mkStat
+
+XKelif 'tt[0] == "cd"'
+WFfc z rmStat
+
+XKelif 'tt[0] == "ii"'
+WFtins $oc insert 'f"{strn} "'
 
 XFcfg $oa. $ds
 XFfc z doSyntax
+
+
+YDdefe mkStat
+XIcv i$fc $fc
+XFpk i$fc 0 none
+
+YDdefe rmStat
+XFfc z i$fc.destroy
 
 
 YDdefe doSyntax
@@ -241,6 +268,10 @@ XLfor start,end Y_idx
 WFfc z tagg 'xx,"Y",start,end'
 
 
+ZDcld $fc
+XIcv $ta Text $optc
+XFpk $ta 1 both
+
 
 ZDcld $fa
 XIcv $ta Text $opta
@@ -261,5 +292,4 @@ XFtdel $tb 1.0 end
 
 
 ZFmain Shimky shimky
-
 
