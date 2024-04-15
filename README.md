@@ -17,6 +17,9 @@ https://special.fish/hardkorebob
 
 https://hardkorebob.github.io
 
+https://www.reddit.com/r/pnk/
+
+https://discord.gg/JT6RMMfP
 
 🐡🐧🐍🐚🐈‍⬛🦤🏞🪡♥️🪄⏳️🎲🎯🧩🏅🎉
 
