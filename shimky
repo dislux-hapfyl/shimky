@@ -95,20 +95,12 @@ YDsyntax
 YDdefe cliSyntax
 XFfc zz syntax $ob
 
-YDdefe ersMsg
-XFtdel $ob 1.0 1.end+1c
-
-
-YDdefe ersAct
-XFfc z after 2000,self.ersMsg
-
 
 YDdefp notif n,m
 XIv z n n
 XIv z m m
 XFtins $ob 1.0 "f\"$datenow {n} {m}\n\""
 XFfc z $ob.see 1.0
-XFfc z ersAct
 
 
 YDdefp thdStart x
@@ -202,9 +194,11 @@ XFshspp $oa 'f". pnk.lang ; {cmd}"'
 XFfc z $oa.see 1.0
 XFfc z myExit
 
+
 WFdel() {
 	WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
 }
+
 
 YDdefe sendCode
 XItgetln $ob txt
@@ -240,13 +234,13 @@ WFtins $oa insert 'f"{strn}\n"'
 
 XKelif 'tt[0] == "dd"'
 WItgetln $oa self.ll
-WFfc z $oa.delete '"insert linestart","insert lineend"'
+WFdel
 
 XKelif 'tt[0] == "dl"'
 WFdel
 
 XKelif 'tt[0] == "p"'
-WFtins $oa insert 'f"{self.ll}"'
+WFtins $oa insert 'f"{self.ll}\n"'
 
 XKelif 'tt[0] == "m"'
 WFfc z musicBox
@@ -489,25 +483,10 @@ VIac - out '""'
 XDret out
 
 
-YDdefe ersMsg
-XFtdel $ws 1.0 1.end+1c
-
-
-YDdefe ersAct
-XFfc z after 2000,self.ersMsg
-
-
-YDdefp seeTop who
-XIv z who who
-XFfc z who.see 1.0
-
-
 YDdefp notif n,m
 XIv z n n
 XIv z m m
 XFtins $ws 1.0 "f\"$datenow {n} {m}\n\""
-XFfc zz seeTop $ws
-XFfc z ersAct
 
 
 YDdefe getMp3
@@ -567,5 +546,3 @@ XFtdel $tb 1.0 end
 
 
 ZFmain Shimky shimky
-
-
