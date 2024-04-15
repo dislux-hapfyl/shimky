@@ -4,7 +4,8 @@ SHell vIM tKinter pYthon = shimky
 
 "vim" clone wirtten in pnk.lang
 
-Launch: `MP3_DIR=/path/to/mp3s ksh shimky | python3 &`
+
+Launch: `sed 's|MP3_DIR=|&/path/to/mp3-dir/|' shimky | bash | python3 &`
 
 ## EOF
 
