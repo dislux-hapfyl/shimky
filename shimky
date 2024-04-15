@@ -71,11 +71,11 @@ XIcv i$fb $fb
 XIcv i$fa $fa
 
 XFpk i$fb 0 none 
-XFpk i$fa 0 none 
+XFpk i$fa 1 y
 
 XFfc z tagConf
 
-
+XFfc z runSyntax
 
 XFbind $oa Escape myExit
 XFbind $ob Control-n myinsert
@@ -87,10 +87,28 @@ XFbind $ob Control-G fgob
 XFbind $ob Control-J bgob
 XFbind $ob Control-m fntoa
 XFbind $ob Control-M fntob
-
+XFbind $ob Return cliSyntax
 
 YDsyntax
 
+
+YDdefe cliSyntax
+XFfc zz syntax $ob
+
+YDdefe ersMsg
+XFtdel $ob 1.0 1.end+1c
+
+
+YDdefe ersAct
+XFfc z after 2000,self.ersMsg
+
+
+YDdefp notif n,m
+XIv z n n
+XIv z m m
+XFtins $ob 1.0 "f\"$datenow {n} {m}\n\""
+XFfc z $ob.see 1.0
+XFfc z ersAct
 
 
 YDdefp thdStart x
@@ -152,6 +170,7 @@ YDdefe savefile
 XIgetcmd
 XItgeta $oa data 
 XFwrtf data filename
+XFfc z notif 'filename,"Saved!"'
 XFfc z doSyntax
 
 
@@ -160,6 +179,7 @@ XIgetcmd
 XFfc z myinsert
 XFfc z i$fa.cleartxt
 XFopft $oa filename
+XFfc z notif 'filename,"Opened!"'
 XFfc z doSyntax
 XFfc z myExit
 XFfc z $oa.see 1.0
@@ -542,3 +562,4 @@ XFtdel $tb 1.0 end
 
 
 ZFmain Shimky shimky
+
