@@ -1307,6 +1307,14 @@ wtr() {
 	curl wttr.in/22401?format=%l,%m,%w,%c,%h,%t | tr ',' '\t'
 }
 
+XFmap() {
+	typeset command="$1"
+	typeset pycom="$2"
+	XKelif "tt[0] == \"$pycom\""
+	WFtins $oa end "f\"$command {strn}\n\""
+	
+}
+
 YDsyntax() {
 YDdefe doSyntax
 XFfc zz syntax $oa
@@ -1314,7 +1322,7 @@ XFfc zz syntax $ob
 
 
 YDdefe tagConf
-XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("#202124", "#bfff00"), "dol": ("black", "black"), "eql": ("#202124", "#00ffff"),"dash": ("#202124", "#00ffff"),"dot": ("#202124", "#bfff00"), "pls": ("#202124", "#00ffff"), "star": ("#202124", "#00ffff"),}'
+XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("#202124", "#bfff00"), "dol": ("black", "black"), "eql": ("#202124", "#00ffff"),"dash": ("#202124", "#00ffff"),"dot": ("#202124", "#bfff00"), "pls": ("#202124", "#00ffff"), "star": ("#202124", "#00ffff"),"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
 
 XLffor key,value d.items
 WFtagcfg $oa key value[0] value[1]
@@ -1413,5 +1421,46 @@ WFfc z tagg 'xx,"X",start,end'
 XIv - Y_idx "[(m.start(),m.end()) for m in finditer(r'Y', data)]"
 XLfor start,end Y_idx
 WFfc z tagg 'xx,"Y",start,end'
+
+
+XIv - l0_idx "[(m.start(),m.end()) for m in finditer(r'0', data)]"
+XLfor start,end l0_idx
+WFfc z tagg 'xx,"0",start,end'
+
+XIv - l1_idx "[(m.start(),m.end()) for m in finditer(r'1', data)]"
+XLfor start,end l1_idx
+WFfc z tagg 'xx,"1",start,end'
+
+XIv - l2_idx "[(m.start(),m.end()) for m in finditer(r'2', data)]"
+XLfor start,end l2_idx
+WFfc z tagg 'xx,"2",start,end'
+
+XIv - l3_idx "[(m.start(),m.end()) for m in finditer(r'3', data)]"
+XLfor start,end l3_idx
+WFfc z tagg 'xx,"3",start,end'
+
+XIv - l4_idx "[(m.start(),m.end()) for m in finditer(r'4', data)]"
+XLfor start,end l4_idx
+WFfc z tagg 'xx,"4",start,end'
+
+XIv - l5_idx "[(m.start(),m.end()) for m in finditer(r'5', data)]"
+XLfor start,end l5_idx
+WFfc z tagg 'xx,"5",start,end'
+
+XIv - l6_idx "[(m.start(),m.end()) for m in finditer(r'6', data)]"
+XLfor start,end l6_idx
+WFfc z tagg 'xx,"6",start,end'
+
+XIv - l7_idx "[(m.start(),m.end()) for m in finditer(r'7', data)]"
+XLfor start,end l7_idx
+WFfc z tagg 'xx,"7",start,end'
+
+XIv - l8_idx "[(m.start(),m.end()) for m in finditer(r'8', data)]"
+XLfor start,end l8_idx
+WFfc z tagg 'xx,"8",start,end'
+
+XIv - l9_idx "[(m.start(),m.end()) for m in finditer(r'9', data)]"
+XLfor start,end l9_idx
+WFfc z tagg 'xx,"9",start,end'
 
 }
