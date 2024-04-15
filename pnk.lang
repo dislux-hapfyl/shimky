@@ -1,0 +1,1433 @@
+#!/usr/bin/env ksh
+# by Roberto Rodriguez Jr <brainacid9@gmail.com>
+#pnk.lang.spec;
+
+#Globals
+#z=last letter of roman alphabet (omega)
+bg='"#202124"'
+datenow="#$%&*^ {datetime.datetime.now().strftime('<%m.%d.%Y.%H:%M>')}"
+px='padx=5'
+py='pady=5'
+S=self
+E=echo
+_=expr
+
+#indentation
+#Z=""     #0
+Y="   "   #3
+X="$Y$Y " #7
+W="$Y$X " #11  
+V="$Y$W " #15
+U="$Y$V " #19
+
+####### Head, Body & Tail #######
+ZDimp() {
+	typeset ii="$1"
+        $E "import $ii"
+}
+ZDas() {
+	typeset ii="$1"
+	typeset aa="$2"
+        $E "import $ii as $aa"
+}
+ZDshebang() {
+	$E "#!/usr/bin/env python3"
+	$E "#pnk.lang.gen;"
+}
+ZDfrm() {
+	typeset lib="$1"
+	typeset cclass="$2"
+	$E "from $lib import $cclass"
+}
+#root window
+ZFtoorwin() {
+	typeset pp="$1"
+	ZDdc $pp Tk
+	YDfd z __init__ 
+	XFfc - "super().__init__"
+	XFcfg '' bg=$bg
+}
+#class instance
+XIcv() {
+	typeset name="$1"
+	typeset cclass="$2"
+	typeset s="$3"
+	XIfv z $name $cclass self,$s
+}
+WIcv() {
+	typeset name="$1"
+	typeset cclass="$2"
+	typeset s="$3"
+	WIfv z $name $cclass self,$s
+}
+#class define
+ZDcld() {
+	typeset nn="$1"
+	typeset xx="$2"
+	typeset pp="$3"
+	ZDdc $nn Frame
+	YDfd z __init__ ,parent,$xx
+	XFfc - "super().__init__" parent,$pp
+	XIv z master parent
+	XFcfg '' bg=$bg
+}
+ZFmain() {
+	typeset pp="$1"
+	typeset windowTitle="$2"
+	$E "if __name__ == '__main__':"
+  	YIfv - go $pp
+  	YFfc - go.title "\"$windowTitle\""
+  	YFfc - go.mainloop
+}
+
+######## Define my Class #####
+ZDdc() {
+	typeset nn="$1" #name
+	typeset cc="$2" #class
+	$E "class $nn($cc):"
+}
+
+###### Define my Func #########
+ZDfd() {
+	typeset z="$1"
+        typeset nn="$2"
+	typeset cc="$3" 
+	if [[ $z == z ]]; 
+	then
+		$E "def $nn(${S}$cc):"
+	else
+		$E "def $nn($cc):"
+	fi
+}
+YDfd() {
+	typeset z="$1"
+        typeset nn="$2"
+	typeset cc="$3" 
+	if [[ $z == z ]]; 
+	then
+		$E "$Y def $nn(${S}$cc):"
+	else
+		$E "$Y def $nn($cc):"
+	fi
+}
+XDfd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]]; 
+	then
+		$E "$X def $nn(${S}$cc):"
+	else
+		$E "$X def $nn($cc):"
+	fi
+}
+WDfd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]]; 
+	then
+		$E "$W def $nn(${S}$cc):"
+	else
+		$E "$W def $nn($cc):"
+	fi
+}
+ZDdefe() {
+	typeset fn="$1"
+	ZDfd z $fn ,e=None
+}
+YDret() {
+	typeset r="$1"
+	$E "$Y return $r"
+}
+YDdefs() {
+	typeset fn="$1"
+	typeset p="$2"
+	YDfd z $fn ,$p
+}
+YDdefp() {
+	typeset fn="$1"
+	typeset p="$2"
+	YDfd z $fn ,$p,e=None
+}
+YDdefe() {
+	typeset fn="$1"
+	YDfd z $fn ,e=None
+}
+XDret() {
+	typeset r="$1"
+	$E "$X return $r"
+}
+XDdefe() {
+	typeset fn="$1"
+	XDfd z $fn ,e=None
+}
+XDdefs() {
+	typeset fn="$1"
+	typeset p="$2"
+	XDfd z $fn ,$p
+}
+WDret() {
+	typeset r="$1"
+	$E "$W return $r"
+}
+WDdefe() {
+	typeset fn="$1"
+	WDfd z $fn ,e=None
+}
+WDdefs() {
+	typeset fn="$1"
+	typeset p="$2"
+	WDfd z $fn ,$p
+}
+VDret() {
+	typeset r="$1"
+	$E "$V return $r"
+}
+
+########## Function Ialls #######
+ZFfc() {
+	typeset z="$1"
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset ff="$4"
+	if [[ $z == z ]]; 
+	then
+		$E "${S}.$nn($cc)"
+	elif [[ $z == zz ]];
+	then
+		$E "${S}.$nn(${S}.$cc)"
+	elif [[ $z == -z ]];
+	then
+		$E "$nn(${S}.$cc)"
+	else
+		$E "$nn($cc)"
+	fi
+}
+YFfc() {
+	typeset z="$1"
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset ff="$4"
+	if [[ $z == z ]]; 
+	then
+		$E "$Y ${S}.$nn($cc)"
+	elif [[ $z == zz ]];
+	then
+		$E "$Y ${S}.$nn(${S}.$cc)"
+	elif [[ $z == -z ]];
+	then
+		$E "$Y $nn(${S}.$cc)"
+	else
+		$E "$Y $nn($cc)"
+	fi
+}
+XFfc() {
+	typeset z="$1"
+        typeset nn="$2"
+	typeset cc="$3"
+	if [[ $z == z ]]; 
+	then
+		$E "$X ${S}.$nn($cc)"
+	elif [[ $z == zz ]];
+	then
+		$E "$X ${S}.$nn(${S}.$cc)"
+	elif [[ $z == -z ]];
+	then
+		$E "$X $nn(${S}.$cc)"
+	else
+		$E "$X $nn($cc)"
+	fi
+}
+WFfc() {
+	typeset z="$1"
+        typeset nn="$2"
+	typeset cc="$3" 
+	if [[ $z == z ]]; 
+	then
+		$E "$W ${S}.$nn($cc)"
+	elif [[ $z == zz ]];
+	then
+		$E "$W ${S}.$nn(${S}.$cc)"
+	elif [[ $z == -z ]];
+	then
+		$E "$W $nn(${S}.$cc)"
+	else
+		$E "$W $nn($cc)"
+	fi
+}
+VFfc() {
+	typeset z="$1"
+        typeset nn="$2"
+	typeset cc="$3" 
+	if [[ $z == z ]]; 
+	then
+		$E "$V ${S}.$nn($cc)"
+	elif [[ $z == zz ]];
+	then
+		$E "$V ${S}.$nn(${S}.$cc)"
+	elif [[ $z == -z ]];
+	then
+		$E "$V $nn(${S}.$cc)"
+	else
+		$E "$V $nn($cc)"
+	fi
+}
+UFfc() {
+	typeset z="$1"
+        typeset nn="$2"
+	typeset cc="$3" 
+	if [[ $z == z ]]; 
+	then
+		$E "$U ${S}.$nn($cc)"
+	elif [[ $z == zz ]];
+	then
+		$E "$U ${S}.$nn(${S}.$cc)"
+	elif [[ $z == -z ]];
+	then
+		$E "$U $nn(${S}.$cc)"
+	else
+		$E "$U $nn($cc)"
+	fi
+}
+
+######## Instance of a functional value #########
+ZIfv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	typeset ff="$4"
+	if [[ $z == z ]]; 
+	then
+		$E "${S}.$nn = $cc($ff)"
+	elif [[ $z == zz ]];
+	then
+		$E "$${S}.$nn = ${S}.$cc($ff)"
+	elif [[ $z == zzz ]];
+	then
+		$E "$${S}.$nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -zz ]];
+	then
+		$E "$$nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -z ]];
+	then
+		$E "$nn = ${S}.$cc($ff)"
+	else
+		$E "$nn = $cc($ff)"
+	fi
+}
+YIfv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	typeset ff="$4"
+	if [[ $z == z ]]; 
+	then
+		$E "$Y ${S}.$nn = $cc($ff)"
+	elif [[ $z == zz ]];
+	then
+		$E "$Y ${S}.$nn = ${S}.$cc($ff)"
+	elif [[ $z == zzz ]];
+	then
+		$E "$Y ${S}.$nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -zz ]];
+	then
+		$E "$Y $nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -z ]];
+	then
+		$E "$Y $nn = ${S}.$cc($ff)"
+	else
+		$E "$Y $nn = $cc($ff)"
+	fi
+}
+XIfv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	typeset ff="$4"
+	if [[ $z == z ]]; 
+	then
+		$E "$X ${S}.$nn = $cc($ff)"
+	elif [[ $z == zz ]];
+	then
+		$E "$X ${S}.$nn = ${S}.$cc($ff)"
+	elif [[ $z == zzz ]];
+	then
+		$E "$X ${S}.$nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -zz ]];
+	then
+		$E "$X $nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -z ]];
+	then
+		$E "$X $nn = ${S}.$cc($ff)"
+	else
+		$E "$X $nn = $cc($ff)"
+	fi
+}
+WIfv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	typeset ff="$4"
+	if [[ $z == z ]]; 
+	then
+		$E "$W ${S}.$nn = $cc($ff)"
+	elif [[ $z == zz ]];
+	then
+		$E "$W ${S}.$nn = ${S}.$cc($ff)"
+	elif [[ $z == zzz ]];
+	then
+		$E "$W ${S}.$nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -zz ]];
+	then
+		$E "$W $nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -z ]];
+	then
+		$E "$W $nn = ${S}.$cc($ff)"
+	else
+		$E "$W $nn = $cc($ff)"
+	fi
+}
+VIfv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	typeset ff="$4"
+	if [[ $z == z ]]; 
+	then
+		$E "$V ${S}.$nn = $cc($ff)"
+	elif [[ $z == zz ]];
+	then
+		$E "$V ${S}.$nn = ${S}.$cc($ff)"
+	elif [[ $z == zzz ]];
+	then
+		$E "$V ${S}.$nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -zz ]];
+	then
+		$E "$V $nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -z ]];
+	then
+		$E "$V $nn = ${S}.$cc($ff)"
+	else
+		$E "$V $nn = $cc($ff)"
+	fi
+}
+UIfv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	typeset ff="$4"
+	if [[ $z == z ]]; 
+	then
+		$E "$U ${S}.$nn = $cc($ff)"
+	elif [[ $z == zz ]];
+	then
+		$E "$U ${S}.$nn = ${S}.$cc($ff)"
+	elif [[ $z == zzz ]];
+	then
+		$E "$U ${S}.$nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -zz ]];
+	then
+		$E "$U $nn = ${S}.$cc($S.$ff)"
+	elif [[ $z == -z ]];
+	then
+		$E "$U $nn = ${S}.$cc($ff)"
+	else
+		$E "$U $nn = $cc($ff)"
+	fi
+}
+# If I add another elif to replace fv then its not as clean
+# This is the reason I seperate values from functional values.
+# I know its all weird but fun.
+######## Instance of Value #######
+ZIv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "${S}.$nn = $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "${S}.$nn = ${S}.$cc"
+	else
+		$E "$nn = $cc"
+	fi
+}
+YIv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$Y ${S}.$nn = $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$Y ${S}.$nn = ${S}.$cc"
+	else
+		$E "$Y $nn = $cc"
+	fi
+}
+XIv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$X ${S}.$nn = $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$X ${S}.$nn = ${S}.$cc"
+	else
+		$E "$X $nn = $cc"
+	fi
+}
+WIv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$W ${S}.$nn = $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$W ${S}.$nn = ${S}.$cc"
+	else
+		$E "$W $nn = $cc"
+	fi
+}
+VIv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$V ${S}.$nn = $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$V ${S}.$nn = ${S}.$cc"
+	else
+		$E "$V $nn = $cc"
+	fi
+}
+UIv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$U ${S}.$nn = $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$U ${S}.$nn = ${S}.$cc"
+	else
+		$E "$U $nn = $cc"
+	fi
+}
+ZIac() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "${S}.$nn += $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "${S}.$nn += ${S}.$cc"
+	else
+		$E "$nn += $cc"
+	fi
+}
+YIac() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$Y ${S}.$nn += $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$Y ${S}.$nn += ${S}.$cc"
+	else
+		$E "$Y $nn += $cc"
+	fi
+}
+XIac() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$X ${S}.$nn += $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$X ${S}.$nn += ${S}.$cc"
+	else
+		$E "$X $nn += $cc"
+	fi
+}
+WIac() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$W ${S}.$nn += $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$W ${S}.$nn += ${S}.$cc"
+	else
+		$E "$W $nn += $cc"
+	fi
+}
+VIac() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$V ${S}.$nn += $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$V ${S}.$nn += ${S}.$cc"
+	else
+		$E "$V $nn += $cc"
+	fi
+}
+UIac() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$U ${S}.$nn += $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$U ${S}.$nn += ${S}.$cc"
+	else
+		$E "$U $nn += $cc"
+	fi
+}
+ZIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "${S}.$nn -= ${S}.$cc"
+	else
+		$E "$nn -= $cc"
+	fi
+}
+YIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$Y ${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$Y ${S}.$nn -= ${S}.$cc"
+	else
+		$E "$Y $nn -= $cc"
+	fi
+}
+XIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$X ${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$X ${S}.$nn -= ${S}.$cc"
+	else
+		$E "$X $nn -= $cc"
+	fi
+}
+WIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$W ${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$W ${S}.$nn -= ${S}.$cc"
+	else
+		$E "$W $nn -= $cc"
+	fi
+}
+VIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$V ${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$V ${S}.$nn -= ${S}.$cc"
+	else
+		$E "$V $nn -= $cc"
+	fi
+}
+UIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$U ${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$U ${S}.$nn -= ${S}.$cc"
+	else
+		$E "$U $nn -= $cc"
+	fi
+}
+VIdvd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$V ${S}.$nn /= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$V ${S}.$nn /= ${S}.$cc"
+	else
+		$E "$V $nn /= $cc"
+	fi
+}
+
+######## Kontrol flow #########
+YKtry() {
+	$E "$Y try:"
+}
+YKexcp() {
+	typeset e="$1"
+	$E "$Y except $e:"
+}
+YKfin() {
+	$E "$Y finally:"
+}
+XKtry() {
+	$E "$X try:"
+}
+XKexcp() {
+	typeset e="$1"
+	$E "$X except $e:"
+}
+XKfin() {
+	$E "$X finally:"
+}
+WKtry() {
+	$E "$W try:"
+}
+WKexcp() {
+	typeset e="$1"
+	$E "$W except $e:"
+}
+WKfin() {
+	$E "$W finally:"
+}
+VKtry() {
+	$E "$V try:"
+}
+VKexcp() {
+	typeset e="$1"
+	$E "$V except $e"
+}
+VKfin() {
+	$E "$V finally:"
+}
+ZKif() {
+	typeset test="$1"
+	$E "if ${test}:"
+}
+YKif() {
+	typeset test="$1"
+	$E "$Y if ${test}:"
+}
+XKif() {
+	typeset test="$1"
+	$E "$X if ${test}:"
+}
+WKif() {
+	typeset test="$1"
+	$E "$W if ${test}:"
+}
+VKif() {
+	typeset test="$1"
+	$E "$V if ${test}:"
+}
+UKif() {
+	typeset test="$1"
+	$E "$U if ${test}:"
+}
+ZKiff() {
+	typeset fff="$1"
+	typeset fv="$2"
+	$E "if ${fff}(${fv}):"
+}
+YKiff() {
+	typeset fff="$1"
+	typeset fv="$2"
+	$E "$Y if ${fff}(${fv}):"
+}
+XKiff() {
+	typeset fff="$1"
+	typeset fv="$2"
+	$E "$X if ${fff}(${fv}):"
+}
+WKiff() {
+	typeset fff="$1"
+	typeset fv="$2"
+	$E "$W if ${fff}(${fv}):"
+}
+VKiff() {
+	typeset fff="$1"
+	typeset fv="$2"
+	$E "$V if ${fff}(${fv}):"
+}
+UKiff() {
+	typeset fff="$1"
+	typeset fv="$2"
+	$E "$U if ${fff}(${fv}):"
+}
+ZKelif() {
+	typeset test="$1"
+	$E "elif ${test}:"
+}
+YKelif() {
+	typeset test="$1"
+	$E "$Y elif ${test}:"
+}
+XKelif() {
+	typeset test="$1"
+	$E "$X elif ${test}:"
+}
+WKelif() {
+	typeset test="$1"
+	$E "$W elif ${test}:"
+}
+VKelif() {
+	typeset test="$1"
+	$E "$V elif ${test}:"
+}
+UKelif() {
+	typeset test="$1"
+	$E "$U elif ${test}:"
+}
+ZKeliff() {
+	typeset fc="$1"
+	typeset fv="$2"
+	$E "elif ${fc}(${fv}):"
+}
+YKeliff() {
+	typeset fc="$1"
+	typeset fv="$2"
+	$E "$Y elif ${fc}(${fv}):"
+}
+XKeliff() {
+	typeset fc="$1"
+	typeset fv="$2"
+	$E "$X elif ${fc}(${fv}):"
+}
+WKeliff() {
+	typeset fc="$1"
+	typeset fv="$2"
+	$E "$W elif ${fc}(${fv}):"
+}
+VKeliff() {
+	typeset fc="$1"
+	typeset fv="$2"
+	$E "$V elif ${fc}(${fv}):"
+}
+UKeliff() {
+	typeset fc="$1"
+	typeset fv="$2"
+	$E "$U elif ${fc}(${fv}):"
+}
+ZKelse() {
+	$E "else:"
+}
+YKelse() {
+	$E "$Y else:"
+}
+XKelse() {
+	$E "$X else:"
+}
+WKelse() {
+	$E "$W else:"
+}
+VKelse() {
+	$E "$V else:"
+}
+UKelse() {
+	$E "$U else:"
+}
+YKbr() {
+	$E "$Y break"
+}
+XKbr() {
+	$E "$X break"
+}
+WKbr() {
+	$E "$W break"
+}
+VKbr() {
+	$E "$V break"
+}
+UKbr() {
+	$E "$U break"
+}
+YKps() {
+	$E "$Y pass"
+}
+XKps() {
+	$E "$X pass"
+}
+WKps() {
+	$E "$W pass"
+}
+VKps() {
+	$E "$V pass"
+}
+UKps() {
+	$E "$U pass"
+}
+######## Loops ######
+ZLfor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "for $i in $l:"
+}
+YLfor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$Y for $i in $l:"
+}
+XLfor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$X for $i in $l:"
+}
+WLfor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$W for $i in $l:"
+}
+VLfor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$V for $i in $l:"
+}
+ULfor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$U for $i in $l:"
+}
+ZLffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "for $i in $l():"
+}
+YLffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$Y for $i in $l():"
+}
+XLffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$X for $i in $l():"
+}
+WLffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$W for $i in $l():"
+}
+VLffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$V for $i in $l():"
+}
+ULffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$U for $i in $l():"
+}
+ZLwhile() {
+	typeset i="$1"
+	$E "while $i:"
+}
+YLwhile() {
+	typeset i="$1"
+	$E "$Y while $i:"
+}
+XLwhile() {
+	typeset i="$1"
+	$E "$X while $i:"
+}
+WLwhile() {
+	typeset i="$1"
+	$E "$W while $i:"
+}
+VLwhile() {
+	typeset i="$1"
+	$E "$V while $i:"
+}
+ULwhile() {
+	typeset i="$1"
+	$E "$U while $i:"
+}
+
+######## widGETS ########
+wfc='"#EcccA2"'
+wbg="bg=$bg"
+wlbbg='bg="#202124"'
+wBbg='bg="green"'
+wfg='fg="#EEE"'
+wcr='cursor="heart"'
+wecr='cursor="spider"'
+wbcr='cursor="shuttle"'
+wehbg='highlightbackground="#111"'
+whbg='highlightbackground="#444"'
+wlbhbg='highlightbackground="#202124"'
+whc='highlightcolor="#2BCDBB"'
+wic='insertbackground="red"'
+wre='relief="flat"'
+wfnt='font=("Iosevka", 18)'
+wlbfnt='font=("Iosevka", 12)'
+pnbg='bg="#111"'
+sl='side="left"'
+sb='side="bottom"'
+sr='side="right"'
+sb='side="top"'
+ac='anchor="center"'
+ae='anchor="e"'
+aw='anchor="w"'
+as='anchor="s"'
+an='anchor="n"'
+
+
+XFlbox() {
+	typeset namee="$1"
+	typeset w="$2"
+	typeset h="$3"
+	XIfv z $namee Listbox "self,$wlbbg,$wfg,$wecr,$wlbhbg,$whc,$wre,$wlbfnt,width=$w,height=$h"
+}
+XFbtn() {
+	typeset namee="$1"
+	typeset t="$2"
+	typeset com="$3"
+	XIfv z $namee Button "self,$wBbg,$wfg,$wbcr,$whbg,$whc,$wre,$wfnt,command=self.$com,text=\"$t\""
+}
+XFtext() {
+	typeset namee="$1"
+	XIfv z $namee Text "self,wrap=\"word\",insertwidth=4,undo=True,padx=20,pady=10,spacing1=2,spacing3=2,$wbg,$wfg,$wcr,$whbg,$whc,$wic,$wre,"
+}
+XFpnwin() {
+	typeset namee="$1"
+	typeset orient="$2"
+	XIfv z $namee PanedWindow "self,orient="$orient",sashwidth=2,relief=\"flat\",showhandle=True,sashpad=1,$pnbg"
+	XFpk $namee 1 both
+}
+XFnotebk() {
+	typeset namee="$1"
+	typeset exp="$2"
+	typeset fill="$3"
+	XIfv z $namee Notebook self
+	XFpk $namee $exp $fill
+}
+XFentry() {
+	typeset namee="$1"
+	XIfv z $namee Entry "self,$pnbg,$wfg,$wecr,$wehbg,$whc,$wic,$wre,$wfnt"
+}
+XFlabel() {
+	typeset thn="$1"
+	typeset var="${thn}svar"
+	XIfv z $var StringVar self
+	XIfv z $thn Label self,textvariable=self.$var
+}
+
+##### widgets func operations and values #####
+XIeget() {
+	typeset w="$1"
+	typeset v="$2"
+	XIfv -z $v $w.get
+}
+XItgetln() {
+	typeset w="$1"
+	typeset v="$2"
+	XIfv -z $v $w.get "\"insert linestart\", \"insert lineend\""
+}
+XItget() {
+	typeset wn="$1"
+	typeset ivn="$2"
+	typeset s="$3"
+	typeset e="$4"
+	XIfv -z $ivn $wn.get "\"$s\", \"$e\""
+}
+XItgeta() {
+	typeset w="$1"
+	typeset v="$2"
+	XIfv -z $v $w.get "\"1.0\", \"end-1c\""
+}
+WIeget() {
+	typeset w="$1"
+	typeset v="$2"
+	WIfv -z $v $w.get
+}
+WItgetln() {
+	typeset w="$1"
+	typeset v="$2"
+	WIfv -z $v $w.get "\"insert linestart\", \"insert lineend\""
+}
+WItget() {
+	typeset w="$1"
+	typeset v="$2"
+	WIfv -z $v $w.get "\"$w\", \"$v\""
+}
+
+XFshsp() {
+	typeset n="$1"
+	typeset lntxt="$2"
+	XKtry
+	WIfv - result subprocess.run "$lntxt,shell=True,executable=\"/usr/bin/ksh\",stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True"
+	WKif 'result.returncode == 0'
+	VFtins $n end 'f"\n\n{result.stdout}\n"'
+	WKelse
+	VFtins $n 1.0 "f\"#$%&*^ $datenow {result.stderr}\n\""
+	XKexcp 'Exception as e'
+	WFtins $n 1.0 "f\"#$%&*^ $datenow {str(e)}\n\""
+	
+}
+XFshspp() {
+	typeset n="$1"
+	typeset lntxt="$2"
+	XKtry
+	WIfv - result subprocess.run "$lntxt,shell=True,executable=\"/usr/bin/ksh\",stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True"
+	WKif 'result.returncode == 0'
+	VFtins $n 1.0 'f"\n\n{result.stdout}\n"'
+	WKelse
+	VFtins $n 1.0 "f\"#$%&*^ $datenow {result.stderr}\n\""
+	XKexcp 'Exception as e'
+	WFtins $n 1.0 "f\"#$%&*^ $datenow {str(e)}\n\""
+	
+}
+XFpyev() {
+	typeset n="$1"
+	typeset lntxt="$2"
+	XKtry
+	WIfv - output eval "$lntxt,globals()"
+	WFtins $n 1.0 'f"{output}\n"'
+	XKexcp 'Exception as e'
+	WFtins $n 1.0 "f\"#$%&*^ $datenow {str(e)}\n\""
+	
+}
+XFpyexc() {
+	typeset n="$1"
+	typeset lntxt="$2"
+	XKtry
+	WIfv - output exec "$lntxt,globals()"
+	WFtins $n 1.0 'f"{output}\n"'
+	XKexcp 'Exception as e'
+	WFtins $n 1.0 "f\"#$%&*^ $datenow {str(e)}\n\""
+	
+}
+XFgdcfc() {
+	typeset ee="$1"
+	typeset ff="$2"
+        XFfc z columnconfigure "$ee,weight=$ff"
+}
+XFgdcfr() {
+	typeset ee="$1"
+	typeset ff="$2"
+	XFfc z rowconfigure "$ee,weight=$ff"
+}
+XFgd() {
+	typeset namep="$1"
+	typeset ee="$2"
+	typeset ff="$3"
+	typeset aa="$4"
+	typeset bb="$5"
+	typeset ss="$6"
+        XFfc z $namep.grid "row=$ee,column=$ff,$px,$py,columnspan=$aa,rowspan=$bb,sticky=\"$ss\""
+}
+XFpk() {
+	typeset namep="$1"
+	typeset ee="$2"
+	typeset ff="$3"
+	typeset aa="$4"
+        XFfc z $namep.pack "expand=$ee,fill=\"$ff\",$px,$py,$aa"
+}
+XFpl() {
+	typeset namep="$1"
+	typeset x="$2"
+	typeset y="$3"
+        XFfc z $namep.place "x=$x,y=$y"
+}
+XFbind() {
+	typeset n="$1"
+	typeset key="$2"
+	typeset yfc="$3"
+	XFfc z ${n}.bind "\"<$key>\", ${S}.$yfc"
+}
+XFbinda() {
+	typeset key="$1"
+	typeset yfc="$2"
+	XFfc z bind_all "\"<$key>\", ${S}.$yfc"
+}
+XFopft() {
+	typeset wn="$1" 
+	typeset file="$2"
+	XIfv - f open "$file, \"r\""
+	XIfv - thefile f.read
+	XFtins $wn 1.0 thefile
+}
+XFwrtf() {
+	typeset data="$1"
+	typeset f="$2"
+	$E "$X with open($f, \"w\") as file:"
+	$E "$W file.write($data)"
+}
+XFset() {
+	typeset c="$1"
+	typeset n="$2"
+	XFfc z $c.set "$n"
+}
+XFcfg() {
+	typeset c="$1"
+	typeset n="$2"
+	XFfc z ${c}configure $n
+}
+XFedel() {
+	typeset n="$1"
+	XFfc z $n.delete '0,"end"'
+}
+XFeins() {
+	typeset n="$1"
+	typeset v="$2"
+	XFfc z $n.insert "0,$v"
+}
+XFtdel() {
+	typeset n="$1"
+	typeset ss="$2"
+	typeset en="$3"
+	XFfc z $n.delete "\"${ss}\",\"${en}\""
+}
+XFtlndel() {
+	typeset n="$1"
+	XFfc z $n.delete "\"insert linestart\", \"insert lineend\""
+}
+XFtins() {
+	typeset n="$1"
+	typeset s="$2"
+	typeset v="$3"	
+	$E "$X self.$n.insert(\"$s\", $v)"
+}
+WFtagcfg() {
+	typeset wn="$1"
+	typeset n="$2"
+	typeset b="$3"
+	typeset f="$4"
+	WFfc z ${wn}.tag_configure "$n,background=$b,foreground=$f"
+}
+WFset() {
+	typeset c="$1"
+	typeset n="$2"
+	WFfc z $c.set "$n"
+}
+WFcfg() {
+	typeset c="$1"
+	typeset n="$2"
+	WFfc z ${c}configure $n
+}
+WFedel() {
+	typeset n="$1"
+	WFfc z $n.delete '0,"end"'
+}
+WFeins() {
+	typeset n="$1"
+	typeset v="$2"
+	WFfc z $n.insert "0,f\"{$v}\""
+}
+WFtdel() {
+	typeset n="$1"
+	typeset ss="$2"
+	typeset en="$3"
+	WFfc z $n.delete "\"${ss}\",\"${en}\""
+}
+WFtlndel() {
+	typeset n="$1"
+	WFfc z $n.delete "\"insert linestart\", \"insert lineend\""
+}
+WFtins() {
+	typeset n="$1"
+	typeset s="$2"
+	typeset v="$3"	
+	WFfc z $n.insert "\"$s\",$v"
+}
+VFtins() {
+	typeset n="$1"
+	typeset s="$2"
+	typeset v="$3"	
+	VFfc z $n.insert "\"$s\",$v"
+}
+
+XFmap() {
+	typeset wr=appTxt
+	typeset command="$1"
+	typeset pycom="$2"
+	XIv - strn '" ".join( str(i) for i in tt[1:])'
+	XKif "tt[0] == \"$pycom\""
+	WFtins $wr end "f\"$command {strn}\n\""
+	
+}
+
+Wc() {
+	$_ `wc newide >x ; ksh newide | wc >> x ;cat x | awk '{print $3}' | tr '\n' ' ' | sed 's/ $//g; s/ / - /g'` ; wc -c newide ; ksh newide | wc -c ; rm x
+	wc newide >x ; ksh newide | wc >> x ;cat x | awk '{print $3}' | tr '\n' ' ' | sed 's/ $//g; s| | / |g'
+	rm x
+}
+
+wwc() {
+    file1="$1"
+    file2="$2"
+    count1=$(wc -c < "$file1")
+    count2=$(wc -c < "$file2")
+    
+    echo -e "\nCharacter count comparison:"
+    echo "$1 "
+    for ((i=0; i<$count1; i+=100)); do
+        printf "X"
+    done
+    echo " ($count1)"
+    
+    echo "$2 "
+    for ((i=0; i<$count2; i+=100)); do
+        printf "U"
+    done
+    echo " ($count2)"
+}
+wtr() {
+	curl wttr.in/22401?format=%l,%m,%w,%c,%h,%t | tr ',' '\t'
+}
+
+YDsyntax() {
+YDdefe doSyntax
+XFfc zz syntax $oa
+XFfc zz syntax $ob
+
+
+YDdefe tagConf
+XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("#202124", "#bfff00"), "dol": ("black", "black"), "eql": ("#202124", "#00ffff"),"dash": ("#202124", "#00ffff"),"dot": ("#202124", "#bfff00"), "pls": ("#202124", "#00ffff"), "star": ("#202124", "#00ffff"),}'
+
+XLffor key,value d.items
+WFtagcfg $oa key value[0] value[1]
+WFtagcfg $ob key value[0] value[1]
+
+
+YDdefp tagg x,y,a,b
+XIv z x x
+XIv z y y
+XIv z a a
+XIv z b b
+XFfc z x.tag_add 'y,f"1.0+{a}c",f"1.0+{b}c"'
+
+
+YDdefp syntax xx
+XIv z xx xx
+XItgeta xx data
+
+
+XIv - SQ_idx "[(m.start(),m.end()) for m in finditer(r'\'(.*?)\'', data)]"
+XLfor start,end SQ_idx
+WFfc z tagg 'xx,"arg",start,end'
+
+XIv - dQ_idx "[(m.start(),m.end()) for m in finditer(r'\"(.*?)\"', data)]"
+XLfor start,end dQ_idx
+WFfc z tagg 'xx,"args",start,end'
+
+XIv - dol_idx "[(m.start(),m.end()) for m in finditer(r'\\$', data)]"
+XLfor start,end dol_idx
+WFfc z tagg 'xx,"dol",start,end'
+
+XIv - dot_idx "[(m.start(),m.end()) for m in finditer(r'\.', data)]"
+XLfor start,end dot_idx
+WFfc z tagg 'xx,"dot",start,end'
+
+XIv - dash_idx "[(m.start(),m.end()) for m in finditer(r'-', data)]"
+XLfor start,end dash_idx
+WFfc z tagg 'xx,"dash",start,end'
+
+XIv - eql_idx "[(m.start(),m.end()) for m in finditer(r'=', data)]"
+XLfor start,end eql_idx
+WFfc z tagg 'xx,"eql",start,end'
+
+XIv - pls_idx "[(m.start(),m.end()) for m in finditer(r'\+', data)]"
+XLfor start,end pls_idx
+WFfc z tagg 'xx,"pls",start,end'
+
+XIv - star_idx "[(m.start(),m.end()) for m in finditer(r'\*', data)]"
+XLfor start,end star_idx
+WFfc z tagg 'xx,"star",start,end'
+
+XIv - z_idx "[(m.start(),m.end()) for m in finditer(r'z', data)]"
+XLfor start,end z_idx
+WFfc z tagg 'xx,"z",start,end'
+
+XIv - D_idx "[(m.start(),m.end()) for m in finditer(r'D', data)]"
+XLfor start,end D_idx
+WFfc z tagg 'xx,"D",start,end'
+
+XIv - F_idx "[(m.start(),m.end()) for m in finditer(r'F', data)]"
+XLfor start,end F_idx
+WFfc z tagg 'xx,"F",start,end'
+
+XIv - I_idx "[(m.start(),m.end()) for m in finditer(r'I', data)]"
+XLfor start,end I_idx
+WFfc z tagg 'xx,"I",start,end'
+
+XIv - K_idx "[(m.start(),m.end()) for m in finditer(r'K', data)]"
+XLfor start,end K_idx
+WFfc z tagg 'xx,"K",start,end'
+
+XIv - L_idx "[(m.start(),m.end()) for m in finditer(r'L', data)]"
+XLfor start,end L_idx
+WFfc z tagg 'xx,"L",start,end'
+
+XIv - Z_idx "[(m.start(),m.end()) for m in finditer(r'Z', data)]"
+XLfor start,end Z_idx
+WFfc z tagg 'xx,"Z",start,end'
+
+XIv - U_idx "[(m.start(),m.end()) for m in finditer(r'U', data)]"
+XLfor start,end U_idx
+WFfc z tagg 'xx,"U",start,end'
+
+XIv - V_idx "[(m.start(),m.end()) for m in finditer(r'V', data)]"
+XLfor start,end V_idx
+WFfc z tagg 'xx,"V",start,end'
+
+XIv - W_idx "[(m.start(),m.end()) for m in finditer(r'W', data)]"
+XLfor start,end W_idx
+WFfc z tagg 'xx,"W",start,end'
+
+XIv - X_idx "[(m.start(),m.end()) for m in finditer(r'X', data)]"
+XLfor start,end X_idx
+WFfc z tagg 'xx,"X",start,end'
+
+XIv - Y_idx "[(m.start(),m.end()) for m in finditer(r'Y', data)]"
+XLfor start,end Y_idx
+WFfc z tagg 'xx,"Y",start,end'
+
+}
