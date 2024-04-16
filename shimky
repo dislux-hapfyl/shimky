@@ -73,9 +73,9 @@ XFfc zz pw.add this
 
 
 ZDcld App
+
 XIcv i$fb $fb
 XIcv i$fa $fa
-
 XFpk i$fb 0 none 
 XFpk i$fa 1 y
 
@@ -203,7 +203,8 @@ XFfc z $ob.focus
 YDdefe mapitOut
 XItgetln $ob cmd
 XIcv i$fd $fd
-XFpl i$fd 400 200 
+XIfv -z wwid i$fa.winfo_width
+XFpl i$fd 'wwid//10' 200  
 XFbind $od Escape clearOut
 XFshspp $od 'f". pnk.lang ; {cmd}"'
 XFfc z $od.see 1.0
@@ -576,4 +577,3 @@ XFfc z $td.focus
 
 
 ZFmain Shimky shimky
-
