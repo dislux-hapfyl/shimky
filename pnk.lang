@@ -1303,13 +1303,6 @@ wtr() {
 	curl wttr.in/22401?format=%l,%m,%w,%c,%h,%t | tr ',' '\t'
 }
 
-XFmap() {
-	local command="$1"
-	local pycom="$2"
-	XKelif "tt[0] == \"$pycom\""
-	WFtins $oa end "f\"$command {strn}\n\""
-	
-}
 
 YDsyntax() {
 YDdefe doSyntax
