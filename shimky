@@ -5,18 +5,21 @@ MP3_DIR=
 fa=RecvTxt
 fb=SendTxt
 fc=StatTxt
+fd=ShellTxt
 ta=rcvWidget
 tb=sndWidget
+td=shellOutput
 ws=mp3Cmd
-wl=musicBox
+wl=musicBox 
 M=master
 
 oa="i$fa.$ta"
 ob="i$fb.$tb"
-oc="i$fc.$ta"
+od="i$fd.$td"
 
 aa='fg="white"'
 bb='bg="#222"'
+bd=bg=$bg
 ca='font=("VictorMono",20)'
 cb='font=("Iosevka",18)'
 cc='font=("VictorMono",14)'
@@ -28,6 +31,7 @@ hh='highlightbackground="#444"'
 ia='highlightcolor="#2BCDBB"'
 ic='highlightcolor="blue"'
 ib='highlightcolor="red"'
+id='highlightcolor="orange"'
 ja='insertbackground="red"'
 jb='insertbackground="orange"'
 jc='insertbackground="green"'
@@ -38,11 +42,13 @@ mm='pady=12'
 ds='state="disabled"'
 en='state="normal"'
 wa='height=3'
+wd='height=16'
 iw='insertwidth=5'
 
 opta=$aa,$bb,$ca,$ee,$gg,$ib,$ja,$kk,$ll,$mm,$ds,$uu,$iw
 optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$iw
 optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$iw
+optd=$aa,$bd,$cb,$ee,$gg,$id,$jc,$kk,$ll,$mm,$uu,$iw,$wd
 
 ZDshebang 
 ZDfrm tkinter Tk,Frame,Text,Listbox,PanedWindow
@@ -78,9 +84,11 @@ XFfc z tagConf
 XFfc z runSyntax
 
 XFbind $oa Escape myExit
+XFbind $oa Shift_R doSyntax
 XFbind $ob Control-n myinsert
 XFbind $ob Shift_R sendCode
 XFbind $ob Control-Shift_R mapit
+XFbind $ob Alt-Shift_R mapitOut
 XFbind $ob Control-g fgoa
 XFbind $ob Control-j bgoa 
 XFbind $ob Control-G fgob
@@ -94,13 +102,13 @@ YDsyntax
 
 YDdefe cliSyntax
 XFfc zz syntax $ob
-
+XFfc z doSyntax
 
 YDdefp notif n,m
 XIv z n n
 XIv z m m
-XFtins $ob 1.0 "f\"$datenow {n} {m}\n\""
-XFfc z $ob.see 1.0
+XFtins $ob end "f\"\n$datenow {n} {m}\n\""
+XFfc z $ob.see '"end"'
 
 
 YDdefp thdStart x
@@ -187,6 +195,20 @@ XFcfg $oa. $ia,$en
 XFfc z $oa.focus
 
 
+YDdefe clearOut
+XFfc z i$fd.destroy 
+XFfc z $ob.focus
+
+
+YDdefe mapitOut
+XItgetln $ob cmd
+XIcv i$fd $fd
+XFpl i$fd 400 200 
+XFbind $od Escape clearOut
+XFshspp $od 'f". pnk.lang ; {cmd}"'
+XFfc z $od.see 1.0
+
+
 YDdefe mapit
 XFfc z myinsert
 XItgetln $ob cmd
@@ -199,6 +221,18 @@ WFdel() {
 	WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
 }
 
+XKread() {
+	local p="$1"
+	XKelif "tt[0] == \"$p\""
+}
+
+XKFread() {
+	local command="$1"
+	local pycom="$2"
+	XKelif "tt[0] == \"$pycom\""
+	WFtins $oa end "f\"$command {strn}\n\""
+	
+}
 
 YDdefe sendCode
 XItgetln $ob txt
@@ -207,226 +241,224 @@ XIv - strn '" ".join( str(i) for i in tt[1:])'
 XFcfg $oa. $en
 
 XKif 'tt[0] == "i"'
-WFfc z $oa.see '"end"'
 WFtins $oa insert 'f"{strn}\n"'
 
-XKelif 'tt[0] == "c"'
-WFfc z $oa.see '"end"'
+XKread c
 WFtins $oa insert 'f"# {strn}\n"'
 
-XKelif 'tt[0] == "o"'
+XKread o
 WFfc z openfile
 
-XKelif 'tt[0] == "w"'
+XKread w
 WFfc z savefile
 
-XKelif 'tt[0] == "d"'
+XKread d
 WFfc z i$fa.cleartxt
 
-XKelif 'tt[0] == "r"'
+XKread r
 WFdel
 WFtins $oa insert 'f"{strn}"'
 WFfc z $oa.mark_set '"insert","end"'
 
-XKelif 'tt[0] == "rn"'
+XKread rn
 WFdel
 WFtins $oa insert 'f"{strn}\n"'
 
-XKelif 'tt[0] == "dd"'
+XKread dd
 WItgetln $oa self.ll
 WFdel
 
-XKelif 'tt[0] == "dl"'
+XKread dl
 WFdel
 
-XKelif 'tt[0] == "p"'
+XKread p
 WFtins $oa insert 'f"{self.ll}\n"'
 
-XKelif 'tt[0] == "m"'
+XKread m
 WFfc z musicBox
 
-XKelif 'tt[0] == "md"'
+XKread md
 WFfc z rmMusic
 
 
-XFmap '. ./pnk.lang' a00
-XFmap ZDshebang a01 
-XFmap ZDfrm a02 
-XFmap ZDimp a10 
-XFmap ZDas a11 
-XFmap ZFtoorwin a12 
-XFmap ZDdc b00 
-XFmap ZDcld b01 #pnk
-XFmap ZDcld b02 #py
-XFmap XIcv b10 
-XFmap ZFmain b11 
-XFmap ZDfd c00 
-XFmap YDfd c01 
-XFmap XDfd c02 
-XFmap WDfd c10 
-XFmap ZDdefe d00 
-XFmap YDret d01 
-XFmap YDdefp d10 
-XFmap XDret d11 
-XFmap YDdefe d12 
-XFmap YDdefs d20 
-XFmap XDdefe d21 
-XFmap WDret d22 
-XFmap XDdefs d30 
-XFmap WDdefe d31 
-XFmap VDret d32 
-XFmap WDdefs d40 
-XFmap ZFfc e00 
-XFmap YFfc e01 
-XFmap XFfc e02 
-XFmap WFfc e10 
-XFmap VFfc e11 
-XFmap UFfc e12 
-XFmap ZIfv f00 
-XFmap YIfv f01 
-XFmap XIfv f02 
-XFmap WIfv f10 
-XFmap VIfv f11 
-XFmap UIfv f12 
-XFmap ZIv g00 
-XFmap YIv g01 
-XFmap XIv g02 
-XFmap WIv g10 
-XFmap VIv g11 
-XFmap UIv g12 
-XFmap ZIac h00 
-XFmap YIac h01 
-XFmap XIac h02 
-XFmap WIac h10 
-XFmap VIac h11 
-XFmap UIac h12 
-XFmap ZIrd h20 
-XFmap YIrd h21 
-XFmap XIrd h22 
-XFmap WIrd h30 
-XFmap VIrd h31 
-XFmap UIrd h32 
-XFmap YKtry i00 
-XFmap YKexcp i01 
-XFmap YKfin i02 
-XFmap XKtry i10 
-XFmap XKexcp i11 
-XFmap XKfin i12 
-XFmap WKtry i20 
-XFmap WKexcp i21 
-XFmap WKfin i22 
-XFmap VKtry i30 
-XFmap VKexcp i31 
-XFmap VKfin i32 
-XFmap ZKif k00 
-XFmap YKif k01 
-XFmap XKif k02 
-XFmap WKif k10 
-XFmap VKif k11 
-XFmap UKif k12 
-XFmap ZKiff k20 
-XFmap YKiff k21 
-XFmap XKiff k22 
-XFmap WKiff k30 
-XFmap VKiff k31 
-XFmap UKiff k32 
-XFmap ZKelif k40 
-XFmap YKelif k41 
-XFmap XKelif k42 
-XFmap WKelif k50 
-XFmap VKelif k51 
-XFmap UKelif k52 
-XFmap ZKeliff k60 
-XFmap YKeliff k61 
-XFmap XKeliff k62 
-XFmap WKeliff k70 
-XFmap VKeliff k71 
-XFmap UKeliff k72 
-XFmap ZKelse k80 
-XFmap YKelse k81 
-XFmap XKelse k82 
-XFmap WKelse k90 
-XFmap VKelse k91 
-XFmap UKelse k92 
-XFmap YKbr l00 
-XFmap XKbr l01 
-XFmap WKbr l02 
-XFmap VKbr l10 
-XFmap UKbr l11 
-XFmap YKctn l12 
-XFmap XKctn l20 
-XFmap WKctn l21 
-XFmap VKctn l22 
-XFmap UKctn l30 
-XFmap YKps l31 
-XFmap XKps l32 
-XFmap WKps l40 
-XFmap VKps l41 
-XFmap UKps l42 
-XFmap ZLfor m00 
-XFmap YLfor m01 
-XFmap XLfor m02 
-XFmap WLfor m10 
-XFmap VLfor m11 
-XFmap ULfor m12 
-XFmap ZLffor m20 
-XFmap YLffor m21 
-XFmap XLffor m22 
-XFmap WLffor m30 
-XFmap VLffor m31 
-XFmap ULffor m32 
-XFmap ZLwhile m40 
-XFmap YLwhile m41 
-XFmap XLwhile m42 
-XFmap WLwhile m50 
-XFmap VLwhile m51 
-XFmap ULwhile m52 
-XFmap XFbtn w00 
-XFmap XFtext w01 
-XFmap XFpnwin w02 
-XFmap XFnotebk w10 
-XFmap XFentry w11 
-XFmap XFlabel w12 
-XFmap XFlbox w20 
-XFmap XIeget t00 
-XFmap XItgetln t01 
-XFmap XItget t02 
-XFmap XItgeta t10 
-XFmap WItgetln t11 
-XFmap WItget t12 
-XFmap WIeget t20 
-XFmap XFpk p00 
-XFmap XFpl p01
-XFmap XFgd p02
-XFmap XFgdcfc p10
-XFmap XFgdcfr p11
-XFmap XFbind p12
-XFmap XFbinda p20 
-XFmap XFshsp p21
-XFmap XFshspp p22
-XFmap XFpyev p30
-XFmap XFopft v00 
-XFmap XFwrtf v01 
-XFmap XFset v02 
-XFmap XFcfg v10 
-XFmap XFedel v11 
-XFmap XFeins v12 
-XFmap XFtdel v20 
-XFmap XFtlndel v21 
-XFmap XFtins v22 
-XFmap WFtagcfg u00 
-XFmap WFtins u01 
-XFmap WFset u02 
-XFmap WFcfg u10 
-XFmap WFedel u11 
-XFmap WFeins u12 
-XFmap WFtdel u20 
-XFmap WFtlndel u21 
-XFmap VFtins u22 
+XKFread '. ./pnk.lang' a00
+XKFread ZDshebang a01 
+XKFread ZDfrm a02 
+XKFread ZDimp a10 
+XKFread ZDas a11 
+XKFread ZFtoorwin a12 
+XKFread ZDdc b00 
+XKFread ZDcld b01 #pnk
+XKFread ZDcld b02 #py
+XKFread XIcv b10 
+XKFread ZFmain b11 
+XKFread ZDfd c00 
+XKFread YDfd c01 
+XKFread XDfd c02 
+XKFread WDfd c10 
+XKFread ZDdefe d00 
+XKFread YDret d01 
+XKFread YDdefp d10 
+XKFread XDret d11 
+XKFread YDdefe d12 
+XKFread YDdefs d20 
+XKFread XDdefe d21 
+XKFread WDret d22 
+XKFread XDdefs d30 
+XKFread WDdefe d31 
+XKFread VDret d32 
+XKFread WDdefs d40 
+XKFread ZFfc e00 
+XKFread YFfc e01 
+XKFread XFfc e02 
+XKFread WFfc e10 
+XKFread VFfc e11 
+XKFread UFfc e12 
+XKFread ZIfv f00 
+XKFread YIfv f01 
+XKFread XIfv f02 
+XKFread WIfv f10 
+XKFread VIfv f11 
+XKFread UIfv f12 
+XKFread ZIv g00 
+XKFread YIv g01 
+XKFread XIv g02 
+XKFread WIv g10 
+XKFread VIv g11 
+XKFread UIv g12 
+XKFread ZIac h00 
+XKFread YIac h01 
+XKFread XIac h02 
+XKFread WIac h10 
+XKFread VIac h11 
+XKFread UIac h12 
+XKFread ZIrd h20 
+XKFread YIrd h21 
+XKFread XIrd h22 
+XKFread WIrd h30 
+XKFread VIrd h31 
+XKFread UIrd h32 
+XKFread YKtry i00 
+XKFread YKexcp i01 
+XKFread YKfin i02 
+XKFread XKtry i10 
+XKFread XKexcp i11 
+XKFread XKfin i12 
+XKFread WKtry i20 
+XKFread WKexcp i21 
+XKFread WKfin i22 
+XKFread VKtry i30 
+XKFread VKexcp i31 
+XKFread VKfin i32 
+XKFread ZKif k00 
+XKFread YKif k01 
+XKFread XKif k02 
+XKFread WKif k10 
+XKFread VKif k11 
+XKFread UKif k12 
+XKFread ZKiff k20 
+XKFread YKiff k21 
+XKFread XKiff k22 
+XKFread WKiff k30 
+XKFread VKiff k31 
+XKFread UKiff k32 
+XKFread ZKelif k40 
+XKFread YKelif k41 
+XKFread XKelif k42 
+XKFread WKelif k50 
+XKFread VKelif k51 
+XKFread UKelif k52 
+XKFread ZKeliff k60 
+XKFread YKeliff k61 
+XKFread XKeliff k62 
+XKFread WKeliff k70 
+XKFread VKeliff k71 
+XKFread UKeliff k72 
+XKFread ZKelse k80 
+XKFread YKelse k81 
+XKFread XKelse k82 
+XKFread WKelse k90 
+XKFread VKelse k91 
+XKFread UKelse k92 
+XKFread YKbr l00 
+XKFread XKbr l01 
+XKFread WKbr l02 
+XKFread VKbr l10 
+XKFread UKbr l11 
+XKFread YKctn l12 
+XKFread XKctn l20 
+XKFread WKctn l21 
+XKFread VKctn l22 
+XKFread UKctn l30 
+XKFread YKps l31 
+XKFread XKps l32 
+XKFread WKps l40 
+XKFread VKps l41 
+XKFread UKps l42 
+XKFread ZLfor m00 
+XKFread YLfor m01 
+XKFread XLfor m02 
+XKFread WLfor m10 
+XKFread VLfor m11 
+XKFread ULfor m12 
+XKFread ZLffor m20 
+XKFread YLffor m21 
+XKFread XLffor m22 
+XKFread WLffor m30 
+XKFread VLffor m31 
+XKFread ULffor m32 
+XKFread ZLwhile m40 
+XKFread YLwhile m41 
+XKFread XLwhile m42 
+XKFread WLwhile m50 
+XKFread VLwhile m51 
+XKFread ULwhile m52 
+XKFread XFbtn w00 
+XKFread XFtext w01 
+XKFread XFpnwin w02 
+XKFread XFnotebk w10 
+XKFread XFentry w11 
+XKFread XFlabel w12 
+XKFread XFlbox w20 
+XKFread XIeget t00 
+XKFread XItgetln t01 
+XKFread XItget t02 
+XKFread XItgeta t10 
+XKFread WItgetln t11 
+XKFread WItget t12 
+XKFread WIeget t20 
+XKFread XFpk p00 
+XKFread XFpl p01
+XKFread XFgd p02
+XKFread XFgdcfc p10
+XKFread XFgdcfr p11
+XKFread XFbind p12
+XKFread XFbinda p20 
+XKFread XFshsp p21
+XKFread XFshspp p22
+XKFread XFpyev p30
+XKFread XFopft v00 
+XKFread XFwrtf v01 
+XKFread XFset v02 
+XKFread XFcfg v10 
+XKFread XFedel v11 
+XKFread XFeins v12 
+XKFread XFtdel v20 
+XKFread XFtlndel v21 
+XKFread XFtins v22 
+XKFread WFtagcfg u00 
+XKFread WFtins u01 
+XKFread WFset u02 
+XKFread WFcfg u10 
+XKFread WFedel u11 
+XKFread WFeins u12 
+XKFread WFtdel u20 
+XKFread WFtlndel u21 
+XKFread VFtins u22 
 
 
 XFcfg $oa. $ds
-XFfc z runSyntax
+XFfc z doSyntax
 
 
 YDdefe musicBox
@@ -511,28 +543,21 @@ XIfv -zz sel $wl.get "$wl.curselection()"
 XFfc - system "f\"mpv $MP3_DIR{sel}\""
 
 
-YDdefp thdStart x
-XIv z x x
-XIfv - thd Thread 'target=x,daemon=True'
-XFfc - thd.start
-
-
 YDdefe dlMusic
-XFfc zz thdStart getMp3
+XFfc zz $M.thdStart getMp3
 
 
 YDdefe startMusic
-XFfc zz thdStart playMp3
+XFfc zz $M.thdStart playMp3
 
 
 
 ZDcld $fa
 XIcv $ta Text $opta
 XFpk $ta 1 y
-XFbind $ta Shift_R $M.myinsert
+XFbind $ta space $M.myinsert
 YDdefe cleartxt
 XFtdel $ta 1.0 end
-
 
 
 ZDcld $fb
@@ -543,6 +568,11 @@ XFbind $tb Escape cleartxt
 YDdefe cleartxt
 XFtdel $tb 1.0 end
 
+
+ZDcld $fd
+XIcv $td Text $optd 
+XFpk $td 0 none
+XFfc z $td.focus
 
 
 ZFmain Shimky shimky
