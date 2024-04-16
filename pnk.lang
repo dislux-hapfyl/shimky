@@ -889,6 +889,21 @@ VKbr() {
 UKbr() {
 	$E "$U break"
 }
+YKctn() {
+	$E "$Y continue"
+}
+XKctn() {
+	$E "$X continue"
+}
+WKctn() {
+	$E "$W continue"
+}
+VKctn() {
+	$E "$V continue"
+}
+UKctn() {
+	$E "$U continue"
+}
 YKps() {
 	$E "$Y pass"
 }
@@ -1446,3 +1461,4 @@ WFfc z tagg 'xx,"9",start,end'
 
 
 }
+
