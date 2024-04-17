@@ -301,9 +301,8 @@ XFfc zz pw.add this
 
 XFthisin() {
 	local com="$1"
-	XFfc z this.myinsert
-	XFtins this.$oa end "f\"$com \""
-	XFfc z this.doSyntax
+	XFtins this.$ob end "f\"i $com \""
+	XFfc z this.cliSyntax
 }
 
 YDdefe a00
@@ -1164,7 +1163,6 @@ ZDcld $fd
 XIcv $td Text $optd 
 XFpk $td 0 none
 XFfc z $td.focus 
-
 
 
 ZFmain Shimky shimky
