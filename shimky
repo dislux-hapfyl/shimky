@@ -1,6 +1,6 @@
 . pnk.lang
 
-MP3_DIR=/home/mrmr/more-data/mp3/
+MP3_DIR=
 
 fa=RecvTxt
 fb=SendTxt
@@ -86,7 +86,6 @@ XFbind $oa Escape myExit
 XFbind $oa Shift_R doSyntax
 XFbind $ob Control-n myinsert
 XFbind $ob Shift_R sendCode
-
 XFbind $ob Control-Shift_R mapit
 XFbind $ob Alt-Shift_R mapitOut
 XFbind $ob Control-g fgoa
@@ -96,22 +95,16 @@ XFbind $ob Control-J bgob
 XFbind $ob Control-m fntoa
 XFbind $ob Control-M fntob
 XFbind $ob Return cliSyntax
-XFbind $ob Control-q clearPad
-XFbind $ob Control-Q mkPad
 
 
 YDsyntax
 
 
-YDdefe clearPad
-XFfc z i$fa.destroy
+YDdefp thdStart x
+XIv z x x
+XIfv - thd Thread 'target=x,daemon=True'
+XFfc - thd.start
 
-
-YDdefe mkPad
-XIcv i$fa $fa
-XFpk i$fa 1 y
-XFfc z tagConf
-XFfc z startSyntaxThd 
 
 YDdefe startSyntaxThd
 XFfc zz thdStart doSyntax
@@ -127,12 +120,6 @@ XIv z n n
 XIv z m m
 XFtins $ob end "f\"\n$datenow {n} {m}\n\""
 XFfc z $ob.see '"end"'
-
-
-YDdefp thdStart x
-XIv z x x
-XIfv - thd Thread 'target=x,daemon=True'
-XFfc - thd.start
 
 
 YDdefp chgfg w
