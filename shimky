@@ -1,6 +1,6 @@
 . pnk.lang
 
-MP3_DIR=
+MP3_DIR=/home/mrmr/more-data/mp3/
 
 fa=RecvTxt
 fb=SendTxt
@@ -47,7 +47,7 @@ iw='insertwidth=5'
 
 opta=$aa,$bb,$ca,$ee,$gg,$ib,$ja,$kk,$ll,$mm,$ds,$uu,$iw
 optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$iw
-optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$iw
+optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$iw 
 optd=$aa,$bd,$cb,$ee,$gg,$id,$jc,$kk,$ll,$mm,$uu,$iw,$wd
 
 ZDshebang 
@@ -86,6 +86,7 @@ XFbind $oa Escape myExit
 XFbind $oa Shift_R doSyntax
 XFbind $ob Control-n myinsert
 XFbind $ob Shift_R sendCode
+
 XFbind $ob Control-Shift_R mapit
 XFbind $ob Alt-Shift_R mapitOut
 XFbind $ob Control-g fgoa
@@ -95,10 +96,22 @@ XFbind $ob Control-J bgob
 XFbind $ob Control-m fntoa
 XFbind $ob Control-M fntob
 XFbind $ob Return cliSyntax
+XFbind $ob Control-q clearPad
+XFbind $ob Control-Q mkPad
 
 
 YDsyntax
 
+
+YDdefe clearPad
+XFfc z i$fa.destroy
+
+
+YDdefe mkPad
+XIcv i$fa $fa
+XFpk i$fa 1 y
+XFfc z tagConf
+XFfc z startSyntaxThd 
 
 YDdefe startSyntaxThd
 XFfc zz thdStart doSyntax
@@ -218,15 +231,26 @@ XFshspp $oa 'f". pnk.lang ; {cmd}"'
 XFfc z $oa.see 1.0
 XFfc z myExit
 
+ 
+YDdefe musicBox
+XIcv i$fc $fc
+XFpk i$fc 0 none
 
-WFdel() {
-	WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
-}
+
+YDdefe rmMusic
+XFfc z i$fc.destroy
+
 
 XKread() {
 	local p="$1"
 	XKelif "tt[0] == \"$p\""
 }
+
+
+WFdel() {
+	WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
+}
+
 
 XKFread() {
 	local pycom="$1"
@@ -235,6 +259,7 @@ XKFread() {
 	WFtins $oa end "f\"$command {strn}\n\"" 
 	WFfc z $oa.see '"end"'	
 }
+
 
 YDdefe sendCode
 XItgetln $ob txt
@@ -455,17 +480,10 @@ XKFread u20 WFtdel
 XKFread u21 WFtlndel
 XKFread u22 VFtins
 
+
 XFcfg $oa. $ds
 XFfc z doSyntax
 
-
-YDdefe musicBox
-XIcv i$fc $fc
-XFpk i$fc 0 none
-
-
-YDdefe rmMusic
-XFfc z i$fc.destroy
 
 
 ZDcld $fc
@@ -553,7 +571,7 @@ XFfc zz $M.thdStart playMp3
 ZDcld $fa
 XIcv $ta Text $opta
 XFpk $ta 1 y
-XFbind $ta space $M.myinsert
+XFbind $ta Button-3 $M.myinsert
 YDdefe cleartxt
 XFtdel $ta 1.0 end
 
@@ -570,7 +588,7 @@ XFtdel $tb 1.0 end
 ZDcld $fd
 XIcv $td Text $optd 
 XFpk $td 0 none
-XFfc z $td.focus
+XFfc z $td.focus 
 
 
 ZFmain Shimky shimky
