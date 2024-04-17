@@ -20,7 +20,7 @@ od="i$fd.$td"
 aa='fg="white"'
 bb='bg="#222"'
 bd=bg=$bg
-ca='font=("VictorMono",20)'
+ca='font=("VictorMono",16)'
 cb='font=("Iosevka",18)'
 cc='font=("VictorMono",14)'
 ee='cursor="heart"'
@@ -51,7 +51,7 @@ optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$iw
 optd=$aa,$bd,$cb,$ee,$gg,$id,$jc,$kk,$ll,$mm,$uu,$iw,$wd
 
 ZDshebang 
-ZDfrm tkinter Tk,Frame,Text,Listbox,PanedWindow
+ZDfrm tkinter Tk,Frame,Text,Listbox,PanedWindow,Menu
 ZDfrm re finditer
 ZDfrm threading Thread
 ZDfrm os listdir,system,rename,path
@@ -60,7 +60,235 @@ ZDimp subprocess
 ZDimp datetime
 
 
+
 ZFtoorwin Shimky
+XFmenu
+XFmkmenu a
+XFmenuadd a 'a00 . pnk.lang' a00
+XFmenuadd a 'a01 ZDshebang ' a01
+XFmenuadd a 'a02 ZDfrm ' a02
+XFmenuadd a 'a10 ZDimp ' a10
+XFmenuadd a 'a11 ZDas ' a11
+XFmenuadd a 'a12 ZFtoorwin ' a12
+XFmenucas a a
+
+XFmkmenu b
+XFmenuadd b 'b00 ZDdc' b00
+XFmenuadd b 'b01 ZDcld' b01
+XFmenuadd b 'b02 ZDcld' b02
+XFmenuadd b 'b10 XIcv' b10
+XFmenuadd b 'b11 ZFmain' b11
+XFmenucas b b
+
+XFmkmenu c
+XFmenuadd c 'c00 ZDfd' c00
+XFmenuadd c 'c01 YDfd' c01
+XFmenuadd c 'c02 XDfd' c02
+XFmenuadd c 'c10 WDfd' c10
+XFmenucas c c
+
+XFmkmenu d
+XFmenuadd d 'd00 ZDdefe' d00
+XFmenuadd d 'd01 YDret' d01
+XFmenuadd d 'd10 YDdefp' d10
+XFmenuadd d 'd11 XDret' d11
+XFmenuadd d 'd12 YDdefe' d12
+XFmenuadd d 'd20 YDdefs' d20
+XFmenuadd d 'd21 XDdefe' d21
+XFmenuadd d 'd22 WDret' d22
+XFmenuadd d 'd30 XDdefs' d30
+XFmenuadd d 'd31 WDdefe' d31
+XFmenuadd d 'd32 VDret' d32
+XFmenuadd d 'd40 WDdefs' d40
+XFmenucas d d
+
+XFmkmenu e
+XFmenuadd e 'e00 ZFfc' e00
+XFmenuadd e 'e01 YFfc' e01
+XFmenuadd e 'e02 XFfc' e02
+XFmenuadd e 'e10 WFfc' e10
+XFmenuadd e 'e11 VFfc' e11
+XFmenuadd e 'e12 UFfc' e12
+XFmenucas e e
+
+XFmkmenu f
+XFmenuadd f 'f00 ZIfv' f00
+XFmenuadd f 'f01 YIfv' f01
+XFmenuadd f 'f02 XIfv' f02
+XFmenuadd f 'f10 WIfv' f10
+XFmenuadd f 'f11 VIfv' f11
+XFmenuadd f 'f12 UIfv' f12
+XFmenucas f f
+
+XFmkmenu g
+XFmenuadd g 'g00 ZIv' g00
+XFmenuadd g 'g01 YIv' g01
+XFmenuadd g 'g02 XIv' g02
+XFmenuadd g 'g10 WIv' g10
+XFmenuadd g 'g11 VIv' g11
+XFmenuadd g 'g12 UIv' g12
+XFmenucas g g
+
+XFmkmenu h
+XFmenuadd h 'h00 ZIac' h00
+XFmenuadd h 'h01 YIac' h01
+XFmenuadd h 'h02 XIac' h02
+XFmenuadd h 'h10 WIac' h10
+XFmenuadd h 'h11 VIac' h11
+XFmenuadd h 'h12 UIac' h12
+XFmenuadd h 'h20 ZIrd' h20
+XFmenuadd h 'h21 YIrd' h21
+XFmenuadd h 'h22 XIrd' h22
+XFmenuadd h 'h30 WIrd' h30
+XFmenuadd h 'h31 VIrd' h31
+XFmenuadd h 'h32 UIrd' h32
+XFmenucas h h
+
+XFmkmenu i
+XFmenuadd i 'i00 YKtry' i00
+XFmenuadd i 'i01 YKexcp' i01
+XFmenuadd i 'i02 YKfin' i02
+XFmenuadd i 'i10 XKtry' i10
+XFmenuadd i 'i11 XKexcp' i11
+XFmenuadd i 'i12 XKfin' i12
+XFmenuadd i 'i20 WKtry' i20
+XFmenuadd i 'i21 WKexcp' i21
+XFmenuadd i 'i22 WKfin' i22
+XFmenuadd i 'i30 VKtry' i30
+XFmenuadd i 'i31 VKexcp' i31
+XFmenuadd i 'i32 VKfin' i32
+XFmenucas i i
+
+XFmkmenu k
+XFmenuadd k 'k00 ZKif' k00
+XFmenuadd k 'k01 YKif' k01
+XFmenuadd k 'k02 XKif' k02
+XFmenuadd k 'k10 WKif' k10
+XFmenuadd k 'k11 VKif' k11
+XFmenuadd k 'k12 UKif' k12
+XFmenuadd k 'k20 ZKiff' k20
+XFmenuadd k 'k21 YKiff' k21
+XFmenuadd k 'k22 XKiff' k22
+XFmenuadd k 'k30 WKiff' k30
+XFmenuadd k 'k31 VKiff' k31
+XFmenuadd k 'k32 UKiff' k32
+XFmenuadd k 'k40 ZKelif' k40
+XFmenuadd k 'k41 YKelif' k41
+XFmenuadd k 'k42 XKelif' k42
+XFmenuadd k 'k50 WKelif' k50
+XFmenuadd k 'k51 VKelif' k51
+XFmenuadd k 'k52 UKelif' k52
+XFmenuadd k 'k60 ZKeliff' k60
+XFmenuadd k 'k61 YKeliff' k61
+XFmenuadd k 'k62 XKeliff' k62
+XFmenuadd k 'k70 WKeliff' k70
+XFmenuadd k 'k71 VKeliff' k71
+XFmenuadd k 'k72 UKeliff' k72
+XFmenuadd k 'k80 ZKelse' k80
+XFmenuadd k 'k81 YKelse' k81
+XFmenuadd k 'k82 XKelse' k82
+XFmenuadd k 'k90 WKelse' k90
+XFmenuadd k 'k91 VKelse' k91
+XFmenuadd k 'k92 UKelse' k92
+XFmenucas k k
+
+XFmkmenu l
+XFmenuadd l 'l00 YKbr' l00
+XFmenuadd l 'l01 XKbr' l01
+XFmenuadd l 'l02 WKbr' l02
+XFmenuadd l 'l10 VKbr' l10
+XFmenuadd l 'l11 UKbr' l11
+XFmenuadd l 'l12 YKctn' l12
+XFmenuadd l 'l20 XKctn' l20
+XFmenuadd l 'l21 WKctn' l21
+XFmenuadd l 'l22 VKctn' l22
+XFmenuadd l 'l30 UKctn' l30
+XFmenuadd l 'l31 YKps' l31
+XFmenuadd l 'l32 XKps' l32
+XFmenuadd l 'l40 WKps' l40
+XFmenuadd l 'l41 VKps' l41
+XFmenuadd l 'l42 UKps' l42
+XFmenucas l l
+
+XFmkmenu m
+XFmenuadd m 'm00 ZLfor' m00
+XFmenuadd m 'm01 YLfor' m01
+XFmenuadd m 'm02 XLfor' m02
+XFmenuadd m 'm0 WLfor' m0
+XFmenuadd m 'm11 VLfor' m11
+XFmenuadd m 'm12 ULfor' m12
+XFmenuadd m 'm20 ZLffor' m20
+XFmenuadd m 'm21 YLffor' m21
+XFmenuadd m 'm22 XLffor' m22
+XFmenuadd m 'm30 WLffor' m30
+XFmenuadd m 'm31 VLffor' m31
+XFmenuadd m 'm32 ULffor' m32
+XFmenuadd m 'm40 ZLwhile' m40
+XFmenuadd m 'm41 YLwhile' m41
+XFmenuadd m 'm42 XLwhile' m42
+XFmenuadd m 'm50 WLwhile' m50
+XFmenuadd m 'm51 VLwhile' m51
+XFmenuadd m 'm52 ULwhile' m52
+XFmenucas m m
+
+XFmkmenu t
+XFmenuadd t 't00 XIeget' t00
+XFmenuadd t 't01 XItgetln' t01
+XFmenuadd t 't02 XItget' t02
+XFmenuadd t 't10 XItgeta' t10
+XFmenuadd t 't11 WItgetln' t11
+XFmenuadd t 't12 WItget' t12
+XFmenuadd t 't20 WIeget' t20
+XFmenucas t t
+
+XFmkmenu p
+XFmenuadd p 'p00 XFpk' p00
+XFmenuadd p 'p01 XFpl' p01
+XFmenuadd p 'p02 XFgd' p02
+XFmenuadd p 'p10 XFgdcfc' p10
+XFmenuadd p 'p11 XFgdcfr' p11
+XFmenuadd p 'p12 XFbind' p12
+XFmenuadd p 'p20 XFbinda' p20
+XFmenuadd p 'p21 XFshsp' p21
+XFmenuadd p 'p22 XFshspp' p22
+XFmenuadd p 'p30 XFpyev' p30
+XFmenucas p p
+
+XFmkmenu u
+XFmenuadd u 'u00 WFtagcfg' u00
+XFmenuadd u 'u01 WFtins' u01
+XFmenuadd u 'u02 WFset' u02
+XFmenuadd u 'u10 WFcfg' u10
+XFmenuadd u 'u11 WFedel' u11
+XFmenuadd u 'u12 WFeins' u12
+XFmenuadd u 'u20 WFtdel' u20
+XFmenuadd u 'u21 WFtlndel' u21
+XFmenuadd u 'u22 VFtins' u22
+XFmenucas u u
+
+XFmkmenu v
+XFmenuadd v 'v00 XFopft' v00
+XFmenuadd v 'v01 XFwrtf' v01
+XFmenuadd v 'v02 XFset' v02
+XFmenuadd v 'v10 XFcfg' v10
+XFmenuadd v 'v11 XFedel' v11
+XFmenuadd v 'v12 XFeins' v12
+XFmenuadd v 'v20 XFtdel' v20
+XFmenuadd v 'v21 XFtlndel' v21
+XFmenuadd v 'v22 XFtins' v22
+XFmenucas v v
+
+XFmkmenu  w
+XFmenuadd w 'w00 XFbtn' w00
+XFmenuadd w 'w01 XFtext' w01
+XFmenuadd w 'w02 XFpnwin' w02
+XFmenuadd w 'w10 XFnotebk' w10
+XFmenuadd w 'w11 XFentry' w11
+XFmenuadd w 'w12 XFlabel' w12
+XFmenuadd w 'w20 XFlbox' w20
+XFmenucas w w
+
+
 XFpnwin pw '"horizontal"'
 XFpk pw 1 both
 
@@ -70,6 +298,363 @@ XFfc z startNew
 YDdefe startNew
 XIcv this App
 XFfc zz pw.add this
+
+XFthisin() {
+	local com="$1"
+	XFfc z this.myinsert
+	XFtins this.$oa end "f\"$com \""
+	XFfc z this.doSyntax
+}
+
+YDdefe a00
+XFthisin '. pnk.lang'
+YDdefe a01
+XFthisin 'ZDshebang'
+YDdefe a02
+XFthisin 'ZDfrm'
+YDdefe a10
+XFthisin 'ZDimp'
+YDdefe a11
+XFthisin 'ZDas'
+YDdefe a12
+XFthisin 'ZZtoorwin'
+YDdefe b00
+XFthisin 'ZDdc'
+YDdefe b01
+XFthisin 'ZDcld'
+YDdefe b02
+XFthisin 'ZDcld'
+YDdefe b10
+XFthisin 'XIcv'
+YDdefe b11
+XFthisin 'ZFmain'
+YDdefe c00
+XFthisin 'ZDfd'
+YDdefe c01
+XFthisin 'YDfd'
+YDdefe c02
+XFthisin 'XDfd'
+YDdefe c10
+XFthisin 'WDfd'
+YDdefe d00
+XFthisin 'ZDdefe'
+YDdefe d01
+XFthisin 'YDret'
+YDdefe d10
+XFthisin 'YDdefp'
+YDdefe d11
+XFthisin 'XDret'
+YDdefe d12
+XFthisin 'YDdefe'
+YDdefe d20
+XFthisin 'YDdefs'
+YDdefe d21
+XFthisin 'XDdefe'
+YDdefe d22
+XFthisin 'WDret'
+YDdefe d30
+XFthisin 'XDdefs'
+YDdefe d31
+XFthisin 'WDdefe'
+YDdefe d32
+XFthisin 'VDret'
+YDdefe d40
+XFthisin 'WDdefs'
+YDdefe e00
+XFthisin 'ZFfc'
+YDdefe e01
+XFthisin 'YFfc'
+YDdefe e02
+XFthisin 'XFfc'
+YDdefe e10
+XFthisin 'WFfc'
+YDdefe e11
+XFthisin 'VFfc'
+YDdefe e12
+XFthisin 'UFfc'
+YDdefe f00
+XFthisin 'ZIfv'
+YDdefe f01
+XFthisin 'YIfv'
+YDdefe f02
+XFthisin 'XIfv'
+YDdefe f10
+XFthisin 'WIfv'
+YDdefe f11
+XFthisin 'VIfv'
+YDdefe f12
+XFthisin 'UIfv'
+YDdefe g00
+XFthisin 'ZIv'
+YDdefe g01
+XFthisin 'YIv'
+YDdefe g02
+XFthisin 'XIv'
+YDdefe g10
+XFthisin 'WIv'
+YDdefe g11
+XFthisin 'VIv'
+YDdefe g12
+XFthisin 'UIv'
+YDdefe h00
+XFthisin 'ZIac'
+YDdefe h01
+XFthisin 'YIac'
+YDdefe h02
+XFthisin 'XIac'
+YDdefe h10
+XFthisin 'WIac'
+YDdefe h11
+XFthisin 'VIac'
+YDdefe h12
+XFthisin 'UIac'
+YDdefe h20
+XFthisin 'ZIrd'
+YDdefe h21
+XFthisin 'YIrd'
+YDdefe h22
+XFthisin 'XIrd'
+YDdefe h30
+XFthisin 'WIrd'
+YDdefe h31
+XFthisin 'VIrd'
+YDdefe h32
+XFthisin 'UIrd'
+YDdefe i00
+XFthisin 'YKtry'
+YDdefe i01
+XFthisin 'YKexcp'
+YDdefe i02
+XFthisin 'YKfin'
+YDdefe i10
+XFthisin 'XKtry'
+YDdefe i11
+XFthisin 'XKexcp'
+YDdefe i12
+XFthisin 'XKfin'
+YDdefe i20
+XFthisin 'WKtry'
+YDdefe i21
+XFthisin 'WKexcp'
+YDdefe i22
+XFthisin 'WKfin'
+YDdefe i30
+XFthisin 'VKtry'
+YDdefe i31
+XFthisin 'VKexcp'
+YDdefe i32
+XFthisin 'VKfin'
+YDdefe k00
+XFthisin 'ZKif'
+YDdefe k01
+XFthisin 'YKif'
+YDdefe k02
+XFthisin 'XKif'
+YDdefe k10
+XFthisin 'WKif'
+YDdefe k11
+XFthisin 'VKif'
+YDdefe k12
+XFthisin 'UKif'
+YDdefe k20
+XFthisin 'ZKiff'
+YDdefe k21
+XFthisin 'YKiff'
+YDdefe k22
+XFthisin 'XKiff'
+YDdefe k30
+XFthisin 'WKiff'
+YDdefe k31
+XFthisin 'VKiff'
+YDdefe k32
+XFthisin 'UKiff'
+YDdefe k40
+XFthisin 'ZKelif'
+YDdefe k41
+XFthisin 'YKelif'
+YDdefe k42
+XFthisin 'XKelif'
+YDdefe k50
+XFthisin 'WKelif'
+YDdefe k51
+XFthisin 'VKelif'
+YDdefe k52
+XFthisin 'UKelif'
+YDdefe k60
+XFthisin 'ZKeliff'
+YDdefe k61
+XFthisin 'YKeliff'
+YDdefe k62
+XFthisin 'XKeliff'
+YDdefe k70
+XFthisin 'WKeliff'
+YDdefe k71
+XFthisin 'VKeliff'
+YDdefe k72
+XFthisin 'UKeliff'
+YDdefe k80
+XFthisin 'ZKelse'
+YDdefe k81
+XFthisin 'YKelse'
+YDdefe k82
+XFthisin 'XKelse'
+YDdefe k90
+XFthisin 'WKelse'
+YDdefe k91
+XFthisin 'VKelse'
+YDdefe k92
+XFthisin 'UKelse'
+YDdefe l00
+XFthisin 'YKbr'
+YDdefe l01
+XFthisin 'XKbr'
+YDdefe l02
+XFthisin 'WKbr'
+YDdefe l10
+XFthisin 'VKbr'
+YDdefe l11
+XFthisin 'UKbr'
+YDdefe l12
+XFthisin 'YKctn'
+YDdefe l20
+XFthisin 'XKctn'
+YDdefe l21
+XFthisin 'WKctn'
+YDdefe l22
+XFthisin 'VKctn'
+YDdefe l30
+XFthisin 'UKctn'
+YDdefe l31
+XFthisin 'YKps'
+YDdefe l32
+XFthisin 'XKps'
+YDdefe l40
+XFthisin 'WKps'
+YDdefe l41
+XFthisin 'VKps'
+YDdefe l42
+XFthisin 'UKps'
+YDdefe m00
+XFthisin 'ZLfor'
+YDdefe m01
+XFthisin 'YLfor'
+YDdefe m02
+XFthisin 'XLfor'
+YDdefe m0
+XFthisin 'WLfor'
+YDdefe m11
+XFthisin 'VLfor'
+YDdefe m12
+XFthisin 'ULfor'
+YDdefe m20
+XFthisin 'ZLffor'
+YDdefe m21
+XFthisin 'YLffor'
+YDdefe m22
+XFthisin 'XLffor'
+YDdefe m30
+XFthisin 'WLffor'
+YDdefe m31
+XFthisin 'VLffor'
+YDdefe m32
+XFthisin 'ULffor'
+YDdefe m40
+XFthisin 'ZLwhile'
+YDdefe m41
+XFthisin 'YLwhile'
+YDdefe m42
+XFthisin 'XLwhile'
+YDdefe m50
+XFthisin 'WLwhile'
+YDdefe m51
+XFthisin 'VLwhile'
+YDdefe m52
+XFthisin 'ULwhile'
+YDdefe w00
+XFthisin 'XFbtn'
+YDdefe w01
+XFthisin 'XFtext'
+YDdefe w02
+XFthisin 'XFpnwin'
+YDdefe w10
+XFthisin 'XFnotebk'
+YDdefe w11
+XFthisin 'XFentry'
+YDdefe w12
+XFthisin 'XFlabel'
+YDdefe w20
+XFthisin 'XFlbox'
+YDdefe t00
+XFthisin 'XIeget'
+YDdefe t01
+XFthisin 'XItgetln'
+YDdefe t02
+XFthisin 'XItget'
+YDdefe t10
+XFthisin 'XItgeta'
+YDdefe t11
+XFthisin 'WItgetln'
+YDdefe t12
+XFthisin 'WItget'
+YDdefe t20
+XFthisin 'WIeget'
+YDdefe p00
+XFthisin 'XFpk'
+YDdefe p01
+XFthisin 'XFpl'
+YDdefe p02
+XFthisin 'XFgd'
+YDdefe p10
+XFthisin 'XFgdcfc'
+YDdefe p11
+XFthisin 'XFgdcfr'
+YDdefe p12
+XFthisin 'XFbind'
+YDdefe p20
+XFthisin 'XFbinda'
+YDdefe p21
+XFthisin 'XFshsp'
+YDdefe p22
+XFthisin 'XFshspp'
+YDdefe p30
+XFthisin 'XFpyev'
+YDdefe v00
+XFthisin 'XFopft'
+YDdefe v01
+XFthisin 'XFwrtf'
+YDdefe v02
+XFthisin 'XFset'
+YDdefe v10
+XFthisin 'XFcfg'
+YDdefe v11
+XFthisin 'XFedel'
+YDdefe v12
+XFthisin 'XFeins'
+YDdefe v20
+XFthisin 'XFtdel'
+YDdefe v21
+XFthisin 'XFtlndel'
+YDdefe v22
+XFthisin 'XFtins'
+YDdefe u00
+XFthisin 'WFtagcfg'
+YDdefe u01
+XFthisin 'WFtins'
+YDdefe u02
+XFthisin 'WFset'
+YDdefe u10
+XFthisin 'WFcfg'
+YDdefe u11
+XFthisin 'WFedel'
+YDdefe u12
+XFthisin 'WFeins'
+YDdefe u20
+XFthisin 'WFtdel'
+YDdefe u21
+XFthisin 'WFtlndel'
+YDdefe u22
+XFthisin 'VFtins'
+
 
 
 ZDcld App
@@ -486,14 +1071,15 @@ XFpk $ws 0 none
 XFbind $wl Control-r reloadMusic
 XFbind $wl Double-Button-1 startMusic
 XFbind $wl Return startMusic
-
 XFbind $ws Control-n dlMusic
 XFbind $ws Escape clearit
 
 XFfc z loadMusic
 
+
 YDdefe clearit
 XFtdel $ws 1.0 end
+
 
 YDdefe loadMusic
 XIfv - filelist listdir "\"$MP3_DIR\""
@@ -563,6 +1149,7 @@ YDdefe cleartxt
 XFtdel $ta 1.0 end
 
 
+
 ZDcld $fb
 XIcv $tb Text $optb
 XFpk $tb 0 none
@@ -572,10 +1159,12 @@ YDdefe cleartxt
 XFtdel $tb 1.0 end
 
 
+
 ZDcld $fd
 XIcv $td Text $optd 
 XFpk $td 0 none
 XFfc z $td.focus 
+
 
 
 ZFmain Shimky shimky
