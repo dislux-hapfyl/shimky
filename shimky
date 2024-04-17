@@ -1,6 +1,6 @@
 . pnk.lang
 
-MP3_DIR=
+MP3_DIR=/home/mrmr/more-data/mp3/
 
 fa=RecvTxt
 fb=SendTxt
@@ -80,8 +80,7 @@ XFpk i$fb 0 none
 XFpk i$fa 1 y
 
 XFfc z tagConf
-
-XFfc z runSyntax
+XFfc z startSyntaxThd
 
 XFbind $oa Escape myExit
 XFbind $oa Shift_R doSyntax
@@ -97,12 +96,18 @@ XFbind $ob Control-m fntoa
 XFbind $ob Control-M fntob
 XFbind $ob Return cliSyntax
 
+
 YDsyntax
+
+
+YDdefe startSyntaxThd
+XFfc zz thdStart doSyntax
 
 
 YDdefe cliSyntax
 XFfc zz syntax $ob
 XFfc z doSyntax
+
 
 YDdefp notif n,m
 XIv z n n
@@ -115,10 +120,6 @@ YDdefp thdStart x
 XIv z x x
 XIfv - thd Thread 'target=x,daemon=True'
 XFfc - thd.start
-
-
-YDdefe runSyntax
-XFfc zz thdStart doSyntax
 
 
 YDdefp chgfg w
@@ -228,11 +229,11 @@ XKread() {
 }
 
 XKFread() {
-	local command="$1"
-	local pycom="$2"
+	local pycom="$1"
+	local command="$2"
 	XKelif "tt[0] == \"$pycom\""
-	WFtins $oa end "f\"$command {strn}\n\""
-	
+	WFtins $oa end "f\"$command {strn}\n\"" 
+	WFfc z $oa.see '"end"'	
 }
 
 YDdefe sendCode
@@ -268,10 +269,7 @@ WFtins $oa insert 'f"{strn}\n"'
 XKread dd
 WItgetln $oa self.ll
 WFdel
-
-XKread dl
-WFdel
-
+ 
 XKread p
 WFtins $oa insert 'f"{self.ll}\n"'
 
@@ -282,181 +280,180 @@ XKread md
 WFfc z rmMusic
 
 
-XKFread '. ./pnk.lang' a00
-XKFread ZDshebang a01 
-XKFread ZDfrm a02 
-XKFread ZDimp a10 
-XKFread ZDas a11 
-XKFread ZFtoorwin a12 
-XKFread ZDdc b00 
-XKFread ZDcld b01 #pnk
-XKFread ZDcld b02 #py
-XKFread XIcv b10 
-XKFread ZFmain b11 
-XKFread ZDfd c00 
-XKFread YDfd c01 
-XKFread XDfd c02 
-XKFread WDfd c10 
-XKFread ZDdefe d00 
-XKFread YDret d01 
-XKFread YDdefp d10 
-XKFread XDret d11 
-XKFread YDdefe d12 
-XKFread YDdefs d20 
-XKFread XDdefe d21 
-XKFread WDret d22 
-XKFread XDdefs d30 
-XKFread WDdefe d31 
-XKFread VDret d32 
-XKFread WDdefs d40 
-XKFread ZFfc e00 
-XKFread YFfc e01 
-XKFread XFfc e02 
-XKFread WFfc e10 
-XKFread VFfc e11 
-XKFread UFfc e12 
-XKFread ZIfv f00 
-XKFread YIfv f01 
-XKFread XIfv f02 
-XKFread WIfv f10 
-XKFread VIfv f11 
-XKFread UIfv f12 
-XKFread ZIv g00 
-XKFread YIv g01 
-XKFread XIv g02 
-XKFread WIv g10 
-XKFread VIv g11 
-XKFread UIv g12 
-XKFread ZIac h00 
-XKFread YIac h01 
-XKFread XIac h02 
-XKFread WIac h10 
-XKFread VIac h11 
-XKFread UIac h12 
-XKFread ZIrd h20 
-XKFread YIrd h21 
-XKFread XIrd h22 
-XKFread WIrd h30 
-XKFread VIrd h31 
-XKFread UIrd h32 
-XKFread YKtry i00 
-XKFread YKexcp i01 
-XKFread YKfin i02 
-XKFread XKtry i10 
-XKFread XKexcp i11 
-XKFread XKfin i12 
-XKFread WKtry i20 
-XKFread WKexcp i21 
-XKFread WKfin i22 
-XKFread VKtry i30 
-XKFread VKexcp i31 
-XKFread VKfin i32 
-XKFread ZKif k00 
-XKFread YKif k01 
-XKFread XKif k02 
-XKFread WKif k10 
-XKFread VKif k11 
-XKFread UKif k12 
-XKFread ZKiff k20 
-XKFread YKiff k21 
-XKFread XKiff k22 
-XKFread WKiff k30 
-XKFread VKiff k31 
-XKFread UKiff k32 
-XKFread ZKelif k40 
-XKFread YKelif k41 
-XKFread XKelif k42 
-XKFread WKelif k50 
-XKFread VKelif k51 
-XKFread UKelif k52 
-XKFread ZKeliff k60 
-XKFread YKeliff k61 
-XKFread XKeliff k62 
-XKFread WKeliff k70 
-XKFread VKeliff k71 
-XKFread UKeliff k72 
-XKFread ZKelse k80 
-XKFread YKelse k81 
-XKFread XKelse k82 
-XKFread WKelse k90 
-XKFread VKelse k91 
-XKFread UKelse k92 
-XKFread YKbr l00 
-XKFread XKbr l01 
-XKFread WKbr l02 
-XKFread VKbr l10 
-XKFread UKbr l11 
-XKFread YKctn l12 
-XKFread XKctn l20 
-XKFread WKctn l21 
-XKFread VKctn l22 
-XKFread UKctn l30 
-XKFread YKps l31 
-XKFread XKps l32 
-XKFread WKps l40 
-XKFread VKps l41 
-XKFread UKps l42 
-XKFread ZLfor m00 
-XKFread YLfor m01 
-XKFread XLfor m02 
-XKFread WLfor m10 
-XKFread VLfor m11 
-XKFread ULfor m12 
-XKFread ZLffor m20 
-XKFread YLffor m21 
-XKFread XLffor m22 
-XKFread WLffor m30 
-XKFread VLffor m31 
-XKFread ULffor m32 
-XKFread ZLwhile m40 
-XKFread YLwhile m41 
-XKFread XLwhile m42 
-XKFread WLwhile m50 
-XKFread VLwhile m51 
-XKFread ULwhile m52 
-XKFread XFbtn w00 
-XKFread XFtext w01 
-XKFread XFpnwin w02 
-XKFread XFnotebk w10 
-XKFread XFentry w11 
-XKFread XFlabel w12 
-XKFread XFlbox w20 
-XKFread XIeget t00 
-XKFread XItgetln t01 
-XKFread XItget t02 
-XKFread XItgeta t10 
-XKFread WItgetln t11 
-XKFread WItget t12 
-XKFread WIeget t20 
-XKFread XFpk p00 
-XKFread XFpl p01
-XKFread XFgd p02
-XKFread XFgdcfc p10
-XKFread XFgdcfr p11
-XKFread XFbind p12
-XKFread XFbinda p20 
-XKFread XFshsp p21
-XKFread XFshspp p22
-XKFread XFpyev p30
-XKFread XFopft v00 
-XKFread XFwrtf v01 
-XKFread XFset v02 
-XKFread XFcfg v10 
-XKFread XFedel v11 
-XKFread XFeins v12 
-XKFread XFtdel v20 
-XKFread XFtlndel v21 
-XKFread XFtins v22 
-XKFread WFtagcfg u00 
-XKFread WFtins u01 
-XKFread WFset u02 
-XKFread WFcfg u10 
-XKFread WFedel u11 
-XKFread WFeins u12 
-XKFread WFtdel u20 
-XKFread WFtlndel u21 
-XKFread VFtins u22 
-
+XKFread a00 '. pnk.lang'
+XKFread a01 ZDshebang
+XKFread a02 ZDfrm
+XKFread a10 ZDimp
+XKFread a11 ZDas
+XKFread a12 ZFtoorwin
+XKFread b00 ZDdc
+XKFread b01 ZDcld
+XKFread b02 ZDcld
+XKFread b10 XIcv
+XKFread b11 ZFmain
+XKFread c00 ZDfd
+XKFread c01 YDfd
+XKFread c02 XDfd
+XKFread c10 WDfd
+XKFread d00 ZDdefe
+XKFread d01 YDret
+XKFread d10 YDdefp
+XKFread d11 XDret
+XKFread d12 YDdefe
+XKFread d20 YDdefs
+XKFread d21 XDdefe
+XKFread d22 WDret
+XKFread d30 XDdefs
+XKFread d31 WDdefe
+XKFread d32 VDret
+XKFread d40 WDdefs
+XKFread e00 ZFfc
+XKFread e01 YFfc
+XKFread e02 XFfc
+XKFread e10 WFfc
+XKFread e11 VFfc
+XKFread e12 UFfc
+XKFread f00 ZIfv
+XKFread f01 YIfv
+XKFread f02 XIfv
+XKFread f10 WIfv
+XKFread f11 VIfv
+XKFread f12 UIfv
+XKFread g00 ZIv
+XKFread g01 YIv
+XKFread g02 XIv
+XKFread g10 WIv
+XKFread g11 VIv
+XKFread g12 UIv
+XKFread h00 ZIac
+XKFread h01 YIac
+XKFread h02 XIac
+XKFread h10 WIac
+XKFread h11 VIac
+XKFread h12 UIac
+XKFread h20 ZIrd
+XKFread h21 YIrd
+XKFread h22 XIrd
+XKFread h30 WIrd
+XKFread h31 VIrd
+XKFread h32 UIrd
+XKFread i00 YKtry
+XKFread i01 YKexcp
+XKFread i02 YKfin
+XKFread i10 XKtry
+XKFread i11 XKexcp
+XKFread i12 XKfin
+XKFread i20 WKtry
+XKFread i21 WKexcp
+XKFread i22 WKfin
+XKFread i30 VKtry
+XKFread i31 VKexcp
+XKFread i32 VKfin
+XKFread k00 ZKif
+XKFread k01 YKif
+XKFread k02 XKif
+XKFread k10 WKif
+XKFread k11 VKif
+XKFread k12 UKif
+XKFread k20 ZKiff
+XKFread k21 YKiff
+XKFread k22 XKiff
+XKFread k30 WKiff
+XKFread k31 VKiff
+XKFread k32 UKiff
+XKFread k40 ZKelif
+XKFread k41 YKelif
+XKFread k42 XKelif
+XKFread k50 WKelif
+XKFread k51 VKelif
+XKFread k52 UKelif
+XKFread k60 ZKeliff
+XKFread k61 YKeliff
+XKFread k62 XKeliff
+XKFread k70 WKeliff
+XKFread k71 VKeliff
+XKFread k72 UKeliff
+XKFread k80 ZKelse
+XKFread k81 YKelse
+XKFread k82 XKelse
+XKFread k90 WKelse
+XKFread k91 VKelse
+XKFread k92 UKelse
+XKFread l00 YKbr
+XKFread l01 XKbr
+XKFread l02 WKbr
+XKFread l10 VKbr
+XKFread l11 UKbr
+XKFread l12 YKctn
+XKFread l20 XKctn
+XKFread l21 WKctn
+XKFread l22 VKctn
+XKFread l30 UKctn
+XKFread l31 YKps
+XKFread l32 XKps
+XKFread l40 WKps
+XKFread l41 VKps
+XKFread l42 UKps
+XKFread m00 ZLfor
+XKFread m01 YLfor
+XKFread m02 XLfor
+XKFread m10 WLfor
+XKFread m11 VLfor
+XKFread m12 ULfor
+XKFread m20 ZLffor
+XKFread m21 YLffor
+XKFread m22 XLffor
+XKFread m30 WLffor
+XKFread m31 VLffor
+XKFread m32 ULffor
+XKFread m40 ZLwhile
+XKFread m41 YLwhile
+XKFread m42 XLwhile
+XKFread m50 WLwhile
+XKFread m51 VLwhile
+XKFread m52 ULwhile
+XKFread w00 XFbtn
+XKFread w01 XFtext
+XKFread w02 XFpnwin
+XKFread w10 XFnotebk
+XKFread w11 XFentry
+XKFread w12 XFlabel
+XKFread w20 XFlbox
+XKFread t00 XIeget
+XKFread t01 XItgetln
+XKFread t02 XItget
+XKFread t10 XItgeta
+XKFread t11 WItgetln
+XKFread t12 WItget
+XKFread t20 WIeget
+XKFread p00 XFpk
+XKFread p01 XFpl
+XKFread p02 XFgd
+XKFread p10 XFgdcfc
+XKFread p11 XFgdcfr
+XKFread p12 XFbind
+XKFread p20 XFbinda
+XKFread p21 XFshsp
+XKFread p22 XFshspp
+XKFread p30 XFpyev
+XKFread v00 XFopft
+XKFread v01 XFwrtf
+XKFread v02 XFset
+XKFread v10 XFcfg
+XKFread v11 XFedel
+XKFread v12 XFeins
+XKFread v20 XFtdel
+XKFread v21 XFtlndel
+XKFread v22 XFtins
+XKFread u00 WFtagcfg
+XKFread u01 WFtins
+XKFread u02 WFset
+XKFread u10 WFcfg
+XKFread u11 WFedel
+XKFread u12 WFeins
+XKFread u20 WFtdel
+XKFread u21 WFtlndel
+XKFread u22 VFtins
 
 XFcfg $oa. $ds
 XFfc z doSyntax
