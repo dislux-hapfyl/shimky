@@ -6,12 +6,6 @@ SHell vIM tKinter pYthon = shimky
 
 Shell IDE for pnk.lang
 
-Smarter Circuits
- — 
-Today at 3:11 PM
-@hardkorebob You should explain that it ^^ is built on a scripting language you've built to abstract Python/tkinter code generation through simplified shell commands.
-It's an interesting way to quickly spin up UIs.
-
 Launch: `sed 's|MP3_DIR=|&$HOME/your-mp3-dir/|' shimky | bash | python3 &`
 
 ![pnk](pynksh.jpeg)
@@ -25,8 +19,6 @@ https://special.fish/hardkorebob
 https://hardkorebob.github.io
 
 https://www.reddit.com/r/pnk/
-
-https://discord.gg/JT6RMMfP
 
 🐡🐧🐍🐚🐈‍⬛🦤🏞🪡♥️🪄⏳️🎲🎯🧩🏅🎉
 
