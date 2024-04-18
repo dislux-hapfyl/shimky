@@ -702,6 +702,76 @@ UIrd() {
 		$E "$U $nn -= $cc"
 	fi
 }
+ZIdvd() {
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	if [[ $z == z ]];
+	then
+		$E "${S}.$nn /= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "${S}.$nn /= ${S}.$cc"
+	else
+		$E "$nn /= $cc"
+	fi
+}
+YIdvd() {
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$Y ${S}.$nn /= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$Y ${S}.$nn /= ${S}.$cc"
+	else
+		$E "$Y $nn /= $cc"
+	fi
+}
+XIdvd() {
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$X ${S}.$nn /= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$X ${S}.$nn /= ${S}.$cc"
+	else
+		$E "$X $nn /= $cc"
+	fi
+}
+WIdvd() {
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$W ${S}.$nn /= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$W ${S}.$nn /= ${S}.$cc"
+	else
+		$E "$W $nn /= $cc"
+	fi
+}
+UIdvd() {
+        local nn="$2"
+	local cc="$3" 
+	local z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$U ${S}.$nn /= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$U ${S}.$nn /= ${S}.$cc"
+	else
+		$E "$U $nn /= $cc"
+	fi
+}
 VIdvd() {
         local nn="$2"
 	local cc="$3" 
@@ -1141,7 +1211,7 @@ XFshspp() {
 	local n="$1"
 	local lntxt="$2"
 	XKtry
-	WIfv - result subprocess.run "$lntxt,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True"
+	WIfv - result subprocess.run "$lntxt,shell=True,executable=\"/bin/bash\",stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True"
 	WKif 'result.returncode == 0'
 	VFtins $n 1.0 'f"\n\n{result.stdout}\n"'
 	WKelse
@@ -1261,36 +1331,6 @@ XFtins() {
 	local v="$3"	
 	$E "$X self.$n.insert(\"$s\", $v)"
 }
-
-mnbg=bg=$bg
-mnfg='fg="white"'
-mnabg='activebackground="#222"'
-mnafg='activeforeground="#2BCDBB"'
-mnbd=bd=0
-mnabd=activeborderwidth=0
-
-mnopt=$wfnt,$mnbg,$mnfg,$wecr,$mnabg,$mnafg,$mnbd,$mnabd
-# Menu
-XFmenu() {
-	XIcv menubar Menu $mnopt
-	XFcfg '' menu=self.menubar
-}
-XFmkmenu() {
-	local menu="$1"
-	XIfv --z $menu Menu menubar,tearoff=0,$mnopt
-}
-XFmenuadd() {
-	local menu="$1"
-	local label="$2"
-	local com="$3"
-	XFfc - $menu.add_command "label=\"$label\",command=$S.$com"
-}
-XFmenucas() {
-	local label="$1"
-	local menu="$2"
-	XFfc z menubar.add_cascade "label=\"$label\",menu=$menu"
-}
-
 WFtagcfg() {
 	local wn="$1"
 	local n="$2"
@@ -1343,113 +1383,37 @@ wtr() {
 	curl wttr.in/22401?format=%l,%m,%w,%c,%h,%t | tr ',' '\t'
 }
 
-
-YDsyntax() {
-YDdefe doSyntax
-XFfc zz syntax $oa
-YDdefe tagConf
-XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("#202124", "#bfff00"), "dol": ("black", "black"), "eql": ("#202124", "#00ffff"),"dash": ("#202124", "#00ffff"),"dot": ("#202124", "#bfff00"), "pls": ("#202124", "#00ffff"), "star": ("#202124", "#00ffff"),"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
-XLffor key,value d.items
-WFtagcfg $oa key value[0] value[1]
-WFtagcfg $ob key value[0] value[1]
-YDdefp tagg x,y,a,b
-XIv z x x
-XIv z y y
-XIv z a a
-XIv z b b
-XFfc z x.tag_add 'y,f"1.0+{a}c",f"1.0+{b}c"'
-YDdefp syntax xx
-XIv z xx xx
-XItgeta xx data
-XIv - SQ_idx "[(m.start(),m.end()) for m in finditer(r'\'(.*?)\'', data)]"
-XLfor start,end SQ_idx
-WFfc z tagg 'xx,"arg",start,end'
-XIv - dQ_idx "[(m.start(),m.end()) for m in finditer(r'\"(.*?)\"', data)]"
-XLfor start,end dQ_idx
-WFfc z tagg 'xx,"args",start,end'
-XIv - dol_idx "[(m.start(),m.end()) for m in finditer(r'\\$', data)]"
-XLfor start,end dol_idx
-WFfc z tagg 'xx,"dol",start,end'
-XIv - dot_idx "[(m.start(),m.end()) for m in finditer(r'\.', data)]"
-XLfor start,end dot_idx
-WFfc z tagg 'xx,"dot",start,end'
-XIv - dash_idx "[(m.start(),m.end()) for m in finditer(r'-', data)]"
-XLfor start,end dash_idx
-WFfc z tagg 'xx,"dash",start,end'
-XIv - eql_idx "[(m.start(),m.end()) for m in finditer(r'=', data)]"
-XLfor start,end eql_idx
-WFfc z tagg 'xx,"eql",start,end'
-XIv - pls_idx "[(m.start(),m.end()) for m in finditer(r'\+', data)]"
-XLfor start,end pls_idx
-WFfc z tagg 'xx,"pls",start,end'
-XIv - star_idx "[(m.start(),m.end()) for m in finditer(r'\*', data)]"
-XLfor start,end star_idx
-WFfc z tagg 'xx,"star",start,end'
-XIv - z_idx "[(m.start(),m.end()) for m in finditer(r'z', data)]"
-XLfor start,end z_idx
-WFfc z tagg 'xx,"z",start,end'
-XIv - D_idx "[(m.start(),m.end()) for m in finditer(r'D', data)]"
-XLfor start,end D_idx
-WFfc z tagg 'xx,"D",start,end'
-XIv - F_idx "[(m.start(),m.end()) for m in finditer(r'F', data)]"
-XLfor start,end F_idx
-WFfc z tagg 'xx,"F",start,end'
-XIv - I_idx "[(m.start(),m.end()) for m in finditer(r'I', data)]"
-XLfor start,end I_idx
-WFfc z tagg 'xx,"I",start,end'
-XIv - K_idx "[(m.start(),m.end()) for m in finditer(r'K', data)]"
-XLfor start,end K_idx
-WFfc z tagg 'xx,"K",start,end'
-XIv - L_idx "[(m.start(),m.end()) for m in finditer(r'L', data)]"
-XLfor start,end L_idx
-WFfc z tagg 'xx,"L",start,end'
-XIv - Z_idx "[(m.start(),m.end()) for m in finditer(r'Z', data)]"
-XLfor start,end Z_idx
-WFfc z tagg 'xx,"Z",start,end'
-XIv - U_idx "[(m.start(),m.end()) for m in finditer(r'U', data)]"
-XLfor start,end U_idx
-WFfc z tagg 'xx,"U",start,end'
-XIv - V_idx "[(m.start(),m.end()) for m in finditer(r'V', data)]"
-XLfor start,end V_idx
-WFfc z tagg 'xx,"V",start,end'
-XIv - W_idx "[(m.start(),m.end()) for m in finditer(r'W', data)]"
-XLfor start,end W_idx
-WFfc z tagg 'xx,"W",start,end'
-XIv - X_idx "[(m.start(),m.end()) for m in finditer(r'X', data)]"
-XLfor start,end X_idx
-WFfc z tagg 'xx,"X",start,end'
-XIv - Y_idx "[(m.start(),m.end()) for m in finditer(r'Y', data)]"
-XLfor start,end Y_idx
-WFfc z tagg 'xx,"Y",start,end'
-XIv - l0_idx "[(m.start(),m.end()) for m in finditer(r'0', data)]"
-XLfor start,end l0_idx
-WFfc z tagg 'xx,"0",start,end'
-XIv - l1_idx "[(m.start(),m.end()) for m in finditer(r'1', data)]"
-XLfor start,end l1_idx
-WFfc z tagg 'xx,"1",start,end'
-XIv - l2_idx "[(m.start(),m.end()) for m in finditer(r'2', data)]"
-XLfor start,end l2_idx
-WFfc z tagg 'xx,"2",start,end'
-XIv - l3_idx "[(m.start(),m.end()) for m in finditer(r'3', data)]"
-XLfor start,end l3_idx
-WFfc z tagg 'xx,"3",start,end'
-XIv - l4_idx "[(m.start(),m.end()) for m in finditer(r'4', data)]"
-XLfor start,end l4_idx
-WFfc z tagg 'xx,"4",start,end'
-XIv - l5_idx "[(m.start(),m.end()) for m in finditer(r'5', data)]"
-XLfor start,end l5_idx
-WFfc z tagg 'xx,"5",start,end'
-XIv - l6_idx "[(m.start(),m.end()) for m in finditer(r'6', data)]"
-XLfor start,end l6_idx
-WFfc z tagg 'xx,"6",start,end'
-XIv - l7_idx "[(m.start(),m.end()) for m in finditer(r'7', data)]"
-XLfor start,end l7_idx
-WFfc z tagg 'xx,"7",start,end'
-XIv - l8_idx "[(m.start(),m.end()) for m in finditer(r'8', data)]"
-XLfor start,end l8_idx
-WFfc z tagg 'xx,"8",start,end'
-XIv - l9_idx "[(m.start(),m.end()) for m in finditer(r'9', data)]"
-XLfor start,end l9_idx
-WFfc z tagg 'xx,"9",start,end'
+# Menu
+XFmenu() {
+	local opt="$1"
+	XIcv menubar Menu $opt
+	XFcfg '' menu=self.menubar
+}
+XFmkmenu() {
+	local menu="$1"
+	XIfv --z $menu Menu menubar,tearoff=0,$mnopt
+}
+XFmenuadd() {
+	local menu="$1"
+	local label="$2"
+	local com="$3"
+	XFfc - $menu.add_command "label=\"$label\",command=$S.$com"
+}
+XFmenucas() {
+	local label="$2"
+	local menu="$1"
+	XFfc z menubar.add_cascade "label=\"$label\",menu=$menu"
 }
 
+mkfunc() {
+	local master=("Z" "Y" "X" "W" "U")
+
+	for i in "${master[@]}";
+	do
+		cat x | sed "s/V/$i/g"
+	done
+}
+mkmenu() {
+	awk '{ print "YDdefe "$1"\nXFthisin "$2 }' x
+	awk '{ print "XFmenuadd h \047"$1" "$2"\047 "$1 }' x
+}
