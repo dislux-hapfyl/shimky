@@ -50,6 +50,16 @@ optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$iw
 optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$iw 
 optd=$aa,$bd,$cb,$ee,$gg,$id,$jc,$kk,$ll,$mm,$uu,$iw,$wd
 
+mnbg='bg="#222"'
+mnfg='fg="white"'
+mnabg=activebackground=$bg
+mnafg='activeforeground="#2BCDBB"'
+mnbd=bd=0
+mnabd=activeborderwidth=0
+
+mnopt=$cc,$mnbg,$mnfg,$wecr,$mnabg,$mnafg,$mnbd,$mnabd
+
+
 ZDshebang 
 ZDfrm tkinter Tk,Frame,Text,Listbox,PanedWindow,Menu
 ZDfrm re finditer
@@ -60,9 +70,8 @@ ZDimp subprocess
 ZDimp datetime
 
 
-
 ZFtoorwin Shimky
-XFmenu
+XFmenu $mnopt
 XFmkmenu a
 XFmenuadd a 'a00 . pnk.lang' a00
 XFmenuadd a 'a01 ZDshebang ' a01
@@ -75,7 +84,6 @@ XFmenucas a a
 XFmkmenu b
 XFmenuadd b 'b00 ZDdc' b00
 XFmenuadd b 'b01 ZDcld' b01
-XFmenuadd b 'b02 ZDcld' b02
 XFmenuadd b 'b10 XIcv' b10
 XFmenuadd b 'b11 ZFmain' b11
 XFmenucas b b
@@ -142,6 +150,12 @@ XFmenuadd h 'h22 XIrd' h22
 XFmenuadd h 'h30 WIrd' h30
 XFmenuadd h 'h31 VIrd' h31
 XFmenuadd h 'h32 UIrd' h32
+XFmenuadd h 'h40 ZIdvd' h40
+XFmenuadd h 'h41 YIdvd' h41
+XFmenuadd h 'h42 XIdvd' h42
+XFmenuadd h 'h50 WIdvd' h50
+XFmenuadd h 'h51 VIdvd' h51
+XFmenuadd h 'h52 UIdvd' h52
 XFmenucas h h
 
 XFmkmenu i
@@ -288,6 +302,10 @@ XFmenuadd w 'w12 XFlabel' w12
 XFmenuadd w 'w20 XFlbox' w20
 XFmenucas w w
 
+XFmkmenu tools 
+XFmenuadd tools 'MP3 Play+Get' music
+XFmenuadd tools 'Hide MP3' musicDel
+XFmenucas tools '*'
 
 XFpnwin pw '"horizontal"'
 XFpk pw 1 both
@@ -304,7 +322,10 @@ XFthisin() {
 	XFtins this.$ob end "f\"i $com \""
 	XFfc z this.cliSyntax
 }
-
+YDdefe music
+XFfc z this.musicBox
+YDdefe musicDel
+XFfc z this.rmMusic
 YDdefe a00
 XFthisin '. pnk.lang'
 YDdefe a01
@@ -320,8 +341,6 @@ XFthisin 'ZZtoorwin'
 YDdefe b00
 XFthisin 'ZDdc'
 YDdefe b01
-XFthisin 'ZDcld'
-YDdefe b02
 XFthisin 'ZDcld'
 YDdefe b10
 XFthisin 'XIcv'
@@ -419,6 +438,18 @@ YDdefe h31
 XFthisin 'VIrd'
 YDdefe h32
 XFthisin 'UIrd'
+YDdefe h40
+XFthisin ZIdvd
+YDdefe h41
+XFthisin YIdvd
+YDdefe h42
+XFthisin XIdvd
+YDdefe h50
+XFthisin WIdvd
+YDdefe h51
+XFthisin VIdvd
+YDdefe h52
+XFthisin UIdvd
 YDdefe i00
 XFthisin 'YKtry'
 YDdefe i01
@@ -665,6 +696,7 @@ XFpk i$fa 1 y
 
 XFfc z tagConf
 XFfc z startSyntaxThd
+XFfc z doSyntax
 
 XFbind $oa Escape myExit
 XFbind $oa Shift_R doSyntax
@@ -681,7 +713,112 @@ XFbind $ob Control-M fntob
 XFbind $ob Return cliSyntax
 
 
-YDsyntax
+YDdefe doSyntax
+XFfc zz syntax $oa
+YDdefe tagConf
+XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("#202124", "#bfff00"), "dol": ("black", "black"), "eql": ("#202124", "#00ffff"),"dash": ("#202124", "#00ffff"),"dot": ("#202124", "#bfff00"), "pls": ("#202124", "#00ffff"), "star": ("#202124", "#00ffff"),"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
+XLffor key,value d.items
+WFtagcfg $oa key value[0] value[1]
+WFtagcfg $ob key value[0] value[1]
+YDdefp tagg x,y,a,b
+XIv z x x
+XIv z y y
+XIv z a a
+XIv z b b
+XFfc z x.tag_add 'y,f"1.0+{a}c",f"1.0+{b}c"'
+YDdefp syntax xx
+XIv z xx xx
+XItgeta xx data
+XIv - SQ_idx "[(m.start(),m.end()) for m in finditer(r'\'(.*?)\'', data)]"
+XLfor start,end SQ_idx
+WFfc z tagg 'xx,"arg",start,end'
+XIv - dQ_idx "[(m.start(),m.end()) for m in finditer(r'\"(.*?)\"', data)]"
+XLfor start,end dQ_idx
+WFfc z tagg 'xx,"args",start,end'
+XIv - dol_idx "[(m.start(),m.end()) for m in finditer(r'\\$', data)]"
+XLfor start,end dol_idx
+WFfc z tagg 'xx,"dol",start,end'
+XIv - dot_idx "[(m.start(),m.end()) for m in finditer(r'\.', data)]"
+XLfor start,end dot_idx
+WFfc z tagg 'xx,"dot",start,end'
+XIv - dash_idx "[(m.start(),m.end()) for m in finditer(r'-', data)]"
+XLfor start,end dash_idx
+WFfc z tagg 'xx,"dash",start,end'
+XIv - eql_idx "[(m.start(),m.end()) for m in finditer(r'=', data)]"
+XLfor start,end eql_idx
+WFfc z tagg 'xx,"eql",start,end'
+XIv - pls_idx "[(m.start(),m.end()) for m in finditer(r'\+', data)]"
+XLfor start,end pls_idx
+WFfc z tagg 'xx,"pls",start,end'
+XIv - star_idx "[(m.start(),m.end()) for m in finditer(r'\*', data)]"
+XLfor start,end star_idx
+WFfc z tagg 'xx,"star",start,end'
+XIv - z_idx "[(m.start(),m.end()) for m in finditer(r'z', data)]"
+XLfor start,end z_idx
+WFfc z tagg 'xx,"z",start,end'
+XIv - D_idx "[(m.start(),m.end()) for m in finditer(r'D', data)]"
+XLfor start,end D_idx
+WFfc z tagg 'xx,"D",start,end'
+XIv - F_idx "[(m.start(),m.end()) for m in finditer(r'F', data)]"
+XLfor start,end F_idx
+WFfc z tagg 'xx,"F",start,end'
+XIv - I_idx "[(m.start(),m.end()) for m in finditer(r'I', data)]"
+XLfor start,end I_idx
+WFfc z tagg 'xx,"I",start,end'
+XIv - K_idx "[(m.start(),m.end()) for m in finditer(r'K', data)]"
+XLfor start,end K_idx
+WFfc z tagg 'xx,"K",start,end'
+XIv - L_idx "[(m.start(),m.end()) for m in finditer(r'L', data)]"
+XLfor start,end L_idx
+WFfc z tagg 'xx,"L",start,end'
+XIv - Z_idx "[(m.start(),m.end()) for m in finditer(r'Z', data)]"
+XLfor start,end Z_idx
+WFfc z tagg 'xx,"Z",start,end'
+XIv - U_idx "[(m.start(),m.end()) for m in finditer(r'U', data)]"
+XLfor start,end U_idx
+WFfc z tagg 'xx,"U",start,end'
+XIv - V_idx "[(m.start(),m.end()) for m in finditer(r'V', data)]"
+XLfor start,end V_idx
+WFfc z tagg 'xx,"V",start,end'
+XIv - W_idx "[(m.start(),m.end()) for m in finditer(r'W', data)]"
+XLfor start,end W_idx
+WFfc z tagg 'xx,"W",start,end'
+XIv - X_idx "[(m.start(),m.end()) for m in finditer(r'X', data)]"
+XLfor start,end X_idx
+WFfc z tagg 'xx,"X",start,end'
+XIv - Y_idx "[(m.start(),m.end()) for m in finditer(r'Y', data)]"
+XLfor start,end Y_idx
+WFfc z tagg 'xx,"Y",start,end'
+XIv - l0_idx "[(m.start(),m.end()) for m in finditer(r'0', data)]"
+XLfor start,end l0_idx
+WFfc z tagg 'xx,"0",start,end'
+XIv - l1_idx "[(m.start(),m.end()) for m in finditer(r'1', data)]"
+XLfor start,end l1_idx
+WFfc z tagg 'xx,"1",start,end'
+XIv - l2_idx "[(m.start(),m.end()) for m in finditer(r'2', data)]"
+XLfor start,end l2_idx
+WFfc z tagg 'xx,"2",start,end'
+XIv - l3_idx "[(m.start(),m.end()) for m in finditer(r'3', data)]"
+XLfor start,end l3_idx
+WFfc z tagg 'xx,"3",start,end'
+XIv - l4_idx "[(m.start(),m.end()) for m in finditer(r'4', data)]"
+XLfor start,end l4_idx
+WFfc z tagg 'xx,"4",start,end'
+XIv - l5_idx "[(m.start(),m.end()) for m in finditer(r'5', data)]"
+XLfor start,end l5_idx
+WFfc z tagg 'xx,"5",start,end'
+XIv - l6_idx "[(m.start(),m.end()) for m in finditer(r'6', data)]"
+XLfor start,end l6_idx
+WFfc z tagg 'xx,"6",start,end'
+XIv - l7_idx "[(m.start(),m.end()) for m in finditer(r'7', data)]"
+XLfor start,end l7_idx
+WFfc z tagg 'xx,"7",start,end'
+XIv - l8_idx "[(m.start(),m.end()) for m in finditer(r'8', data)]"
+XLfor start,end l8_idx
+WFfc z tagg 'xx,"8",start,end'
+XIv - l9_idx "[(m.start(),m.end()) for m in finditer(r'9', data)]"
+XLfor start,end l9_idx
+WFfc z tagg 'xx,"9",start,end'
 
 
 YDdefp thdStart x
@@ -933,6 +1070,7 @@ XKFread h22 XIrd
 XKFread h30 WIrd
 XKFread h31 VIrd
 XKFread h32 UIrd
+
 XKFread i00 YKtry
 XKFread i01 YKexcp
 XKFread i02 YKfin
@@ -1163,6 +1301,7 @@ ZDcld $fd
 XIcv $td Text $optd 
 XFpk $td 0 none
 XFfc z $td.focus 
+
 
 
 ZFmain Shimky shimky
