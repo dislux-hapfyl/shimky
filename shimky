@@ -1,7 +1,6 @@
 . pnk.lang
 
 MP3_DIR=
-
 fa=RecvTxt
 fb=SendTxt
 fc=StatTxt
@@ -17,7 +16,7 @@ oa="i$fa.$ta"
 ob="i$fb.$tb"
 od="i$fd.$td"
 
-aa='fg="white"'
+aa='fg="#DDD"'
 bb='bg="#222"'
 bd=bg=$bg
 ca='font=("VictorMono",16)'
@@ -39,14 +38,15 @@ kk='relief="flat"'
 uu='undo=True'
 ll='padx=12'
 mm='pady=12'
+abc='blockcursor=True'
 ds='state="disabled"'
 en='state="normal"'
 wa='height=3'
 wd='height=16'
 iw='insertwidth=5'
 
-opta=$aa,$bb,$ca,$ee,$gg,$ib,$ja,$kk,$ll,$mm,$ds,$uu,$iw
-optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$iw
+opta=$aa,$bb,$ca,$ee,$gg,$ib,$ja,$kk,$ll,$mm,$ds,$uu,$abc
+optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$abc
 optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$iw 
 optd=$aa,$bd,$cb,$ee,$gg,$id,$jc,$kk,$ll,$mm,$uu,$iw,$wd
 
@@ -695,8 +695,6 @@ XFpk i$fb 0 none
 XFpk i$fa 1 y
 
 XFfc z tagConf
-XFfc z startSyntaxThd
-XFfc z doSyntax
 
 XFbind $oa Escape myExit
 XFbind $oa Shift_R doSyntax
@@ -819,16 +817,6 @@ WFfc z tagg 'xx,"8",start,end'
 XIv - l9_idx "[(m.start(),m.end()) for m in finditer(r'9', data)]"
 XLfor start,end l9_idx
 WFfc z tagg 'xx,"9",start,end'
-
-
-YDdefp thdStart x
-XIv z x x
-XIfv - thd Thread 'target=x,daemon=True'
-XFfc - thd.start
-
-
-YDdefe startSyntaxThd
-XFfc zz thdStart doSyntax
 
 
 YDdefe cliSyntax
@@ -1021,7 +1009,6 @@ XKFread a11 ZDas
 XKFread a12 ZFtoorwin
 XKFread b00 ZDdc
 XKFread b01 ZDcld
-XKFread b02 ZDcld
 XKFread b10 XIcv
 XKFread b11 ZFmain
 XKFread c00 ZDfd
@@ -1269,12 +1256,18 @@ XIfv -zz sel $wl.get "$wl.curselection()"
 XFfc - system "f\"mpv $MP3_DIR{sel}\""
 
 
+YDdefp thdStart x
+XIv z x x
+XIfv - thd Thread 'target=x,daemon=True'
+XFfc - thd.start
+
+
 YDdefe dlMusic
-XFfc zz $M.thdStart getMp3
+XFfc zz thdStart getMp3
 
 
 YDdefe startMusic
-XFfc zz $M.thdStart playMp3
+XFfc zz thdStart playMp3
 
 
 
