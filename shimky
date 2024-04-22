@@ -1,6 +1,7 @@
 . pnk.lang
 
 MP3_DIR=
+
 fa=RecvTxt
 fb=SendTxt
 fc=StatTxt
@@ -42,11 +43,12 @@ abc='blockcursor=True'
 ds='state="disabled"'
 en='state="normal"'
 wa='height=3'
+wr='wrap="word"'
 wd='height=16'
 iw='insertwidth=5'
 
-opta=$aa,$bb,$ca,$ee,$gg,$ib,$ja,$kk,$ll,$mm,$ds,$uu,$abc
-optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$abc
+opta=$aa,$bb,$ca,$ee,$gg,$ib,$ja,$kk,$ll,$mm,$ds,$uu,$abc,$wr
+optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$abc,$wr
 optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$iw 
 optd=$aa,$bd,$cb,$ee,$gg,$id,$jc,$kk,$ll,$mm,$uu,$iw,$wd
 
@@ -1057,7 +1059,12 @@ XKFread h22 XIrd
 XKFread h30 WIrd
 XKFread h31 VIrd
 XKFread h32 UIrd
-
+XKFread h40 ZIdvd 
+XKFread h41 YIdvd 
+XKFread h42 XIdvd 
+XKFread h50 WIdvd 
+XKFread h51 VIdvd 
+XKFread h52 UIdvd
 XKFread i00 YKtry
 XKFread i01 YKexcp
 XKFread i02 YKfin
@@ -1175,7 +1182,6 @@ XKFread u12 WFeins
 XKFread u20 WFtdel
 XKFread u21 WFtlndel
 XKFread u22 VFtins
-
 
 XFcfg $oa. $ds
 XFfc z doSyntax
