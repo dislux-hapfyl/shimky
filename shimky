@@ -324,6 +324,7 @@ XFthisin() {
 	XFtins this.$ob end "f\"i $com \""
 	XFfc z this.cliSyntax
 }
+
 YDdefe music
 XFfc z this.musicBox
 YDdefe musicDel
