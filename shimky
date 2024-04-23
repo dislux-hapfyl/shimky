@@ -340,7 +340,7 @@ XFthisin 'ZDimp'
 YDdefe a11
 XFthisin 'ZDas'
 YDdefe a12
-XFthisin 'ZZtoorwin'
+XFthisin 'ZFtoorwin'
 YDdefe b00
 XFthisin 'ZDdc'
 YDdefe b01
@@ -713,6 +713,7 @@ XFbind $ob Control-m fntoa
 XFbind $ob Control-M fntob
 XFbind $ob Return cliSyntax
 
+XFfc z synThd
 
 YDdefe doSyntax
 XFfc zz syntax $oa
@@ -820,6 +821,15 @@ WFfc z tagg 'xx,"8",start,end'
 XIv - l9_idx "[(m.start(),m.end()) for m in finditer(r'9', data)]"
 XLfor start,end l9_idx
 WFfc z tagg 'xx,"9",start,end'
+
+YDdefp thdStart x
+XIv z x x
+XIfv - thd Thread 'target=x,daemon=True'
+XFfc - thd.start
+
+
+YDdefe synThd
+XFfc zz thdStart doSyntax
 
 
 YDdefe cliSyntax
@@ -1263,18 +1273,12 @@ XIfv -zz sel $wl.get "$wl.curselection()"
 XFfc - system "f\"mpv $MP3_DIR{sel}\""
 
 
-YDdefp thdStart x
-XIv z x x
-XIfv - thd Thread 'target=x,daemon=True'
-XFfc - thd.start
-
-
 YDdefe dlMusic
-XFfc zz thdStart getMp3
+XFfc zz $M.thdStart getMp3
 
 
 YDdefe startMusic
-XFfc zz thdStart playMp3
+XFfc zz $M.thdStart playMp3
 
 
 
