@@ -1,6 +1,6 @@
 . pnk.lang
 
-MP3_DIR=/home/mrmr/more-data/mp3/
+MP3_DIR=
 
 ca=CommA
 cb=ShellOut
