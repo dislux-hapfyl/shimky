@@ -1,40 +1,31 @@
 . pnk.lang
 
-MP3_DIR=
+MP3_DIR=/home/mrmr/more-data/mp3/
 
-fa=RecvTxt
-fb=SendTxt
-fc=StatTxt
-fd=ShellTxt
-ta=rcvWidget
-tb=sndWidget
-td=shellOutput
+ca=CommA
+cb=ShellOut
+ma=txtW
+mb=shellout
+oa=a$ca.$ma
+od=i$cb.$mb
 ws=mp3Cmd
-wl=musicBox 
+wl=musicBox
 M=master
-
-oa="i$fa.$ta"
-ob="i$fb.$tb"
-od="i$fd.$td"
 
 aa='fg="#DDD"'
 bb='bg="#222"'
 bd=bg=$bg
-ca='font=("VictorMono",16)'
-cb='font=("Iosevka",18)'
-cc='font=("VictorMono",14)'
-ee='cursor="heart"'
+fa='font=("VictorMono",16)'
+ee='cursor="pencil"'
 ff='cursor="shuttle"'
-fcs='cursor="spider"'
-gg='highlightbackground="#111"'
+fe='cursor="spider"'
+gg=highlightbackground=$bg
 hh='highlightbackground="#444"'
 ia='highlightcolor="#2BCDBB"'
-ic='highlightcolor="blue"'
-ib='highlightcolor="red"'
+ib='highlightcolor="#222"'
+ic='highlightcolor="red"'
 id='highlightcolor="orange"'
-ja='insertbackground="red"'
-jb='insertbackground="orange"'
-jc='insertbackground="green"'
+jc='insertbackground="red"'
 kk='relief="flat"'
 uu='undo=True'
 ll='padx=12'
@@ -42,28 +33,17 @@ mm='pady=12'
 abc='blockcursor=True'
 ds='state="disabled"'
 en='state="normal"'
-wa='height=3'
+wb='width=10'
 wr='wrap="word"'
 wd='height=16'
-iw='insertwidth=5'
 
-opta=$aa,$bb,$ca,$ee,$gg,$ib,$ja,$kk,$ll,$mm,$ds,$uu,$abc,$wr
-optb=$aa,$bb,$cb,$ff,$hh,$ia,$jb,$kk,$ll,$mm,$uu,$wa,$abc,$wr
-optc=$aa,$bb,$cc,$fcs,$gg,$ic,$jc,$kk,$uu,$iw 
-optd=$aa,$bd,$cb,$ee,$gg,$id,$jc,$kk,$ll,$mm,$uu,$iw,$wd
-
-mnbg='bg="#222"'
-mnfg='fg="white"'
-mnabg=activebackground=$bg
-mnafg='activeforeground="#2BCDBB"'
-mnbd=bd=0
-mnabd=activeborderwidth=0
-
-mnopt=$cc,$mnbg,$mnfg,$wecr,$mnabg,$mnafg,$mnbd,$mnabd
-
+opta=$aa,$bd,$ee,$gg,$ib,$kk,$wb,$fa
+optb=$jc,$fa,$hh,$fe,width=32
+optc=width=100,$ia,$uu,$abc,$mm,$ll,$ff,$fa,$jc,$hh,$bb,$ds,$wr
+optd=$aa,$bd,$ee,$gg,$id,$jc,$kk,$ll,$mm,$uu,$abc,$wd,$fa
 
 ZDshebang 
-ZDfrm tkinter Tk,Frame,Text,Listbox,PanedWindow,Menu
+ZDfrm tkinter Tk,Frame,Text,Entry,PanedWindow,Listbox
 ZDfrm re finditer
 ZDfrm threading Thread
 ZDfrm os listdir,system,rename,path
@@ -71,657 +51,417 @@ ZDfrm pytube YouTube
 ZDimp subprocess
 ZDimp datetime
 
-
-ZFtoorwin Shimky
-XFmenu $mnopt
-XFmkmenu a
-XFmenuadd a 'a00 . pnk.lang' a00
-XFmenuadd a 'a01 ZDshebang ' a01
-XFmenuadd a 'a02 ZDfrm ' a02
-XFmenuadd a 'a10 ZDimp ' a10
-XFmenuadd a 'a11 ZDas ' a11
-XFmenuadd a 'a12 ZFtoorwin ' a12
-XFmenucas a a
-
-XFmkmenu b
-XFmenuadd b 'b00 ZDdc' b00
-XFmenuadd b 'b01 ZDcld' b01
-XFmenuadd b 'b10 XIcv' b10
-XFmenuadd b 'b11 ZFmain' b11
-XFmenucas b b
-
-XFmkmenu c
-XFmenuadd c 'c00 ZDfd' c00
-XFmenuadd c 'c01 YDfd' c01
-XFmenuadd c 'c02 XDfd' c02
-XFmenuadd c 'c10 WDfd' c10
-XFmenucas c c
-
-XFmkmenu d
-XFmenuadd d 'd00 ZDdefe' d00
-XFmenuadd d 'd01 YDret' d01
-XFmenuadd d 'd10 YDdefp' d10
-XFmenuadd d 'd11 XDret' d11
-XFmenuadd d 'd12 YDdefe' d12
-XFmenuadd d 'd20 YDdefs' d20
-XFmenuadd d 'd21 XDdefe' d21
-XFmenuadd d 'd22 WDret' d22
-XFmenuadd d 'd30 XDdefs' d30
-XFmenuadd d 'd31 WDdefe' d31
-XFmenuadd d 'd32 VDret' d32
-XFmenuadd d 'd40 WDdefs' d40
-XFmenucas d d
-
-XFmkmenu e
-XFmenuadd e 'e00 ZFfc' e00
-XFmenuadd e 'e01 YFfc' e01
-XFmenuadd e 'e02 XFfc' e02
-XFmenuadd e 'e10 WFfc' e10
-XFmenuadd e 'e11 VFfc' e11
-XFmenuadd e 'e12 UFfc' e12
-XFmenucas e e
-
-XFmkmenu f
-XFmenuadd f 'f00 ZIfv' f00
-XFmenuadd f 'f01 YIfv' f01
-XFmenuadd f 'f02 XIfv' f02
-XFmenuadd f 'f10 WIfv' f10
-XFmenuadd f 'f11 VIfv' f11
-XFmenuadd f 'f12 UIfv' f12
-XFmenucas f f
-
-XFmkmenu g
-XFmenuadd g 'g00 ZIv' g00
-XFmenuadd g 'g01 YIv' g01
-XFmenuadd g 'g02 XIv' g02
-XFmenuadd g 'g10 WIv' g10
-XFmenuadd g 'g11 VIv' g11
-XFmenuadd g 'g12 UIv' g12
-XFmenucas g g
-
-XFmkmenu h
-XFmenuadd h 'h00 ZIac' h00
-XFmenuadd h 'h01 YIac' h01
-XFmenuadd h 'h02 XIac' h02
-XFmenuadd h 'h10 WIac' h10
-XFmenuadd h 'h11 VIac' h11
-XFmenuadd h 'h12 UIac' h12
-XFmenuadd h 'h20 ZIrd' h20
-XFmenuadd h 'h21 YIrd' h21
-XFmenuadd h 'h22 XIrd' h22
-XFmenuadd h 'h30 WIrd' h30
-XFmenuadd h 'h31 VIrd' h31
-XFmenuadd h 'h32 UIrd' h32
-XFmenuadd h 'h40 ZIdvd' h40
-XFmenuadd h 'h41 YIdvd' h41
-XFmenuadd h 'h42 XIdvd' h42
-XFmenuadd h 'h50 WIdvd' h50
-XFmenuadd h 'h51 VIdvd' h51
-XFmenuadd h 'h52 UIdvd' h52
-XFmenucas h h
-
-XFmkmenu i
-XFmenuadd i 'i00 YKtry' i00
-XFmenuadd i 'i01 YKexcp' i01
-XFmenuadd i 'i02 YKfin' i02
-XFmenuadd i 'i10 XKtry' i10
-XFmenuadd i 'i11 XKexcp' i11
-XFmenuadd i 'i12 XKfin' i12
-XFmenuadd i 'i20 WKtry' i20
-XFmenuadd i 'i21 WKexcp' i21
-XFmenuadd i 'i22 WKfin' i22
-XFmenuadd i 'i30 VKtry' i30
-XFmenuadd i 'i31 VKexcp' i31
-XFmenuadd i 'i32 VKfin' i32
-XFmenucas i i
-
-XFmkmenu k
-XFmenuadd k 'k00 ZKif' k00
-XFmenuadd k 'k01 YKif' k01
-XFmenuadd k 'k02 XKif' k02
-XFmenuadd k 'k10 WKif' k10
-XFmenuadd k 'k11 VKif' k11
-XFmenuadd k 'k12 UKif' k12
-XFmenuadd k 'k20 ZKiff' k20
-XFmenuadd k 'k21 YKiff' k21
-XFmenuadd k 'k22 XKiff' k22
-XFmenuadd k 'k30 WKiff' k30
-XFmenuadd k 'k31 VKiff' k31
-XFmenuadd k 'k32 UKiff' k32
-XFmenuadd k 'k40 ZKelif' k40
-XFmenuadd k 'k41 YKelif' k41
-XFmenuadd k 'k42 XKelif' k42
-XFmenuadd k 'k50 WKelif' k50
-XFmenuadd k 'k51 VKelif' k51
-XFmenuadd k 'k52 UKelif' k52
-XFmenuadd k 'k60 ZKeliff' k60
-XFmenuadd k 'k61 YKeliff' k61
-XFmenuadd k 'k62 XKeliff' k62
-XFmenuadd k 'k70 WKeliff' k70
-XFmenuadd k 'k71 VKeliff' k71
-XFmenuadd k 'k72 UKeliff' k72
-XFmenuadd k 'k80 ZKelse' k80
-XFmenuadd k 'k81 YKelse' k81
-XFmenuadd k 'k82 XKelse' k82
-XFmenuadd k 'k90 WKelse' k90
-XFmenuadd k 'k91 VKelse' k91
-XFmenuadd k 'k92 UKelse' k92
-XFmenucas k k
-
-XFmkmenu l
-XFmenuadd l 'l00 YKbr' l00
-XFmenuadd l 'l01 XKbr' l01
-XFmenuadd l 'l02 WKbr' l02
-XFmenuadd l 'l10 VKbr' l10
-XFmenuadd l 'l11 UKbr' l11
-XFmenuadd l 'l12 YKctn' l12
-XFmenuadd l 'l20 XKctn' l20
-XFmenuadd l 'l21 WKctn' l21
-XFmenuadd l 'l22 VKctn' l22
-XFmenuadd l 'l30 UKctn' l30
-XFmenuadd l 'l31 YKps' l31
-XFmenuadd l 'l32 XKps' l32
-XFmenuadd l 'l40 WKps' l40
-XFmenuadd l 'l41 VKps' l41
-XFmenuadd l 'l42 UKps' l42
-XFmenucas l l
-
-XFmkmenu m
-XFmenuadd m 'm00 ZLfor' m00
-XFmenuadd m 'm01 YLfor' m01
-XFmenuadd m 'm02 XLfor' m02
-XFmenuadd m 'm0 WLfor' m0
-XFmenuadd m 'm11 VLfor' m11
-XFmenuadd m 'm12 ULfor' m12
-XFmenuadd m 'm20 ZLffor' m20
-XFmenuadd m 'm21 YLffor' m21
-XFmenuadd m 'm22 XLffor' m22
-XFmenuadd m 'm30 WLffor' m30
-XFmenuadd m 'm31 VLffor' m31
-XFmenuadd m 'm32 ULffor' m32
-XFmenuadd m 'm40 ZLwhile' m40
-XFmenuadd m 'm41 YLwhile' m41
-XFmenuadd m 'm42 XLwhile' m42
-XFmenuadd m 'm50 WLwhile' m50
-XFmenuadd m 'm51 VLwhile' m51
-XFmenuadd m 'm52 ULwhile' m52
-XFmenucas m m
-
-XFmkmenu t
-XFmenuadd t 't00 XIeget' t00
-XFmenuadd t 't01 XItgetln' t01
-XFmenuadd t 't02 XItget' t02
-XFmenuadd t 't10 XItgeta' t10
-XFmenuadd t 't11 WItgetln' t11
-XFmenuadd t 't12 WItget' t12
-XFmenuadd t 't20 WIeget' t20
-XFmenucas t t
-
-XFmkmenu p
-XFmenuadd p 'p00 XFpk' p00
-XFmenuadd p 'p01 XFpl' p01
-XFmenuadd p 'p02 XFgd' p02
-XFmenuadd p 'p10 XFgdcfc' p10
-XFmenuadd p 'p11 XFgdcfr' p11
-XFmenuadd p 'p12 XFbind' p12
-XFmenuadd p 'p20 XFbinda' p20
-XFmenuadd p 'p21 XFshsp' p21
-XFmenuadd p 'p22 XFshspp' p22
-XFmenuadd p 'p30 XFpyev' p30
-XFmenucas p p
-
-XFmkmenu u
-XFmenuadd u 'u00 WFtagcfg' u00
-XFmenuadd u 'u01 WFtins' u01
-XFmenuadd u 'u02 WFset' u02
-XFmenuadd u 'u10 WFcfg' u10
-XFmenuadd u 'u11 WFedel' u11
-XFmenuadd u 'u12 WFeins' u12
-XFmenuadd u 'u20 WFtdel' u20
-XFmenuadd u 'u21 WFtlndel' u21
-XFmenuadd u 'u22 VFtins' u22
-XFmenucas u u
-
-XFmkmenu v
-XFmenuadd v 'v00 XFopft' v00
-XFmenuadd v 'v01 XFwrtf' v01
-XFmenuadd v 'v02 XFset' v02
-XFmenuadd v 'v10 XFcfg' v10
-XFmenuadd v 'v11 XFedel' v11
-XFmenuadd v 'v12 XFeins' v12
-XFmenuadd v 'v20 XFtdel' v20
-XFmenuadd v 'v21 XFtlndel' v21
-XFmenuadd v 'v22 XFtins' v22
-XFmenucas v v
-
-XFmkmenu  w
-XFmenuadd w 'w00 XFbtn' w00
-XFmenuadd w 'w01 XFtext' w01
-XFmenuadd w 'w02 XFpnwin' w02
-XFmenuadd w 'w10 XFnotebk' w10
-XFmenuadd w 'w11 XFentry' w11
-XFmenuadd w 'w12 XFlabel' w12
-XFmenuadd w 'w20 XFlbox' w20
-XFmenucas w w
-
-XFmkmenu tools 
-XFmenuadd tools 'MP3 Play+Get' music
-XFmenuadd tools 'Hide MP3' musicDel
-XFmenucas tools '*'
-
+ZFtoorwin Pnk
 XFpnwin pw '"horizontal"'
 XFpk pw 1 both
+XFfc z run
 
-XFbinda Control-w startNew
-XFfc z startNew
+XFbinda Control-r run
 
-YDdefe startNew
-XIcv this App
-XFfc zz pw.add this
 
-XFthisin() {
-	local com="$1"
-	XFtins this.$ob end "f\"i $com \""
-	XFfc z this.cliSyntax
-}
-
-YDdefe music
-XFfc z this.musicBox
-YDdefe musicDel
-XFfc z this.rmMusic
-YDdefe a00
-XFthisin '. pnk.lang'
-YDdefe a01
-XFthisin 'ZDshebang'
-YDdefe a02
-XFthisin 'ZDfrm'
-YDdefe a10
-XFthisin 'ZDimp'
-YDdefe a11
-XFthisin 'ZDas'
-YDdefe a12
-XFthisin 'ZFtoorwin'
-YDdefe b00
-XFthisin 'ZDdc'
-YDdefe b01
-XFthisin 'ZDcld'
-YDdefe b10
-XFthisin 'XIcv'
-YDdefe b11
-XFthisin 'ZFmain'
-YDdefe c00
-XFthisin 'ZDfd'
-YDdefe c01
-XFthisin 'YDfd'
-YDdefe c02
-XFthisin 'XDfd'
-YDdefe c10
-XFthisin 'WDfd'
-YDdefe d00
-XFthisin 'ZDdefe'
-YDdefe d01
-XFthisin 'YDret'
-YDdefe d10
-XFthisin 'YDdefp'
-YDdefe d11
-XFthisin 'XDret'
-YDdefe d12
-XFthisin 'YDdefe'
-YDdefe d20
-XFthisin 'YDdefs'
-YDdefe d21
-XFthisin 'XDdefe'
-YDdefe d22
-XFthisin 'WDret'
-YDdefe d30
-XFthisin 'XDdefs'
-YDdefe d31
-XFthisin 'WDdefe'
-YDdefe d32
-XFthisin 'VDret'
-YDdefe d40
-XFthisin 'WDdefs'
-YDdefe e00
-XFthisin 'ZFfc'
-YDdefe e01
-XFthisin 'YFfc'
-YDdefe e02
-XFthisin 'XFfc'
-YDdefe e10
-XFthisin 'WFfc'
-YDdefe e11
-XFthisin 'VFfc'
-YDdefe e12
-XFthisin 'UFfc'
-YDdefe f00
-XFthisin 'ZIfv'
-YDdefe f01
-XFthisin 'YIfv'
-YDdefe f02
-XFthisin 'XIfv'
-YDdefe f10
-XFthisin 'WIfv'
-YDdefe f11
-XFthisin 'VIfv'
-YDdefe f12
-XFthisin 'UIfv'
-YDdefe g00
-XFthisin 'ZIv'
-YDdefe g01
-XFthisin 'YIv'
-YDdefe g02
-XFthisin 'XIv'
-YDdefe g10
-XFthisin 'WIv'
-YDdefe g11
-XFthisin 'VIv'
-YDdefe g12
-XFthisin 'UIv'
-YDdefe h00
-XFthisin 'ZIac'
-YDdefe h01
-XFthisin 'YIac'
-YDdefe h02
-XFthisin 'XIac'
-YDdefe h10
-XFthisin 'WIac'
-YDdefe h11
-XFthisin 'VIac'
-YDdefe h12
-XFthisin 'UIac'
-YDdefe h20
-XFthisin 'ZIrd'
-YDdefe h21
-XFthisin 'YIrd'
-YDdefe h22
-XFthisin 'XIrd'
-YDdefe h30
-XFthisin 'WIrd'
-YDdefe h31
-XFthisin 'VIrd'
-YDdefe h32
-XFthisin 'UIrd'
-YDdefe h40
-XFthisin ZIdvd
-YDdefe h41
-XFthisin YIdvd
-YDdefe h42
-XFthisin XIdvd
-YDdefe h50
-XFthisin WIdvd
-YDdefe h51
-XFthisin VIdvd
-YDdefe h52
-XFthisin UIdvd
-YDdefe i00
-XFthisin 'YKtry'
-YDdefe i01
-XFthisin 'YKexcp'
-YDdefe i02
-XFthisin 'YKfin'
-YDdefe i10
-XFthisin 'XKtry'
-YDdefe i11
-XFthisin 'XKexcp'
-YDdefe i12
-XFthisin 'XKfin'
-YDdefe i20
-XFthisin 'WKtry'
-YDdefe i21
-XFthisin 'WKexcp'
-YDdefe i22
-XFthisin 'WKfin'
-YDdefe i30
-XFthisin 'VKtry'
-YDdefe i31
-XFthisin 'VKexcp'
-YDdefe i32
-XFthisin 'VKfin'
-YDdefe k00
-XFthisin 'ZKif'
-YDdefe k01
-XFthisin 'YKif'
-YDdefe k02
-XFthisin 'XKif'
-YDdefe k10
-XFthisin 'WKif'
-YDdefe k11
-XFthisin 'VKif'
-YDdefe k12
-XFthisin 'UKif'
-YDdefe k20
-XFthisin 'ZKiff'
-YDdefe k21
-XFthisin 'YKiff'
-YDdefe k22
-XFthisin 'XKiff'
-YDdefe k30
-XFthisin 'WKiff'
-YDdefe k31
-XFthisin 'VKiff'
-YDdefe k32
-XFthisin 'UKiff'
-YDdefe k40
-XFthisin 'ZKelif'
-YDdefe k41
-XFthisin 'YKelif'
-YDdefe k42
-XFthisin 'XKelif'
-YDdefe k50
-XFthisin 'WKelif'
-YDdefe k51
-XFthisin 'VKelif'
-YDdefe k52
-XFthisin 'UKelif'
-YDdefe k60
-XFthisin 'ZKeliff'
-YDdefe k61
-XFthisin 'YKeliff'
-YDdefe k62
-XFthisin 'XKeliff'
-YDdefe k70
-XFthisin 'WKeliff'
-YDdefe k71
-XFthisin 'VKeliff'
-YDdefe k72
-XFthisin 'UKeliff'
-YDdefe k80
-XFthisin 'ZKelse'
-YDdefe k81
-XFthisin 'YKelse'
-YDdefe k82
-XFthisin 'XKelse'
-YDdefe k90
-XFthisin 'WKelse'
-YDdefe k91
-XFthisin 'VKelse'
-YDdefe k92
-XFthisin 'UKelse'
-YDdefe l00
-XFthisin 'YKbr'
-YDdefe l01
-XFthisin 'XKbr'
-YDdefe l02
-XFthisin 'WKbr'
-YDdefe l10
-XFthisin 'VKbr'
-YDdefe l11
-XFthisin 'UKbr'
-YDdefe l12
-XFthisin 'YKctn'
-YDdefe l20
-XFthisin 'XKctn'
-YDdefe l21
-XFthisin 'WKctn'
-YDdefe l22
-XFthisin 'VKctn'
-YDdefe l30
-XFthisin 'UKctn'
-YDdefe l31
-XFthisin 'YKps'
-YDdefe l32
-XFthisin 'XKps'
-YDdefe l40
-XFthisin 'WKps'
-YDdefe l41
-XFthisin 'VKps'
-YDdefe l42
-XFthisin 'UKps'
-YDdefe m00
-XFthisin 'ZLfor'
-YDdefe m01
-XFthisin 'YLfor'
-YDdefe m02
-XFthisin 'XLfor'
-YDdefe m0
-XFthisin 'WLfor'
-YDdefe m11
-XFthisin 'VLfor'
-YDdefe m12
-XFthisin 'ULfor'
-YDdefe m20
-XFthisin 'ZLffor'
-YDdefe m21
-XFthisin 'YLffor'
-YDdefe m22
-XFthisin 'XLffor'
-YDdefe m30
-XFthisin 'WLffor'
-YDdefe m31
-XFthisin 'VLffor'
-YDdefe m32
-XFthisin 'ULffor'
-YDdefe m40
-XFthisin 'ZLwhile'
-YDdefe m41
-XFthisin 'YLwhile'
-YDdefe m42
-XFthisin 'XLwhile'
-YDdefe m50
-XFthisin 'WLwhile'
-YDdefe m51
-XFthisin 'VLwhile'
-YDdefe m52
-XFthisin 'ULwhile'
-YDdefe w00
-XFthisin 'XFbtn'
-YDdefe w01
-XFthisin 'XFtext'
-YDdefe w02
-XFthisin 'XFpnwin'
-YDdefe w10
-XFthisin 'XFnotebk'
-YDdefe w11
-XFthisin 'XFentry'
-YDdefe w12
-XFthisin 'XFlabel'
-YDdefe w20
-XFthisin 'XFlbox'
-YDdefe t00
-XFthisin 'XIeget'
-YDdefe t01
-XFthisin 'XItgetln'
-YDdefe t02
-XFthisin 'XItget'
-YDdefe t10
-XFthisin 'XItgeta'
-YDdefe t11
-XFthisin 'WItgetln'
-YDdefe t12
-XFthisin 'WItget'
-YDdefe t20
-XFthisin 'WIeget'
-YDdefe p00
-XFthisin 'XFpk'
-YDdefe p01
-XFthisin 'XFpl'
-YDdefe p02
-XFthisin 'XFgd'
-YDdefe p10
-XFthisin 'XFgdcfc'
-YDdefe p11
-XFthisin 'XFgdcfr'
-YDdefe p12
-XFthisin 'XFbind'
-YDdefe p20
-XFthisin 'XFbinda'
-YDdefe p21
-XFthisin 'XFshsp'
-YDdefe p22
-XFthisin 'XFshspp'
-YDdefe p30
-XFthisin 'XFpyev'
-YDdefe v00
-XFthisin 'XFopft'
-YDdefe v01
-XFthisin 'XFwrtf'
-YDdefe v02
-XFthisin 'XFset'
-YDdefe v10
-XFthisin 'XFcfg'
-YDdefe v11
-XFthisin 'XFedel'
-YDdefe v12
-XFthisin 'XFeins'
-YDdefe v20
-XFthisin 'XFtdel'
-YDdefe v21
-XFthisin 'XFtlndel'
-YDdefe v22
-XFthisin 'XFtins'
-YDdefe u00
-XFthisin 'WFtagcfg'
-YDdefe u01
-XFthisin 'WFtins'
-YDdefe u02
-XFthisin 'WFset'
-YDdefe u10
-XFthisin 'WFcfg'
-YDdefe u11
-XFthisin 'WFedel'
-YDdefe u12
-XFthisin 'WFeins'
-YDdefe u20
-XFthisin 'WFtdel'
-YDdefe u21
-XFthisin 'WFtlndel'
-YDdefe u22
-XFthisin 'VFtins'
+YDdefe run
+XIcv app App
+XFfc zz pw.add app
 
 
 
 ZDcld App
+XIcv cli Entry $opta
+XFpk cli 0 none
+XFcfg cli. $optb
+XFfc z cli.focus
 
-XIcv i$fb $fb
-XIcv i$fa $fa
-XFpk i$fb 0 none 
-XFpk i$fa 1 y
+XIcv a$ca $ca
+XFpk a$ca 0 y $sl
 
-XFfc z tagConf
+XIcv rec $ca
+XFpk rec 1 both $sl
+XFcfg rec.$ma. $optc
 
-XFbind $oa Escape myExit
-XFbind $oa Shift_R doSyntax
-XFbind $ob Control-n myinsert
-XFbind $ob Shift_R sendCode
-XFbind $ob Control-Shift_R mapit
-XFbind $ob Alt-Shift_R mapitOut
-XFbind $ob Control-g fgoa
-XFbind $ob Control-j bgoa 
-XFbind $ob Control-G fgob
-XFbind $ob Control-J bgob
-XFbind $ob Control-m fntoa
-XFbind $ob Control-M fntob
-XFbind $ob Return cliSyntax
+XFbind cli Escape cliclr
+XFbind cli Return cliSh
+XFbind rec.$ma Shift_R rec.doSyntax
+XFbind rec.$ma Escape myExit
+XFbind rec.$ma Button-3 myins
 
+XFbind $oa Double-Button-1 sendPnk
+XFtins $oa insert 'f"ZDshebang\n"'
+XFtins $oa insert 'f"ZDfrm\n"'
+XFtins $oa insert 'f"ZDimp\n"'
+XFtins $oa insert 'f"ZDas\n"'
+XFtins $oa insert 'f"ZFtoorwin\n"'
+XFtins $oa insert 'f"ZDdc\n"'
+XFtins $oa insert 'f"ZDcld\n"'
+XFtins $oa insert 'f"XIcv\n"'
+XFtins $oa insert 'f"ZFmain\n"'
+XFtins $oa insert 'f"ZDfd\n"'
+XFtins $oa insert 'f"YDfd\n"'
+XFtins $oa insert 'f"XDfd\n"'
+XFtins $oa insert 'f"WDfd\n"'
+XFtins $oa insert 'f"ZDdefe\n"'
+XFtins $oa insert 'f"YDret\n"'
+XFtins $oa insert 'f"YDdefp\n"'
+XFtins $oa insert 'f"XDret\n"'
+XFtins $oa insert 'f"YDdefe\n"'
+XFtins $oa insert 'f"YDdefs\n"'
+XFtins $oa insert 'f"XDdefe\n"'
+XFtins $oa insert 'f"WDret\n"'
+XFtins $oa insert 'f"XDdefs\n"'
+XFtins $oa insert 'f"WDdefe\n"'
+XFtins $oa insert 'f"VDret\n"'
+XFtins $oa insert 'f"WDdefs\n"'
+XFtins $oa insert 'f"ZFfc\n"'
+XFtins $oa insert 'f"YFfc\n"'
+XFtins $oa insert 'f"XFfc\n"'
+XFtins $oa insert 'f"WFfc\n"'
+XFtins $oa insert 'f"VFfc\n"'
+XFtins $oa insert 'f"UFfc\n"'
+XFtins $oa insert 'f"ZIfv\n"'
+XFtins $oa insert 'f"YIfv\n"'
+XFtins $oa insert 'f"XIfv\n"'
+XFtins $oa insert 'f"WIfv\n"'
+XFtins $oa insert 'f"VIfv\n"'
+XFtins $oa insert 'f"UIfv\n"'
+XFtins $oa insert 'f"ZIv\n"'
+XFtins $oa insert 'f"YIv\n"'
+XFtins $oa insert 'f"XIv\n"'
+XFtins $oa insert 'f"WIv\n"'
+XFtins $oa insert 'f"VIv\n"'
+XFtins $oa insert 'f"UIv\n"'
+XFtins $oa insert 'f"ZIac\n"'
+XFtins $oa insert 'f"YIac\n"'
+XFtins $oa insert 'f"XIac\n"'
+XFtins $oa insert 'f"WIac\n"'
+XFtins $oa insert 'f"VIac\n"'
+XFtins $oa insert 'f"UIac\n"'
+XFtins $oa insert 'f"ZIrd\n"'
+XFtins $oa insert 'f"YIrd\n"'
+XFtins $oa insert 'f"XIrd\n"'
+XFtins $oa insert 'f"WIrd\n"'
+XFtins $oa insert 'f"VIrd\n"'
+XFtins $oa insert 'f"UIrd\n"'
+XFtins $oa insert 'f"ZIdvd\n"'
+XFtins $oa insert 'f"YIdvd\n"'
+XFtins $oa insert 'f"XIdvd\n"'
+XFtins $oa insert 'f"WIdvd\n"'
+XFtins $oa insert 'f"VIdvd\n"'
+XFtins $oa insert 'f"UIdvd\n"'
+XFtins $oa insert 'f"YKtry\n"'
+XFtins $oa insert 'f"YKexcp\n"'
+XFtins $oa insert 'f"YKfin\n"'
+XFtins $oa insert 'f"XKtry\n"'
+XFtins $oa insert 'f"XKexcp\n"'
+XFtins $oa insert 'f"XKfin\n"'
+XFtins $oa insert 'f"WKtry\n"'
+XFtins $oa insert 'f"WKexcp\n"'
+XFtins $oa insert 'f"WKfin\n"'
+XFtins $oa insert 'f"VKtry\n"'
+XFtins $oa insert 'f"VKexcp\n"'
+XFtins $oa insert 'f"VKfin\n"'
+XFtins $oa insert 'f"ZKif\n"'
+XFtins $oa insert 'f"YKif\n"'
+XFtins $oa insert 'f"XKif\n"'
+XFtins $oa insert 'f"WKif\n"'
+XFtins $oa insert 'f"VKif\n"'
+XFtins $oa insert 'f"UKif\n"'
+XFtins $oa insert 'f"ZKiff\n"'
+XFtins $oa insert 'f"YKiff\n"'
+XFtins $oa insert 'f"XKiff\n"'
+XFtins $oa insert 'f"WKiff\n"'
+XFtins $oa insert 'f"VKiff\n"'
+XFtins $oa insert 'f"UKiff\n"'
+XFtins $oa insert 'f"ZKelif\n"'
+XFtins $oa insert 'f"YKelif\n"'
+XFtins $oa insert 'f"XKelif\n"'
+XFtins $oa insert 'f"WKelif\n"'
+XFtins $oa insert 'f"VKelif\n"'
+XFtins $oa insert 'f"UKelif\n"'
+XFtins $oa insert 'f"ZKeliff\n"'
+XFtins $oa insert 'f"YKeliff\n"'
+XFtins $oa insert 'f"XKeliff\n"'
+XFtins $oa insert 'f"WKeliff\n"'
+XFtins $oa insert 'f"VKeliff\n"'
+XFtins $oa insert 'f"UKeliff\n"'
+XFtins $oa insert 'f"ZKelse\n"'
+XFtins $oa insert 'f"YKelse\n"'
+XFtins $oa insert 'f"XKelse\n"'
+XFtins $oa insert 'f"WKelse\n"'
+XFtins $oa insert 'f"VKelse\n"'
+XFtins $oa insert 'f"UKelse\n"'
+XFtins $oa insert 'f"YKbr\n"'
+XFtins $oa insert 'f"XKbr\n"'
+XFtins $oa insert 'f"WKbr\n"'
+XFtins $oa insert 'f"VKbr\n"'
+XFtins $oa insert 'f"UKbr\n"'
+XFtins $oa insert 'f"YKctn\n"'
+XFtins $oa insert 'f"XKctn\n"'
+XFtins $oa insert 'f"WKctn\n"'
+XFtins $oa insert 'f"VKctn\n"'
+XFtins $oa insert 'f"UKctn\n"'
+XFtins $oa insert 'f"YKps\n"'
+XFtins $oa insert 'f"XKps\n"'
+XFtins $oa insert 'f"WKps\n"'
+XFtins $oa insert 'f"VKps\n"'
+XFtins $oa insert 'f"UKps\n"'
+XFtins $oa insert 'f"ZLfor\n"'
+XFtins $oa insert 'f"YLfor\n"'
+XFtins $oa insert 'f"XLfor\n"'
+XFtins $oa insert 'f"WLfor\n"'
+XFtins $oa insert 'f"VLfor\n"'
+XFtins $oa insert 'f"ULfor\n"'
+XFtins $oa insert 'f"ZLffor\n"'
+XFtins $oa insert 'f"YLffor\n"'
+XFtins $oa insert 'f"XLffor\n"'
+XFtins $oa insert 'f"WLffor\n"'
+XFtins $oa insert 'f"VLffor\n"'
+XFtins $oa insert 'f"ULffor\n"'
+XFtins $oa insert 'f"ZLwhile\n"'
+XFtins $oa insert 'f"YLwhile\n"'
+XFtins $oa insert 'f"XLwhile\n"'
+XFtins $oa insert 'f"WLwhile\n"'
+XFtins $oa insert 'f"VLwhile\n"'
+XFtins $oa insert 'f"ULwhile\n"'
+XFtins $oa insert 'f"XFbtn\n"'
+XFtins $oa insert 'f"XFtext\n"'
+XFtins $oa insert 'f"XFpnwin\n"'
+XFtins $oa insert 'f"XFnotebk\n"'
+XFtins $oa insert 'f"XFentry\n"'
+XFtins $oa insert 'f"XFlabel\n"'
+XFtins $oa insert 'f"XFlbox\n"'
+XFtins $oa insert 'f"XIeget\n"'
+XFtins $oa insert 'f"XItgetln\n"'
+XFtins $oa insert 'f"XItget\n"'
+XFtins $oa insert 'f"XItgeta\n"'
+XFtins $oa insert 'f"WItgetln\n"'
+XFtins $oa insert 'f"WItget\n"'
+XFtins $oa insert 'f"WIeget\n"'
+XFtins $oa insert 'f"XFpk\n"'
+XFtins $oa insert 'f"XFpl\n"'
+XFtins $oa insert 'f"XFgd\n"'
+XFtins $oa insert 'f"XFgdcfc\n"'
+XFtins $oa insert 'f"XFgdcfr\n"'
+XFtins $oa insert 'f"XFbind\n"'
+XFtins $oa insert 'f"XFbinda\n"'
+XFtins $oa insert 'f"XFshsp\n"'
+XFtins $oa insert 'f"XFshspp\n"'
+XFtins $oa insert 'f"XFpyev\n"'
+XFtins $oa insert 'f"XFopft\n"'
+XFtins $oa insert 'f"XFwrtf\n"'
+XFtins $oa insert 'f"XFset\n"'
+XFtins $oa insert 'f"XFcfg\n"'
+XFtins $oa insert 'f"XFedel\n"'
+XFtins $oa insert 'f"XFeins\n"'
+XFtins $oa insert 'f"XFtdel\n"'
+XFtins $oa insert 'f"XFtlndel\n"'
+XFtins $oa insert 'f"XFtins\n"'
+XFtins $oa insert 'f"WFtagcfg\n"'
+XFtins $oa insert 'f"WFtins\n"'
+XFtins $oa insert 'f"WFset\n"'
+XFtins $oa insert 'f"WFcfg\n"'
+XFtins $oa insert 'f"WFedel\n"'
+XFtins $oa insert 'f"WFeins\n"'
+XFtins $oa insert 'f"WFtdel\n"'
+XFtins $oa insert 'f"WFtlndel\n"'
+XFtins $oa insert 'f"VFtins\n"'
+XFcfg $oa. $ds
+
+
+YDdefe clearOut
+XFfc z i$cb.destroy 
+XFfc z cli.focus
+
+
+YDdefe sendBack
+XItgeta $od data
+XFfc z myins
+XFtins rec.$ma 1.0 data
+XFfc z myExit
+XFfc z $od.focus
+
+
+YDdefe mapitOut
+XIeget cli line
+XIfv - tt line.split
+XIv - cmd '" ".join( str(i) for i in tt[1:])'
+XIcv i$cb $cb
+XFpl i$cb 165 100
+XFbind $od Escape clearOut
+XFbind $od Control-Return sendBack
+XFshspp $od 'f". pnk.lang ; {cmd}"'
+XFfc z $od.see 1.0
+XFfc z cliclr
+
+
+YDdefe musicBox
+XIcv mp3 Mp3
+XFpk mp3 0 none
+
+
+YDdefe rmMusic
+XFfc z mp3.destroy
+
+
+YDdefe myExit
+XFcfg rec.$ma. $ds,$ic
+XFfc z cli.focus
+
+
+YDdefe myins
+XFcfg rec.$ma. $en,$ia
+XFfc z rec.$ma.focus
+
+
+YDdefe sendPnk
+XItgetln $oa line
+XFfc z myins
+XFtins rec.$ma insert line 
+XFfc z rec.doSyntax
+XIv - line '""'
+XFfc z rec.see
+
+
+XKread() {
+	local p="$1"
+	XKelif "tt[0] == \"$p\""
+}
+
+
+YDdefe cliSh
+XIeget cli line
+XIfv - tt line.split
+
+XKif 'tt[0] == "o"'
+WFfc z openfile
+
+XKread i
+WFfc z myins
+
+XKread w
+WFfc z savefile
+
+XKread d
+WFfc z myins
+WFfc z rec.cleartxt
+WFfc z myExit
+
+XKread m
+WFfc z musicBox
+
+XKread md
+WFfc z rmMusic
+
+XKread s
+WFfc z mapitOut
+
+
+
+XIgetfilenm() {
+	XIeget cli line
+	XIfv - f line.split
+}
+
+
+YDdefe openfile
+XIgetfilenm
+XFfc z rec.cleartxt
+XFfc z myins
+XFopft rec.$ma 'f[1]'
+XFfc z rec.doSyntax
+XFfc z myExit
+
+
+YDdefe savefile
+XIgetfilenm
+XItgeta rec.$ma data 
+XFwrtf data 'f[1]'
+XFfc z rec.doSyntax
+
+
+YDdefe cliclr
+XFedel cli
+
+
+YDdefp thdStart x
+XIv z x x
+XIfv - thd Thread 'target=x,daemon=True'
+XFfc - thd.start
+
+
+
+ZDcld Mp3
+XFlbox $wl 50 20
+XFcfg $wl. $fa,$bd,$aa,$gg,$kk
+XFpk $wl 0 none
+XIcv $ws Text width=80,height=3,$ia,$uu,$abc,$ff,$fa,$jc,$hh,$aa,$bb,$kk
+XFpk $ws 0 none
+XFbind $wl Control-r reloadMusic
+XFbind $wl Double-Button-1 startMusic
+XFbind $wl Return startMusic
+XFbind $ws Control-n dlMusic
+XFbind $ws Escape clearit
+XFfc z loadMusic
+YDdefe clearit
+XFtdel $ws 1.0 end
+YDdefe loadMusic
+XIfv - filelist listdir "\"$MP3_DIR\""
+XIfv - musiclist sorted filelist
+XLfor song musiclist
+WFtins $wl end 'f"{song}"'
+YDdefe reloadMusic
+XFedel $wl
+XFfc z loadMusic
+YDdefp cleanfn fn
+XIv - vc '"-"'
+XIv - out '""'
+XLfor c fn
+WKif 'str.isalnum(c) or (c in vc)'
+VIac - out c
+WKelse
+VIac - out '""'
+XDret out
+YDdefp notif n,m
+XIv z n n
+XIv z m m
+XFtins $ws 1.0 "f\"$datenow {n} {m}\n\""
+YDdefe getMp3
+XItgetln $ws url
+XFfc z notif 'url,"Downloading"'
+XIv - filepath "\"$MP3_DIR\""
+XIfv - daurl YouTube url
+XIfv - damusic daurl.streams.filter 'only_audio=True'
+XIfv - music damusic.first
+XIfv - raw music.download 'output_path=filepath'
+XIfv - head,t path.splitext raw
+XIfv - base path.basename head
+XIfv -z filename cleanfn base
+XIv - outfile 'f"{filepath}{filename}.mp3"'
+XFfc - rename raw,outfile
+XFfc z reloadMusic
+XFfc z notif 'filename,"Ready 2 Play!"'
+YDdefe playMp3
+XIfv -zz sel $wl.get "$wl.curselection()"
+XFfc - system "f\"mpv $MP3_DIR{sel}\""
+YDdefe dlMusic
+XFfc zz $M.thdStart getMp3
+YDdefe startMusic
+XFfc zz $M.thdStart playMp3
+
+
+
+ZDcld $ca
+XIcv $ma Text $opta
+XFpk $ma 1 both
 XFfc z synThd
-
+XFfc z tagConf
+XFfc z doSyntax
+YDdefe cleartxt
+XFtdel $ma 1.0 end
 YDdefe doSyntax
-XFfc zz syntax $oa
+XFfc zz syntax $ma
 YDdefe tagConf
-XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("#202124", "#bfff00"), "dol": ("black", "black"), "eql": ("#202124", "#00ffff"),"dash": ("#202124", "#00ffff"),"dot": ("#202124", "#bfff00"), "pls": ("#202124", "#00ffff"), "star": ("#202124", "#00ffff"),"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
+XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("#202124", "#bfff00"), "dol": ("black", "black"), "eql": ("#202124", "#00ffff"),"dash": ("#202124", "#00ffff"),"dot": ("#202124", "#bfff00"), "pls": ("#202124", "#00ffff"), "star": ("#202124", "#00ffff"),}'
 XLffor key,value d.items
-WFtagcfg $oa key value[0] value[1]
-WFtagcfg $ob key value[0] value[1]
+WFtagcfg $ma key value[0] value[1]
 YDdefp tagg x,y,a,b
 XIv z x x
 XIv z y y
@@ -791,521 +531,12 @@ WFfc z tagg 'xx,"X",start,end'
 XIv - Y_idx "[(m.start(),m.end()) for m in finditer(r'Y', data)]"
 XLfor start,end Y_idx
 WFfc z tagg 'xx,"Y",start,end'
-XIv - l0_idx "[(m.start(),m.end()) for m in finditer(r'0', data)]"
-XLfor start,end l0_idx
-WFfc z tagg 'xx,"0",start,end'
-XIv - l1_idx "[(m.start(),m.end()) for m in finditer(r'1', data)]"
-XLfor start,end l1_idx
-WFfc z tagg 'xx,"1",start,end'
-XIv - l2_idx "[(m.start(),m.end()) for m in finditer(r'2', data)]"
-XLfor start,end l2_idx
-WFfc z tagg 'xx,"2",start,end'
-XIv - l3_idx "[(m.start(),m.end()) for m in finditer(r'3', data)]"
-XLfor start,end l3_idx
-WFfc z tagg 'xx,"3",start,end'
-XIv - l4_idx "[(m.start(),m.end()) for m in finditer(r'4', data)]"
-XLfor start,end l4_idx
-WFfc z tagg 'xx,"4",start,end'
-XIv - l5_idx "[(m.start(),m.end()) for m in finditer(r'5', data)]"
-XLfor start,end l5_idx
-WFfc z tagg 'xx,"5",start,end'
-XIv - l6_idx "[(m.start(),m.end()) for m in finditer(r'6', data)]"
-XLfor start,end l6_idx
-WFfc z tagg 'xx,"6",start,end'
-XIv - l7_idx "[(m.start(),m.end()) for m in finditer(r'7', data)]"
-XLfor start,end l7_idx
-WFfc z tagg 'xx,"7",start,end'
-XIv - l8_idx "[(m.start(),m.end()) for m in finditer(r'8', data)]"
-XLfor start,end l8_idx
-WFfc z tagg 'xx,"8",start,end'
-XIv - l9_idx "[(m.start(),m.end()) for m in finditer(r'9', data)]"
-XLfor start,end l9_idx
-WFfc z tagg 'xx,"9",start,end'
-
-YDdefp thdStart x
-XIv z x x
-XIfv - thd Thread 'target=x,daemon=True'
-XFfc - thd.start
-
-
 YDdefe synThd
-XFfc zz thdStart doSyntax
+XFfc zz $M.thdStart doSyntax
 
+ZDcld $cb
+XIcv $mb Text $optd 
+XFpk $mb 0 none
+XFfc z $mb.focus
 
-YDdefe cliSyntax
-XFfc zz syntax $ob
-XFfc z doSyntax
-
-
-YDdefp notif n,m
-XIv z n n
-XIv z m m
-XFtins $ob end "f\"\n$datenow {n} {m}\n\""
-XFfc z $ob.see '"end"'
-
-
-YDdefp chgfg w
-XIv z w w
-XItgetln $ob fgcolor
-XFcfg w. 'fg=fgcolor'
-
-
-YDdefp chgbg w
-XIv z w w
-XItgetln $ob bgcolor
-XFcfg w. 'bg=bgcolor'
-
-
-YDdefe fgoa
-XFfc zz chgfg $oa
-
-
-YDdefe bgoa
-XFfc zz chgbg $oa
-
-
-YDdefe fgob
-XFfc zz chgfg $ob
-
-
-YDdefe bgob
-XFfc zz chgbg $ob
-
-
-YDdefe fntoa
-XItgetln $ob fntsz
-XIv - fn 'int(fntsz)'
-XFcfg $oa. 'font=("VictorMono",fn)'
-
-
-YDdefe fntob
-XItgetln $ob fntsz
-XIv - fn 'int(fntsz)'
-XFcfg $ob. 'font=("Iosevka",fn)'
-
-
-XIgetcmd() {
-	XIfv -z filename $ob.get '"insert linestart+2c","insert lineend"'
-}
-
-
-YDdefe savefile
-XIgetcmd
-XItgeta $oa data 
-XFwrtf data filename
-XFfc z notif 'filename,"Saved!"'
-XFfc z doSyntax
-
-
-YDdefe openfile
-XIgetcmd
-XFfc z myinsert
-XFfc z i$fa.cleartxt
-XFopft $oa filename
-XFfc z notif 'filename,"Opened!"'
-XFfc z doSyntax
-XFfc z myExit
-XFfc z $oa.see 1.0
-
-
-YDdefe myExit
-XFcfg $oa. $ib,$ds
-XFfc z $ob.focus
-
-
-YDdefe myinsert
-XFcfg $oa. $ia,$en
-XFfc z $oa.focus
-
-
-YDdefe clearOut
-XFfc z i$fd.destroy 
-XFfc z $ob.focus
-
-
-YDdefe mapitOut
-XItgetln $ob cmd
-XIcv i$fd $fd
-XIfv -z wwid i$fa.winfo_width
-XFpl i$fd 'wwid//10' 200  
-XFbind $od Escape clearOut
-XFshspp $od 'f". pnk.lang ; {cmd}"'
-XFfc z $od.see 1.0
-
-
-YDdefe mapit
-XFfc z myinsert
-XItgetln $ob cmd
-XFshspp $oa 'f". pnk.lang ; {cmd}"'
-XFfc z $oa.see 1.0
-XFfc z myExit
-
- 
-YDdefe musicBox
-XIcv i$fc $fc
-XFpk i$fc 0 none
-
-
-YDdefe rmMusic
-XFfc z i$fc.destroy
-
-
-XKread() {
-	local p="$1"
-	XKelif "tt[0] == \"$p\""
-}
-
-
-WFdel() {
-	WFfc z $oa.delete '"insert-1c linestart","insert lineend"'
-}
-
-
-XKFread() {
-	local pycom="$1"
-	local command="$2"
-	XKelif "tt[0] == \"$pycom\""
-	WFtins $oa end "f\"$command {strn}\n\"" 
-	WFfc z $oa.see '"end"'	
-}
-
-
-YDdefe sendCode
-XItgetln $ob txt
-XIfv - tt txt.split
-XIv - strn '" ".join( str(i) for i in tt[1:])'
-XFcfg $oa. $en
-
-XKif 'tt[0] == "i"'
-WFtins $oa insert 'f"{strn}\n"'
-
-XKread c
-WFtins $oa insert 'f"# {strn}\n"'
-
-XKread o
-WFfc z openfile
-
-XKread w
-WFfc z savefile
-
-XKread d
-WFfc z i$fa.cleartxt
-
-XKread r
-WFdel
-WFtins $oa insert 'f"{strn}"'
-WFfc z $oa.mark_set '"insert","end"'
-
-XKread rn
-WFdel
-WFtins $oa insert 'f"{strn}\n"'
-
-XKread dd
-WItgetln $oa self.ll
-WFdel
- 
-XKread p
-WFtins $oa insert 'f"{self.ll}\n"'
-
-XKread m
-WFfc z musicBox
-
-XKread md
-WFfc z rmMusic
-
-
-XKFread a00 '. pnk.lang'
-XKFread a01 ZDshebang
-XKFread a02 ZDfrm
-XKFread a10 ZDimp
-XKFread a11 ZDas
-XKFread a12 ZFtoorwin
-XKFread b00 ZDdc
-XKFread b01 ZDcld
-XKFread b10 XIcv
-XKFread b11 ZFmain
-XKFread c00 ZDfd
-XKFread c01 YDfd
-XKFread c02 XDfd
-XKFread c10 WDfd
-XKFread d00 ZDdefe
-XKFread d01 YDret
-XKFread d10 YDdefp
-XKFread d11 XDret
-XKFread d12 YDdefe
-XKFread d20 YDdefs
-XKFread d21 XDdefe
-XKFread d22 WDret
-XKFread d30 XDdefs
-XKFread d31 WDdefe
-XKFread d32 VDret
-XKFread d40 WDdefs
-XKFread e00 ZFfc
-XKFread e01 YFfc
-XKFread e02 XFfc
-XKFread e10 WFfc
-XKFread e11 VFfc
-XKFread e12 UFfc
-XKFread f00 ZIfv
-XKFread f01 YIfv
-XKFread f02 XIfv
-XKFread f10 WIfv
-XKFread f11 VIfv
-XKFread f12 UIfv
-XKFread g00 ZIv
-XKFread g01 YIv
-XKFread g02 XIv
-XKFread g10 WIv
-XKFread g11 VIv
-XKFread g12 UIv
-XKFread h00 ZIac
-XKFread h01 YIac
-XKFread h02 XIac
-XKFread h10 WIac
-XKFread h11 VIac
-XKFread h12 UIac
-XKFread h20 ZIrd
-XKFread h21 YIrd
-XKFread h22 XIrd
-XKFread h30 WIrd
-XKFread h31 VIrd
-XKFread h32 UIrd
-XKFread h40 ZIdvd 
-XKFread h41 YIdvd 
-XKFread h42 XIdvd 
-XKFread h50 WIdvd 
-XKFread h51 VIdvd 
-XKFread h52 UIdvd
-XKFread i00 YKtry
-XKFread i01 YKexcp
-XKFread i02 YKfin
-XKFread i10 XKtry
-XKFread i11 XKexcp
-XKFread i12 XKfin
-XKFread i20 WKtry
-XKFread i21 WKexcp
-XKFread i22 WKfin
-XKFread i30 VKtry
-XKFread i31 VKexcp
-XKFread i32 VKfin
-XKFread k00 ZKif
-XKFread k01 YKif
-XKFread k02 XKif
-XKFread k10 WKif
-XKFread k11 VKif
-XKFread k12 UKif
-XKFread k20 ZKiff
-XKFread k21 YKiff
-XKFread k22 XKiff
-XKFread k30 WKiff
-XKFread k31 VKiff
-XKFread k32 UKiff
-XKFread k40 ZKelif
-XKFread k41 YKelif
-XKFread k42 XKelif
-XKFread k50 WKelif
-XKFread k51 VKelif
-XKFread k52 UKelif
-XKFread k60 ZKeliff
-XKFread k61 YKeliff
-XKFread k62 XKeliff
-XKFread k70 WKeliff
-XKFread k71 VKeliff
-XKFread k72 UKeliff
-XKFread k80 ZKelse
-XKFread k81 YKelse
-XKFread k82 XKelse
-XKFread k90 WKelse
-XKFread k91 VKelse
-XKFread k92 UKelse
-XKFread l00 YKbr
-XKFread l01 XKbr
-XKFread l02 WKbr
-XKFread l10 VKbr
-XKFread l11 UKbr
-XKFread l12 YKctn
-XKFread l20 XKctn
-XKFread l21 WKctn
-XKFread l22 VKctn
-XKFread l30 UKctn
-XKFread l31 YKps
-XKFread l32 XKps
-XKFread l40 WKps
-XKFread l41 VKps
-XKFread l42 UKps
-XKFread m00 ZLfor
-XKFread m01 YLfor
-XKFread m02 XLfor
-XKFread m10 WLfor
-XKFread m11 VLfor
-XKFread m12 ULfor
-XKFread m20 ZLffor
-XKFread m21 YLffor
-XKFread m22 XLffor
-XKFread m30 WLffor
-XKFread m31 VLffor
-XKFread m32 ULffor
-XKFread m40 ZLwhile
-XKFread m41 YLwhile
-XKFread m42 XLwhile
-XKFread m50 WLwhile
-XKFread m51 VLwhile
-XKFread m52 ULwhile
-XKFread w00 XFbtn
-XKFread w01 XFtext
-XKFread w02 XFpnwin
-XKFread w10 XFnotebk
-XKFread w11 XFentry
-XKFread w12 XFlabel
-XKFread w20 XFlbox
-XKFread t00 XIeget
-XKFread t01 XItgetln
-XKFread t02 XItget
-XKFread t10 XItgeta
-XKFread t11 WItgetln
-XKFread t12 WItget
-XKFread t20 WIeget
-XKFread p00 XFpk
-XKFread p01 XFpl
-XKFread p02 XFgd
-XKFread p10 XFgdcfc
-XKFread p11 XFgdcfr
-XKFread p12 XFbind
-XKFread p20 XFbinda
-XKFread p21 XFshsp
-XKFread p22 XFshspp
-XKFread p30 XFpyev
-XKFread v00 XFopft
-XKFread v01 XFwrtf
-XKFread v02 XFset
-XKFread v10 XFcfg
-XKFread v11 XFedel
-XKFread v12 XFeins
-XKFread v20 XFtdel
-XKFread v21 XFtlndel
-XKFread v22 XFtins
-XKFread u00 WFtagcfg
-XKFread u01 WFtins
-XKFread u02 WFset
-XKFread u10 WFcfg
-XKFread u11 WFedel
-XKFread u12 WFeins
-XKFread u20 WFtdel
-XKFread u21 WFtlndel
-XKFread u22 VFtins
-
-XFcfg $oa. $ds
-XFfc z doSyntax
-
-
-
-ZDcld $fc
-
-XFlbox $wl 64 3
-XFcfg $wl. 'font=("Iosevka",16)'
-XFpk $wl 0 none
-
-XIcv $ws Text $optc
-XFpk $ws 0 none
-
-
-XFbind $wl Control-r reloadMusic
-XFbind $wl Double-Button-1 startMusic
-XFbind $wl Return startMusic
-XFbind $ws Control-n dlMusic
-XFbind $ws Escape clearit
-
-XFfc z loadMusic
-
-
-YDdefe clearit
-XFtdel $ws 1.0 end
-
-
-YDdefe loadMusic
-XIfv - filelist listdir "\"$MP3_DIR\""
-XIfv - musiclist sorted filelist
-XLfor song musiclist
-WFtins $wl end 'f"{song}"'
-
-
-YDdefe reloadMusic
-XFedel $wl
-XFfc z loadMusic
-
-
-YDdefp cleanfn fn
-XIv - vc '"-"'
-XIv - out '""'
-XLfor c fn
-WKif 'str.isalnum(c) or (c in vc)'
-VIac - out c
-WKelse
-VIac - out '""'
-XDret out
-
-
-YDdefp notif n,m
-XIv z n n
-XIv z m m
-XFtins $ws 1.0 "f\"$datenow {n} {m}\n\""
-
-
-YDdefe getMp3
-XItgetln $ws url
-XFfc z notif 'url,"Downloading"'
-XIv - filepath "\"$MP3_DIR\""
-XIfv - daurl YouTube url
-XIfv - damusic daurl.streams.filter 'only_audio=True'
-XIfv - music damusic.first
-XIfv - raw music.download 'output_path=filepath'
-XIfv - head,t path.splitext raw
-XIfv - base path.basename head
-XIfv -z filename cleanfn base
-XIv - outfile 'f"{filepath}{filename}.mp3"'
-XFfc - rename raw,outfile
-XFfc z reloadMusic
-XFfc z notif 'filename,"Ready 2 Play!"'
-
-
-YDdefe playMp3
-XIfv -zz sel $wl.get "$wl.curselection()"
-XFfc - system "f\"mpv $MP3_DIR{sel}\""
-
-
-YDdefe dlMusic
-XFfc zz $M.thdStart getMp3
-
-
-YDdefe startMusic
-XFfc zz $M.thdStart playMp3
-
-
-
-ZDcld $fa
-XIcv $ta Text $opta
-XFpk $ta 1 y
-XFbind $ta Button-3 $M.myinsert
-YDdefe cleartxt
-XFtdel $ta 1.0 end
-
-
-
-ZDcld $fb
-XIcv $tb Text $optb
-XFpk $tb 0 none
-XFfc z $tb.focus
-XFbind $tb Escape cleartxt
-YDdefe cleartxt
-XFtdel $tb 1.0 end
-
-
-
-ZDcld $fd
-XIcv $td Text $optd 
-XFpk $td 0 none
-XFfc z $td.focus 
-
-
-
-ZFmain Shimky shimky
+ZFmain Pnk pnk-ide
