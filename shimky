@@ -41,8 +41,8 @@ wr='wrap="word"'
 
 
 opta=$aa,$bd,$ee,$gg,$ib,$kk,$wb,$fa
-optb=width=32,$jc,$hh,$fe,$ia
-optc=width=100,$ia,$uu,$abc,$mm,$ll,$ff,$fa,$jc,$hh,$bb,$ds,$wr
+optb=width=80,$jc,$hh,$fe,$ia
+optc=width=80,$ia,$uu,$abc,$mm,$ll,$ff,$fa,$jc,$hh,$bb,$ds,$wr
 optd=$aa,$bd,$ee,$gg,$id,$jc,$kk,$abc,$fa,$mm,$ll
 
 ZDshebang 
@@ -69,17 +69,20 @@ XFfc zz pw.add app
 
 
 ZDcld App
+
 XIcv cli Entry $opta
-XFpk cli 0 none
+XFpk cli 0 x $sb,$aw
 XFcfg cli. $optb
 XFfc z cli.focus
 
 XIcv i$ca $ca
-XFpk i$ca 1 y $sl
+XFpk i$ca 0 y $sl
 
 XIcv rec $ca
 XFpk rec 1 both $sl
 XFcfg rec.$ma. $optc
+
+
 
 XFbind cli Escape cliclr
 XFbind cli Return cliSh
@@ -112,6 +115,7 @@ YDdefe innerShell
 XItgetln $od com
 XFshsp $od com
 XFfc z $od.see '"end"'
+
 
 YDdefe mapitOut
 XIeget cli line
