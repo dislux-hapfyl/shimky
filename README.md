@@ -12,6 +12,15 @@ Depends: `pip install pytube tkinter subprocess threading`
 
 NOTE: Threading is NOT used for Subprocess.
 
+`wc`
+
+    305     859   14843 shimky.py
+    
+    379    1138    9605 shimky
+
+
+
+
 ![pnk](pynksh.jpeg)
 
 ## EOF
