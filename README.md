@@ -14,9 +14,9 @@ NOTE: Threading is NOT used for Subprocess.
 
 `wc`
 
-    305     859   14843 shimky.py
+305     859   14843 shimky.py
     
-    379    1138    9605 shimky
+379    1138    9605 shimky
 
 
 
