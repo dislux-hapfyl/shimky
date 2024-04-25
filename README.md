@@ -12,8 +12,6 @@ Depends: `pip install pytube tkinter subprocess threading`
 
 NOTE: Threading is NOT used for Subprocess.
 
-`wc`
-
 Lines  Words  Chars  File
 
 305     859   14843  shimky.py
