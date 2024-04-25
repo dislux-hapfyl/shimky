@@ -353,13 +353,15 @@ XKread s
 WFfc z mapitOut
 
 XKread dd
-WItgetln rec.$ma ll
+WItgetln rec.$ma self.ll
 WFfc z myins
 WFfc z rec.$ma.delete '"insert-1c linestart","insert lineend"'
 WFfc z myExit
  
 XKread p
-WFtins rec.$ma insert 'f"{ll}\n"'
+WFfc z myins
+WFtins rec.$ma insert 'f"{self.ll}\n"'
+WFfc z myExit
 
 
 XIgetfilenm() {
@@ -549,3 +551,4 @@ XFpk $mb 0 none
 XFfc z $mb.focus
 
 ZFmain Pnk pnk-ide
+
