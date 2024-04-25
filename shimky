@@ -357,6 +357,8 @@ WItgetln rec.$ma self.ll
 WFfc z myins
 WFfc z rec.$ma.delete '"insert-1c linestart","insert lineend"'
 WFfc z myExit
+WFfc z cliclr
+
  
 XKread p
 WFfc z myins
