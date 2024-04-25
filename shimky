@@ -40,8 +40,8 @@ wr='wrap="word"'
 
 
 opta=$aa,$bd,$ee,$gg,$ib,$kk,$wb,$fa
-optb=width=80,$bb,$hh,$fe,$ib,$jc
-optc=width=80,$ia,$uu,$abc,$mm,$ll,$ff,$fa,$jc,$hh,$bb,$ds,$wr
+optb=$bd,$hh,$fe,$ib,$jc
+optc=$ia,$uu,$abc,$mm,$ll,$ff,$fa,$jc,$hh,$bb,$ds,$wr
 optd=$aa,$bd,$ee,$gg,$id,$jc,$kk,$abc,$fa,$mm,$ll
 
 ZDshebang 
