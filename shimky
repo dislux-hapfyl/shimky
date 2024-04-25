@@ -12,8 +12,6 @@ ws=mp3Cmd
 wl=musicBox
 M=master
 
-
-
 aa='fg="#DDD"'
 abc='blockcursor=True'
 bb='bg="#222"'
@@ -55,7 +53,9 @@ ZDfrm pytube YouTube
 ZDimp subprocess
 ZDimp datetime
 
+
 ZFtoorwin Pnk
+
 XFpnwin pw '"horizontal"'
 XFpk pw 1 both
 XFcfg '' $eh
@@ -83,8 +83,6 @@ XFpk i$ca 0 y $sl
 XIcv rec $ca
 XFpk rec 1 both $sl
 XFcfg rec.$ma. $optc
-
-
 
 XFbind cli Escape cliclr
 XFbind cli Return cliSh
@@ -197,7 +195,6 @@ WFfc z myins
 WFfc z rec.$ma.delete '"insert-1c linestart","insert lineend"'
 WFfc z myExit
 WFfc z cliclr
-
  
 XKread p
 WFfc z myins
@@ -386,9 +383,12 @@ XLfor start,end Y_idx
 WFfc z tagg 'xx,"Y",start,end'
 
 
+
 ZDcld $cb
 XIcv $mb Text $optd 
 XFpk $mb 0 none
 XFfc z $mb.focus
+
+
 
 ZFmain Pnk pnk-ide
