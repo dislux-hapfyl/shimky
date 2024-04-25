@@ -1,6 +1,6 @@
 . pnk.lang
 
-MP3_DIR=/home/mrmr/more-data/mp3/
+MP3_DIR=
 
 ca=CommA
 cb=ShellOut
@@ -40,7 +40,7 @@ wd='height=16'
 opta=$aa,$bd,$ee,$gg,$ib,$kk,$wb,$fa
 optb=$jc,$fa,$hh,$fe,width=32
 optc=width=100,$ia,$uu,$abc,$mm,$ll,$ff,$fa,$jc,$hh,$bb,$ds,$wr
-optd=$aa,$bd,$ee,$gg,$id,$jc,$kk,$ll,$mm,$uu,$abc,$wd,$fa
+optd=$aa,$bd,$ee,$gg,$id,$jc,$kk,$abc,$fa,$mm,$ll
 
 ZDshebang 
 ZDfrm tkinter Tk,Frame,Text,Entry,PanedWindow,Listbox
@@ -286,12 +286,11 @@ XIeget cli line
 XIfv - tt line.split
 XIv - cmd '" ".join( str(i) for i in tt[1:])'
 XIcv i$cb $cb
-XFpl i$cb 165 100
+XFpl i$cb 175 200
 XFbind $od Escape clearOut
 XFbind $od Control-Return sendBack
 XFshspp $od 'f". pnk.lang ; {cmd}"'
 XFfc z $od.see 1.0
-XFfc z cliclr
 
 
 YDdefe musicBox
