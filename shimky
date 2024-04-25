@@ -1,6 +1,6 @@
 . pnk.lang
 
-MP3_DIR=
+MP3_DIR=/home/mrmr/more-data/mp3/
 
 ca=CommA
 cb=ShellOut
@@ -80,6 +80,7 @@ XFcfg rec.$ma. $optc
 
 XFbind cli Escape cliclr
 XFbind cli Return cliSh
+XFbind cli Tab myins
 XFbind rec.$ma Shift_R rec.doSyntax
 XFbind rec.$ma Escape myExit
 XFbind rec.$ma Button-3 myins
@@ -332,9 +333,6 @@ XKread() {
 	local p="$1"
 	XKelif "tt[0] == \"$p\""
 }
-
-XKread i
-WFfc z myins
 
 XKread w
 WFfc z savefile
