@@ -13,12 +13,15 @@ wl=musicBox
 M=master
 
 aa='fg="#DDD"'
+abc='blockcursor=True'
 bb='bg="#222"'
 bd=bg=$bg
-fa='font=("VictorMono",16)'
+ds='state="disabled"'
 ee='cursor="pencil"'
-ff='cursor="shuttle"'
+en='state="normal"'
+fa='font=("VictorMono",16)'
 fe='cursor="spider"'
+ff='cursor="shuttle"'
 gg=highlightbackground=$bg
 hh='highlightbackground="#444"'
 ia='highlightcolor="#2BCDBB"'
@@ -27,20 +30,17 @@ ic='highlightcolor="red"'
 id='highlightcolor="orange"'
 jc='insertbackground="red"'
 kk='relief="flat"'
-uu='undo=True'
 ll='padx=12'
 mm='pady=12'
-abc='blockcursor=True'
-ds='state="disabled"'
-en='state="normal"'
+uu='undo=True'
 wb='width=10'
 wr='wrap="word"'
-wd='height=16'
 
 opta=$aa,$bd,$ee,$gg,$ib,$kk,$wb,$fa
-optb=$jc,$fa,$hh,$fe,width=32
+optb=width=32,$jc,$hh,$fe,$ia
 optc=width=100,$ia,$uu,$abc,$mm,$ll,$ff,$fa,$jc,$hh,$bb,$ds,$wr
 optd=$aa,$bd,$ee,$gg,$id,$jc,$kk,$abc,$fa,$mm,$ll
+
 
 ZDshebang 
 ZDfrm tkinter Tk,Frame,Text,Entry,PanedWindow,Listbox
@@ -50,6 +50,7 @@ ZDfrm os listdir,system,rename,path
 ZDfrm pytube YouTube
 ZDimp subprocess
 ZDimp datetime
+
 
 ZFtoorwin Pnk
 XFpnwin pw '"horizontal"'
