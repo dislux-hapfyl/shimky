@@ -324,7 +324,7 @@ XFfc z rec.see
 YDdefe cliSh
 XIeget cli line
 XIfv - tt line.split
-
+XIv - strn '" ".join( str(i) for i in tt[1:])'
 XKif 'tt[0] == "o"'
 WFfc z openfile
 
@@ -333,6 +333,7 @@ XKread() {
 	XKelif "tt[0] == \"$p\""
 }
 
+
 XKread w
 WFfc z savefile
 
@@ -340,6 +341,7 @@ XKread d
 WFfc z myins
 WFfc z rec.cleartxt
 WFfc z myExit
+WFfc z cliclr
 
 XKread m
 WFfc z musicBox
@@ -350,6 +352,14 @@ WFfc z rmMusic
 XKread s
 WFfc z mapitOut
 
+XKread dd
+WItgetln rec.$ma ll
+WFfc z myins
+WFfc z rec.$ma.delete '"insert-1c linestart","insert lineend"'
+WFfc z myExit
+ 
+XKread p
+WFtins rec.$ma insert 'f"{ll}\n"'
 
 
 XIgetfilenm() {
@@ -539,4 +549,3 @@ XFpk $mb 0 none
 XFfc z $mb.focus
 
 ZFmain Pnk pnk-ide
-
