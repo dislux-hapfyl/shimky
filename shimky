@@ -72,7 +72,7 @@ XFcfg cli. $optb
 XFfc z cli.focus
 
 XIcv i$ca $ca
-XFpk i$ca 0 y $sl
+XFpk i$ca 1 y $sl
 
 XIcv rec $ca
 XFpk rec 1 both $sl
@@ -553,4 +553,3 @@ XFpk $mb 0 none
 XFfc z $mb.focus
 
 ZFmain Pnk pnk-ide
-
