@@ -1118,7 +1118,7 @@ XFlbox() {
 	local namee="$1"
 	local w="$2"
 	local h="$3"
-	XIfv z $namee Listbox "self,$wlbbg,$wfg,$wecr,$wlbhbg,$whc,$wre,$wlbfnt,width=$w,height=$h"
+	XIfv z $namee Listbox "self,width=$w,height=$h"
 }
 XFbtn() {
 	local namee="$1"
@@ -1128,7 +1128,7 @@ XFbtn() {
 }
 XFtext() {
 	local namee="$1"
-	XIfv z $namee Text "self,wrap=\"word\",insertwidth=4,undo=True,padx=20,pady=10,spacing1=2,spacing3=2,$wbg,$wfg,$wcr,$whbg,$whc,$wic,$wre,"
+	XIfv z $namee Text "self,wrap=\"word\",insertwidth=4,undo=True,padx=20,pady=10,spacing1=2,spacing3=2,$wbg,$wfg,$wcr,$whbg,$whc,$wic,$wre,$wfnt"
 }
 XFpnwin() {
 	local namee="$1"
