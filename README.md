@@ -12,15 +12,10 @@ Depends: `pip install pytube tkinter subprocess threading`
 
 NOTE: Threading is NOT used for Subprocess.
 
-Lines  Words  Chars  File
 
-318 893 15782 shimky.py
+**EOF**
 
-394 1159 9790 shimky
-
-## EOF
-
-thanks for stopping in ;)
+Thanks for stopping in ;)
 
 https://special.fish/hardkorebob
 
