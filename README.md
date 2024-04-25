@@ -8,6 +8,8 @@ Shell IDE for pnk.lang
 
 Launch: `sed 's|MP3_DIR=|&$HOME/your-mp3-dir/|' shimky | bash | python3 &`
 
+Depends: `pip install pytube tkinter`
+
 ![pnk](pynksh.jpeg)
 
 ## EOF
