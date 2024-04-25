@@ -18,13 +18,6 @@ Lines  Words  Chars  File
 
 394 1159 9790 shimky
 
-
-
-
-
-
-![pnk](pynksh.jpeg)
-
 ## EOF
 
 thanks for stopping in ;)
