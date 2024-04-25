@@ -6,7 +6,7 @@ ca=CommA
 cb=ShellOut
 ma=txtW
 mb=shellout
-oa=a$ca.$ma
+oa=i$ca.$ma
 od=i$cb.$mb
 ws=mp3Cmd
 wl=musicBox
@@ -71,8 +71,8 @@ XFpk cli 0 none
 XFcfg cli. $optb
 XFfc z cli.focus
 
-XIcv a$ca $ca
-XFpk a$ca 0 y $sl
+XIcv i$ca $ca
+XFpk i$ca 0 y $sl
 
 XIcv rec $ca
 XFpk rec 1 both $sl
@@ -263,6 +263,7 @@ XFtins $oa insert 'f"WFeins\n"'
 XFtins $oa insert 'f"WFtdel\n"'
 XFtins $oa insert 'f"WFtlndel\n"'
 XFtins $oa insert 'f"VFtins\n"'
+XFfc z i$ca.doSyntax
 XFcfg $oa. $ds
 
 
@@ -314,16 +315,10 @@ XFfc z rec.$ma.focus
 YDdefe sendPnk
 XItgetln $oa line
 XFfc z myins
-XFtins rec.$ma insert line 
+XFtins rec.$ma insert 'f"{line} "' 
 XFfc z rec.doSyntax
 XIv - line '""'
 XFfc z rec.see
-
-
-XKread() {
-	local p="$1"
-	XKelif "tt[0] == \"$p\""
-}
 
 
 YDdefe cliSh
@@ -332,6 +327,11 @@ XIfv - tt line.split
 
 XKif 'tt[0] == "o"'
 WFfc z openfile
+
+XKread() {
+	local p="$1"
+	XKelif "tt[0] == \"$p\""
+}
 
 XKread i
 WFfc z myins
@@ -365,6 +365,7 @@ YDdefe openfile
 XIgetfilenm
 XFfc z rec.cleartxt
 XFfc z myins
+XFfc z rec.cleartxt
 XFopft rec.$ma 'f[1]'
 XFfc z rec.doSyntax
 XFfc z myExit
@@ -454,6 +455,8 @@ XFpk $ma 1 both
 XFfc z synThd
 XFfc z tagConf
 XFfc z doSyntax
+YDdefe synThd
+XFfc zz $M.thdStart doSyntax
 YDdefe cleartxt
 XFtdel $ma 1.0 end
 YDdefe doSyntax
@@ -531,8 +534,7 @@ WFfc z tagg 'xx,"X",start,end'
 XIv - Y_idx "[(m.start(),m.end()) for m in finditer(r'Y', data)]"
 XLfor start,end Y_idx
 WFfc z tagg 'xx,"Y",start,end'
-YDdefe synThd
-XFfc zz $M.thdStart doSyntax
+
 
 ZDcld $cb
 XIcv $mb Text $optd 
@@ -540,3 +542,4 @@ XFpk $mb 0 none
 XFfc z $mb.focus
 
 ZFmain Pnk pnk-ide
+
