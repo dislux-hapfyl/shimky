@@ -14,9 +14,11 @@ NOTE: Threading is NOT used for Subprocess.
 
 Lines  Words  Chars  File
 
-305     859   14843  shimky.py
-    
-379    1138    9605  shimky
+318 893 15782 shimky.py
+
+394 1159 9790 shimky
+
+
 
 
 
