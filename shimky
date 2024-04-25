@@ -13,12 +13,14 @@ wl=musicBox
 M=master
 
 
+
 aa='fg="#DDD"'
 abc='blockcursor=True'
 bb='bg="#222"'
 bd=bg=$bg
 ds='state="disabled"'
 ee='cursor="pencil"'
+eh='cursor="heart"'
 en='state="normal"'
 fa='font=("VictorMono",16)'
 fe='cursor="spider"'
@@ -40,7 +42,7 @@ wr='wrap="word"'
 
 
 opta=$aa,$bd,$ee,$gg,$ib,$kk,$wb,$fa
-optb=width=80,$jc,$hh,$fe,$ia
+optb=width=80,$bb,$hh,$fe,$ib,$jc
 optc=width=80,$ia,$uu,$abc,$mm,$ll,$ff,$fa,$jc,$hh,$bb,$ds,$wr
 optd=$aa,$bd,$ee,$gg,$id,$jc,$kk,$abc,$fa,$mm,$ll
 
@@ -56,6 +58,7 @@ ZDimp datetime
 ZFtoorwin Pnk
 XFpnwin pw '"horizontal"'
 XFpk pw 1 both
+XFcfg '' $eh
 XFfc z run
 
 XFbinda Control-r run
