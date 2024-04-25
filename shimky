@@ -12,6 +12,8 @@ ws=mp3Cmd
 wl=musicBox
 M=master
 
+
+
 aa='fg="#DDD"'
 abc='blockcursor=True'
 bb='bg="#222"'
@@ -34,13 +36,14 @@ ll='padx=12'
 mm='pady=12'
 uu='undo=True'
 wb='width=10'
+wd='height=16'
 wr='wrap="word"'
+
 
 opta=$aa,$bd,$ee,$gg,$ib,$kk,$wb,$fa
 optb=width=32,$jc,$hh,$fe,$ia
 optc=width=100,$ia,$uu,$abc,$mm,$ll,$ff,$fa,$jc,$hh,$bb,$ds,$wr
 optd=$aa,$bd,$ee,$gg,$id,$jc,$kk,$abc,$fa,$mm,$ll
-
 
 ZDshebang 
 ZDfrm tkinter Tk,Frame,Text,Entry,PanedWindow,Listbox
@@ -50,7 +53,6 @@ ZDfrm os listdir,system,rename,path
 ZDfrm pytube YouTube
 ZDimp subprocess
 ZDimp datetime
-
 
 ZFtoorwin Pnk
 XFpnwin pw '"horizontal"'
@@ -106,6 +108,11 @@ XFfc z myExit
 XFfc z $od.focus
 
 
+YDdefe innerShell
+XItgetln $od com
+XFshsp $od com
+XFfc z $od.see '"end"'
+
 YDdefe mapitOut
 XIeget cli line
 XIfv - tt line.split
@@ -114,6 +121,7 @@ XIcv i$cb $cb
 XFpl i$cb 175 200
 XFbind $od Escape clearOut
 XFbind $od Control-Return sendBack
+XFbind $od Control-Shift_R innerShell
 XFshspp $od 'f". pnk.lang ; {cmd}"'
 XFfc z $od.see 1.0
 
