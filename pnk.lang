@@ -1106,7 +1106,7 @@ pnbg='bg="#111"'
 sl='side="left"'
 sb='side="bottom"'
 sr='side="right"'
-sb='side="top"'
+st='side="top"'
 ac='anchor="center"'
 ae='anchor="e"'
 aw='anchor="w"'
@@ -1118,7 +1118,8 @@ XFlbox() {
 	local namee="$1"
 	local w="$2"
 	local h="$3"
-	XIfv z $namee Listbox "self,width=$w,height=$h"
+	local o="$4"
+	XIfv z $namee Listbox "self,width=$w,height=$h,$o"
 }
 XFbtn() {
 	local namee="$1"
