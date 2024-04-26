@@ -212,7 +212,6 @@ XIgetfilenm() {
 
 YDdefe openfile
 XIgetfilenm
-XFfc z rec.cleartxt
 XFfc z myins
 XFfc z rec.cleartxt
 XFopft rec.$ma 'f[1]'
@@ -239,7 +238,7 @@ XFfc - thd.start
 
 
 ZDcld Mp3
-XFlbox $wl 50 20
+XFlbox $wl 50 20 borderwidth=0
 XFcfg $wl. $fa,$bd,$aa,$gg,$kk
 XFpk $wl 0 none
 XIcv $ws Text width=80,height=3,$ia,$uu,$abc,$ff,$fa,$jc,$hh,$aa,$bb,$kk
@@ -392,3 +391,4 @@ XFfc z $mb.focus
 
 
 ZFmain Pnk pnk-ide
+
