@@ -87,7 +87,7 @@ XFcfg rec.$ma. $optc
 XFbind cli Escape cliclr
 XFbind cli Return cliSh
 XFbind cli Tab myins
-XFbind rec.$ma Shift_R rec.doSyntax
+XFbind rec.$ma Shift_R rec.synThd
 XFbind rec.$ma Escape myExit
 XFbind rec.$ma Button-3 myins
 XFbind $oa Double-Button-1 sendPnk
@@ -187,6 +187,7 @@ WFfc z musicBox
 
 XKread md
 WFfc z rmMusic
+WFfc z cliclr
 
 XKread s
 WFfc z mapitOut
@@ -215,7 +216,7 @@ XIgetfilenm
 XFfc z myins
 XFfc z rec.cleartxt
 XFopft rec.$ma 'f[1]'
-XFfc z rec.doSyntax
+XFfc z rec.synThd
 XFfc z myExit
 
 
@@ -223,7 +224,7 @@ YDdefe savefile
 XIgetfilenm
 XItgeta rec.$ma data 
 XFwrtf data 'f[1]'
-XFfc z rec.doSyntax
+XFfc z rec.synThd
 
 
 YDdefe cliclr
