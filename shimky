@@ -162,14 +162,16 @@ YDdefe cliSh
 XIeget cli line
 XIfv - tt line.split
 XIv - strn '" ".join( str(i) for i in tt[1:])'
-XKif 'tt[0] == "o"'
-WFfc z openfile
+XKif 'not tt'
+WKps 
 
 XKread() {
 	local p="$1"
 	XKelif "tt[0] == \"$p\""
 }
 
+XKread o
+WFfc z openfile
 
 XKread w
 WFfc z savefile
@@ -299,9 +301,7 @@ XFfc zz $M.thdStart playMp3
 ZDcld $ca
 XIcv $ma Text $opta
 XFpk $ma 1 both
-XFfc z synThd
 XFfc z tagConf
-XFfc z doSyntax
 YDdefe synThd
 XFfc zz $M.thdStart doSyntax
 YDdefe cleartxt
