@@ -14,6 +14,7 @@ Depends: `pip install pytube tk subprocess threading`
 NOTE: Threading is NOT used for Subprocess.
 
 
+Lines   Words Chars
     365     924    7822 shimky
     320     895   15819 shimky.py
     
