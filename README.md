@@ -2,7 +2,10 @@
 
 SHell vIM tKinter pYthon = shimky
 
-IDE for pnk.lang
+pnk.lang is a DSL made in Shell Script that compiles to Python. Abstracting indentation and category of functions into colors[capital letters] using the tag_add method from tkinter. For me it reduces cognitive load and also you write much less Python boilerplate.
+
+
+shimky is the IDE for pnk.lang built in pnk.lang. It has some vim behaviors/modes/commands and an internal bash shell/command line, an mp3 player[mpv] and a youtube music downloader command line. Paste a URL and hit Ctr-n and you get a refreshed mp3 list with new mp3 renamed for POSIXish.
 
 Launch: `sed 's|MP3_DIR=|&$HOME/your-mp3-dir/|' shimky | bash | python3 &`
 
